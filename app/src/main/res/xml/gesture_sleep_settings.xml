@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="utf-8"?>
+<PreferenceScreen xmlns:android="http://schemas.android.com/apk/res/android"
+   	android:key="main_preference_key"
+	android:title="@string/gesture_sleep" >
+
+    <com.qucii.gesture.GestureSwitchPreference
+        android:key="sleep_up_gesture"
+        android:title="@string/sleep_up_gesture" />
+          
+    <com.qucii.gesture.GestureSwitchPreference
+        android:key="sleep_down_gesture"
+        android:title="@string/sleep_down_gesture" />
+
+    <com.qucii.gesture.GestureSwitchPreference
+        android:key="sleep_left_gesture"
+        android:title="@string/sleep_left_gesture" />   
+    
+    <com.qucii.gesture.GestureSwitchPreference
+        android:key="sleep_right_gesture"
+        android:title="@string/sleep_right_gesture" />   
+        
+    <com.qucii.gesture.GestureSwitchPreference
+        android:key="sleep_d_gesture"
+        android:title="@string/sleep_d_gesture" />
+    
+    <com.qucii.gesture.GestureSwitchPreference
+       android:key="sleep_e_gesture"
+       android:title="@string/sleep_e_gesture" />   
+   
+    <com.qucii.gesture.GestureSwitchPreference
+       android:key="sleep_m_gesture"
+       android:title="@string/sleep_m_gesture" />   
+   
+    <com.qucii.gesture.GestureSwitchPreference
+       android:key="sleep_c_gesture"
+       android:title="@string/sleep_c_gesture" />
+</PreferenceScreen>

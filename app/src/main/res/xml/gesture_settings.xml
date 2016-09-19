@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="utf-8"?>
+<PreferenceScreen xmlns:android="http://schemas.android.com/apk/res/android"
+    android:title="@string/smart_induction" >
+    
+    <!-- smart awake -->
+    <PreferenceCategory
+        android:title="@string/smart_awake">
+	    <Preference
+	        android:key="gestures_sleep"
+	        android:title="@string/gesture_sleep" >
+    	</Preference>
+    </PreferenceCategory>
+
+    <!-- quick gesture -->
+    <PreferenceCategory
+        android:title="@string/gestures_quick">
+        <SwitchPreference
+            android:key="three_finger_screenshot"
+            android:summary="@string/three_finger_screenshot_summary"
+            android:title="@string/three_finger_screenshot" />
+        <SwitchPreference
+            android:key="two_finger_adjust_volume"
+            android:summary="@string/two_finger_volume_summary"
+            android:title="@string/two_finger_volume" />
+        <SwitchPreference
+            android:key="dblclick_gotosleep"
+            android:summary="@string/dblclick_sleep_summary"
+            android:title="@string/dblclick_sleep" />
+    </PreferenceCategory>
+
+    <!-- smart call -->
+    <PreferenceCategory
+        android:title="@string/smart_call">
+        <android.preference.SwitchPreference
+            android:key="flip_mute"
+            android:summary="@string/call_flip_mute_summary"
+            android:title="@string/call_flip_mute" />
+    </PreferenceCategory>
+
+    <!-- air gesture -->
+    <PreferenceCategory
+        android:title="@string/gestures_air">
+	    <!--<android.preference.SwitchPreference
+	        android:key="air_switch_fm"
+	        android:summary="@string/air_switch_fm_summary"
+	        android:title="@string/air_switch_fm" />-->
+	    <android.preference.SwitchPreference
+	        android:key="air_switch_photo"
+	        android:summary="@string/air_switch_photo_summary"
+	        android:title="@string/air_switch_photo" />
+	    <android.preference.SwitchPreference
+	        android:key="air_switch_music"
+	        android:summary="@string/air_switch_music_summary"
+	        android:title="@string/air_switch_music" />
+    </PreferenceCategory>
+
+</PreferenceScreen>

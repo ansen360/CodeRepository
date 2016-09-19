@@ -1,3 +1,73 @@
 <resources>
     <string name="app_name">CodeRepository</string>
+
+    <!--    setupwizard start -->
+    <string name="setupwizard_app_name">开机向导</string>
+    <string name="setupwizard_welcome">欢迎使用</string>
+    <string name="setupwizard_next">下一步</string>
+    <string name="setupwizard_welcome_start">欢迎开始使用手机</string>
+    <string name="setupwizard_welcome_use">开始使用</string>
+    <string name="setupwizard_not_sim">未检测到SIM卡</string>
+    <string name="setupwizard_sim_des_one">插入SIM卡才可设置账户,享受账户带来的同步,</string>
+    <string name="setupwizard_sim_des_two">找回手机等功能</string>
+    <string name="setupwizard_shutdown">关机</string>
+    <string name="setupwizard_go_on">仍然继续</string>
+    <string name="setupwizard_check_sim">SIM卡检测</string>
+    <!--    setupwizard end -->
+
+
+    <!--    gesture start -->
+    <string name="smart_induction">Smart gestures</string>
+    <!-- Sleep gesture start -->
+    <string name="smart_awake">Smart awake</string>
+    <string name="gesture_sleep">Sleep gesture</string>
+    <string name="gesture_select_actions">Select action</string>
+    <string name="sleep_open_app">Open APP</string>
+    <string name="sleep_unlock_lock_screen">Unlock</string>
+    <string name="sleep_awake">Awake</string>
+    <string name="sleep_up_gesture">Slide up</string>
+    <string name="sleep_down_gesture">Slide down</string>
+    <string name="sleep_left_gesture">Slide left</string>
+    <string name="sleep_right_gesture">Slide right</string>
+    <string name="sleep_dblclick_gesture">Double click</string>
+    <string name="sleep_o_gesture">Draw o gestures</string>
+    <string name="sleep_e_gesture">Draw e gestures</string>
+    <string name="sleep_s_gesture">Draw s gestures</string>
+    <string name="sleep_m_gesture">Draw m gestures</string>
+    <string name="sleep_w_gesture">Draw w gestures</string>
+    <string name="sleep_c_gesture">Draw c gestures</string>
+    <string name="sleep_arror_gesture">Draw ^ gestures</string>
+    <string name="sleep_d_gesture">Double gestures</string>
+    <string name="sleep_v_gesture">Draw v gestures</string>
+    <!-- Sleep gesture end -->
+
+    <!-- Quick gesture start -->
+    <string name="gestures_quick">Quick gesture</string>
+    <string name="three_finger_screenshot">Three finger screenshot</string>
+    <string name="three_finger_screenshot_summary">Three finger up and down slide to screenshot</string>
+    <string name="two_finger_volume">Two finger adjust volume</string>
+    <string name="two_finger_volume_summary">Three finger up and down slide to adjust volume</string>
+    <string name="dblclick_sleep">Double click lock</string>
+    <string name="dblclick_sleep_summary">Double finger double click to lock the screen</string>
+    <!-- Quick gesture end -->
+
+    <!-- Air gesture start -->
+    <string name="gestures_air">Air gesture</string>
+    <string name="air_switch_fm">FM control</string>
+    <string name="air_switch_fm_summary">Slide upon the screen to set the next channel</string>
+    <string name="air_switch_photo">Photo control</string>
+    <string name="air_switch_photo_summary">Slide upon the screen to see next photo</string>
+    <string name="air_switch_music">Music control</string>
+    <string name="air_switch_music_summary">Slide upon the screen to switch next music</string>
+    <!-- Air gesture end -->
+
+    <!-- Smart call start -->
+    <string name="smart_call">Smart call</string>
+    <string name="call_flip_mute">Flip mute</string>
+    <string name="call_flip_mute_summary">Flip the device to mute the call</string>
+
+    <!-- Smart call end -->
+    <!--    gesture end -->
+
+
 </resources>

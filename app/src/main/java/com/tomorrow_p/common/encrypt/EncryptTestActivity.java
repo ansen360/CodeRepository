@@ -6,8 +6,6 @@ import android.util.Log;
 
 import com.tomorrow_p.R;
 
-import java.util.Map;
-
 public class EncryptTestActivity extends Activity {
 
     private static final String TAG = "ansen";
@@ -15,7 +13,7 @@ public class EncryptTestActivity extends Activity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_encrypt);
+        setContentView(R.layout.common_activity_encrypt);
         testDes();
         testDes3();
         testRsa();
