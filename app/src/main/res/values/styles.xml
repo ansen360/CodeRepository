@@ -7,7 +7,7 @@
         <item name="colorPrimaryDark">@color/colorPrimaryDark</item>
         <item name="colorAccent">@color/colorAccent</item>
     </style>
-    <!--    setupwizard start -->
+    <!--    setupwizard_start -->
     <style name="setupwizard_AppTheme" parent="@android:style/Theme.Material.Settings">
         <item name="android:actionBarStyle">@style/setupwizard_actionbar_style</item>
     </style>
@@ -15,7 +15,7 @@
     <style name="setupwizard_actionbar_style" parent="@android:style/Widget.Holo.Light.ActionBar">
         <item name="android:background">#ffffff</item>
     </style>
-    <!--    setupwizard end -->
+    <!--    setupwizard_end -->
 
 
     <style name="gesture_NoTitleTheme" parent="@android:style/Theme.Holo.Light.NoActionBar.TranslucentDecor">

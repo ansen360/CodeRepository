@@ -3,14 +3,14 @@
     package="com.tomorrow_p">
 
 
-    <!--    gesture start -->
+    <!--    gesture_start -->
     <uses-permission android:name="android.permission.WRITE_SETTINGS" />
     <uses-permission android:name="android.permission.WAKE_LOCK" />
     <uses-permission android:name="android.permission.DISABLE_KEYGUARD" />
     <uses-permission android:name="android.permission.GET_TASKS" />
     <uses-permission android:name="android.permission.DISABLE_KEYGUARD" />
     <uses-permission android:name="android.permission.RECEIVE_BOOT_COMPLETED" />
-    <!--    gesture end -->
+    <!--    gesture_end -->
 
 
     <application
@@ -28,13 +28,13 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <!--    view    start    -->
+        <!--    view_start    -->
         <activity android:name=".view.TouchPanelEdge"></activity>
 
-        <!--    view    end    -->
+        <!--    view_end    -->
         <activity android:name=".common.encrypt.EncryptTestActivity"></activity>
 
-        <!--    setupwizard start -->
+        <!--    setupwizard_start -->
         <activity
             android:name=".setupwizard.DefaultActivity"
             android:label="@string/setupwizard_app_name"
@@ -42,9 +42,8 @@
             android:theme="@style/setupwizard_AppTheme">
             <intent-filter android:priority="1">
                 <action android:name="android.intent.action.MAIN" />
-
                 <!--<category android:name="android.intent.category.HOME" />-->
-                <category android:name="android.intent.category.LAUNCHER" />
+                <category android:name="android.intent.category.DEFAULT" />
             </intent-filter>
         </activity>
 
@@ -64,9 +63,9 @@
                 <category android:name="android.intent.category.DEFAULT"></category>
             </intent-filter>
         </activity>
-        <!--    setupwizard end -->
+        <!--    setupwizard_end -->
 
-        <!--    gesture start -->
+        <!--    gesture_start -->
         <activity
             android:name=".gesture.MainActivity"
             android:label="@string/smart_induction"
@@ -74,10 +73,10 @@
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
-                <category android:name="android.intent.category.LAUNCHER" />
+                <category android:name="android.intent.category.DEFAULT" />
                 <!--<data-->
-                    <!--android:host="AuthActivity"-->
-                    <!--android:scheme="com.tomorrow_p.gesture" />-->
+                <!--android:host="AuthActivity"-->
+                <!--android:scheme="com.tomorrow_p.gesture" />-->
             </intent-filter>
         </activity>
 
@@ -93,7 +92,7 @@
             android:name=".gesture.database.GestureContentProvider"
             android:authorities="com.tomorrow_p.gesture"
             android:exported="true" />
-        <!--    gesture end -->
+        <!--    gesture_end -->
 
 
     </application>

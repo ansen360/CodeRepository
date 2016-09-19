@@ -1,7 +1,7 @@
 <resources>
     <string name="app_name">CodeRepository</string>
 
-    <!--    setupwizard start -->
+    <!--    setupwizard_start -->
     <string name="setupwizard_app_name">开机向导</string>
     <string name="setupwizard_welcome">欢迎使用</string>
     <string name="setupwizard_next">下一步</string>
@@ -13,10 +13,10 @@
     <string name="setupwizard_shutdown">关机</string>
     <string name="setupwizard_go_on">仍然继续</string>
     <string name="setupwizard_check_sim">SIM卡检测</string>
-    <!--    setupwizard end -->
+    <!--    setupwizard_end -->
 
 
-    <!--    gesture start -->
+    <!--    gesture_start -->
     <string name="smart_induction">Smart gestures</string>
     <!-- Sleep gesture start -->
     <string name="smart_awake">Smart awake</string>
@@ -67,7 +67,7 @@
     <string name="call_flip_mute_summary">Flip the device to mute the call</string>
 
     <!-- Smart call end -->
-    <!--    gesture end -->
+    <!--    gesture_end -->
 
 
 </resources>

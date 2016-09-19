@@ -1,19 +1,14 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="@mipmap/icon"
+    android:padding="20dp"
     tools:context="com.tomorrow_p.MainActivity">
 
-    <ImageView
+    <com.tomorrow_p.view.FlowLayout
+        android:id="@+id/flow_layout"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:scaleType="centerCrop"
-        android:src="@mipmap/icon" />
-
-    <Button
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:onClick="encrypt"
-        android:text="encrypt" />
-</RelativeLayout>
+        android:layout_height="match_parent" />
+</FrameLayout>
