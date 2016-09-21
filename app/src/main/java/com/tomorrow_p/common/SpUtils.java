@@ -5,16 +5,14 @@ import android.content.SharedPreferences;
 import android.content.SharedPreferences.Editor;
 
 /**
- * @项目名: code
- * @包名: com.tomorrow_p.common
- * @类名: SpUtils
- * @创建者: senPan
- * @创建时间: 2015-7-1 下午5:51:23
- * @描述: SharedPreferences的工具类
- * @svn版本: $Rev$
- * @更新人: $Author$
- * @更新时间: $Date$
- * @更新描述: TODO
+ * Created by Ansen on 2015/7/1.
+ *
+ * @E-mail: tomorrow_p@163.com
+ * @Blog: http://blog.csdn.net/qq_25804863
+ * @Github: https://github.com/1031307403/
+ * @PROJECT_NAME: CodeRepository
+ * @PACKAGE_NAME: com.tomorrow_p.common
+ * @Description: TODO
  */
 public class SpUtils {
     private static String SP_NAME = "config";
