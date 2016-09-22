@@ -4,7 +4,6 @@ import android.app.AlarmManager;
 import android.content.ComponentName;
 import android.content.Intent;
 import android.content.res.Configuration;
-import android.graphics.Color;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
@@ -25,13 +24,8 @@ public class DefaultActivity extends BaseActivity implements View.OnClickListene
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        View decorView = getWindow().getDecorView();
-        int option = View.SYSTEM_UI_FLAG_LAYOUT_FULLSCREEN
-                | View.SYSTEM_UI_FLAG_LAYOUT_STABLE;
-        decorView.setSystemUiVisibility(option);
-        getWindow().setStatusBarColor(Color.TRANSPARENT);
-        getActionBar().hide();
 
+        getActionBar().hide();
         setContentView(R.layout.setupwizard_activity_default);
         WheelView mWheelView = (WheelView) findViewById(R.id.wheelview);
         mWheelView.setOffset(1);
@@ -41,7 +35,7 @@ public class DefaultActivity extends BaseActivity implements View.OnClickListene
             @Override
             public void onSelected(int selectedIndex, String item) {
                 mCurrentStatus = item;
-                mSelectedIndex = selectedIndex-1;
+                mSelectedIndex = selectedIndex - 1;
             }
         });
         Button next = (Button) findViewById(R.id.next);

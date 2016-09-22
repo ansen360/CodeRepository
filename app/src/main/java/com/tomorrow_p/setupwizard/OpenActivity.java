@@ -2,7 +2,6 @@ package com.tomorrow_p.setupwizard;
 
 import android.content.ComponentName;
 import android.content.pm.PackageManager;
-import android.graphics.Color;
 import android.os.Bundle;
 import android.provider.Settings;
 import android.view.View;
@@ -15,11 +14,6 @@ public class OpenActivity extends BaseActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        View decorView = getWindow().getDecorView();
-        int option = View.SYSTEM_UI_FLAG_LAYOUT_FULLSCREEN
-                | View.SYSTEM_UI_FLAG_LAYOUT_STABLE;
-        decorView.setSystemUiVisibility(option);
-        getWindow().setStatusBarColor(Color.TRANSPARENT);
         getActionBar().hide();
         setContentView(R.layout.setupwizard_activity_open);
         Button user = (Button) findViewById(R.id.btn_user);
