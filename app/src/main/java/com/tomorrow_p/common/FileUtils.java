@@ -1,12 +1,8 @@
 package com.tomorrow_p.common;
 
 import android.content.Context;
-import android.content.Intent;
-import android.content.pm.PackageManager;
-import android.content.pm.ResolveInfo;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
-import android.net.Uri;
 import android.os.Environment;
 import android.os.StatFs;
 import android.text.TextUtils;
@@ -22,14 +18,27 @@ import java.io.IOException;
 import java.io.InputStream;
 import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
+import java.io.OutputStream;
+import java.io.RandomAccessFile;
+import java.io.Reader;
+import java.io.Writer;
 import java.text.DecimalFormat;
-import java.util.List;
 
 /**
- * 根据文件路径构建 Android Intent
+ * Created by Ansen on 2015/6/21.
+ *
+ * @E-mail: tomorrow_p@163.com
+ * @Blog: http://blog.csdn.net/qq_25804863
+ * @Github: https://github.com/1031307403/
+ * @PROJECT_NAME: CodeRepository
+ * @PACKAGE_NAME: com.tomorrow_p.common
+ * @Description: TODO
  */
 public class FileUtils {
     private static final String TAG = FileUtils.class.getSimpleName();
+
+    private FileUtils() {
+    }
 
     /*      获取SD卡路径        */
     public static String getSDCardPath() {
@@ -558,226 +567,48 @@ public class FileUtils {
         return result;
     }
 
-    /*  ==============================  构建 Android Intent  ==============================  */
-
-    /*      判断intent是否可用        */
-    public static boolean isIntentAvailable(Context context, Intent intent) {
-        final PackageManager packageManager = context.getPackageManager();
-        List<ResolveInfo> list = packageManager.queryIntentActivities(intent, PackageManager.GET_ACTIVITIES);
-        return list.size() > 0;
-    }
-
-    public static Intent openFile(String filePath) {
-
-        File file = new File(filePath);
-        if (!file.exists())
-            return null;
-        /* 取得扩展 */
-        String end = filePath.substring(filePath.lastIndexOf(".") + 1,
-                filePath.length()).toLowerCase();
-        /* 依扩展名的类型决定MimeType */
-        if (end.equals("m4a") || end.equals("mp3") || end.equals("mid")
-                || end.equals("xmf") || end.equals("ogg") || end.equals("wav")) {
-            return getAudioFileIntent(filePath);
-        } else if (end.equals("3gp") || end.equals("mp4")) {
-            return getAudioFileIntent(filePath);
-        } else if (end.equals("jpg") || end.equals("gif") || end.equals("png")
-                || end.equals("jpeg") || end.equals("bmp")) {
-            return getImageFileIntent(filePath);
-        } else if (end.equals("apk")) {
-            return getApkFileIntent(filePath);
-        } else if (end.equals("ppt") || end.equals("pptx")) {
-            return getPptFileIntent(filePath);
-        } else if (end.equals("xls") || end.equals("xlsx")) {
-            return getExcelFileIntent(filePath);
-        } else if (end.equals("doc") || end.equals("docx")) {
-            return getWordFileIntent(filePath);
-        } else if (end.equals("pdf")) {
-            return getPdfFileIntent(filePath);
-        } else if (end.equals("chm")) {
-            return getChmFileIntent(filePath);
-        } else if (end.equals("txt")) {
-            return getTextFileIntent(filePath, false);
-        } else if (end.equals("zip")) {
-            return getZipFileIntent(filePath);
-        } else if (end.equals("rar")) {
-            return getRarFileIntent(filePath);
-        } else {
-            return getAllIntent(filePath);
+    public static void close(InputStream is) {
+        if (is != null) {
+            try {
+                is.close();
+            } catch (Exception e) {
+            }
         }
     }
 
-    /**
-     * 获取用于打开APK文件的intent
-     */
-    public static Intent getAllIntent(String param) {
-        Intent intent = new Intent();
-        intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
-        intent.setAction(Intent.ACTION_VIEW);
-        Uri uri = Uri.fromFile(new File(param));
-        intent.setDataAndType(uri, "*/*");
-        return intent;
-    }
-
-    /**
-     * 获取用于打开APK文件的intent
-     */
-    public static Intent getApkFileIntent(String param) {
-        Intent intent = new Intent();
-        intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
-        intent.setAction(Intent.ACTION_VIEW);
-        Uri uri = Uri.fromFile(new File(param));
-        intent.setDataAndType(uri, "application/vnd.android.package-archive");
-        return intent;
-    }
-
-    /**
-     * 获取用于打开VIDEO文件的intent
-     */
-    public static Intent getVideoFileIntent(String param) {
-        Intent intent = new Intent("android.intent.action.VIEW");
-        intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
-        intent.putExtra("oneshot", 0);
-        intent.putExtra("configchange", 0);
-        Uri uri = Uri.fromFile(new File(param));
-        intent.setDataAndType(uri, "video/*");
-        return intent;
-    }
-
-    /**
-     * 获取用于打开AUDIO文件的intent
-     */
-    public static Intent getAudioFileIntent(String param) {
-        Intent intent = new Intent("android.intent.action.VIEW");
-        intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
-        intent.putExtra("oneshot", 0);
-        intent.putExtra("configchange", 0);
-        Uri uri = Uri.fromFile(new File(param));
-        intent.setDataAndType(uri, "audio/*");
-        return intent;
-    }
-
-    /**
-     * 获取用于打开Html文件的intent
-     */
-    public static Intent getHtmlFileIntent(String param) {
-        Uri uri = Uri.parse(param).buildUpon().encodedAuthority("com.android.htmlfileprovider").scheme("content").encodedPath(param).build();
-        Intent intent = new Intent("android.intent.action.VIEW");
-        intent.setDataAndType(uri, "text/html");
-        return intent;
-    }
-
-    /**
-     * 获取用于打开图片文件的intent
-     */
-    public static Intent getImageFileIntent(String param) {
-        Intent intent = new Intent("android.intent.action.VIEW");
-        intent.addCategory("android.intent.category.DEFAULT");
-        intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
-        Uri uri = Uri.fromFile(new File(param));
-        intent.setDataAndType(uri, "image/*");
-        return intent;
-    }
-
-    /**
-     * 获取用于打开PPT文件的intent
-     */
-    public static Intent getPptFileIntent(String param) {
-        Intent intent = new Intent("android.intent.action.VIEW");
-        intent.addCategory("android.intent.category.DEFAULT");
-        intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
-        Uri uri = Uri.fromFile(new File(param));
-        intent.setDataAndType(uri, "application/vnd.ms-powerpoint");
-        return intent;
-    }
-
-    /**
-     * 获取用于打开Excel文件的intent
-     */
-    public static Intent getExcelFileIntent(String param) {
-        Intent intent = new Intent("android.intent.action.VIEW");
-        intent.addCategory("android.intent.category.DEFAULT");
-        intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
-        Uri uri = Uri.fromFile(new File(param));
-        intent.setDataAndType(uri, "application/vnd.ms-excel");
-        return intent;
-    }
-
-    /**
-     * 获取用于打开Word文件的intent
-     */
-    public static Intent getWordFileIntent(String param) {
-        Intent intent = new Intent("android.intent.action.VIEW");
-        intent.addCategory("android.intent.category.DEFAULT");
-        intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
-        Uri uri = Uri.fromFile(new File(param));
-        intent.setDataAndType(uri, "application/msword");
-        return intent;
-    }
-
-    /**
-     * 获取用于打开CHM文件的intent
-     */
-    public static Intent getChmFileIntent(String param) {
-        Intent intent = new Intent("android.intent.action.VIEW");
-        intent.addCategory("android.intent.category.DEFAULT");
-        intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
-        Uri uri = Uri.fromFile(new File(param));
-        intent.setDataAndType(uri, "application/x-chm");
-        return intent;
-    }
-
-    /**
-     * 获取用于打开文本文件的intent
-     */
-    public static Intent getTextFileIntent(String param, boolean paramBoolean) {
-        Intent intent = new Intent("android.intent.action.VIEW");
-        intent.addCategory("android.intent.category.DEFAULT");
-        intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
-        if (paramBoolean) {
-            Uri uri1 = Uri.parse(param);
-            intent.setDataAndType(uri1, "text/plain");
-        } else {
-            Uri uri2 = Uri.fromFile(new File(param));
-            intent.setDataAndType(uri2, "text/plain");
+    public static void close(OutputStream os) {
+        if (os != null) {
+            try {
+                os.close();
+            } catch (Exception e) {
+            }
         }
-        return intent;
     }
 
-    /**
-     * 获取用于打开PDF文件的intent
-     */
-    public static Intent getPdfFileIntent(String param) {
-        Intent intent = new Intent("android.intent.action.VIEW");
-        intent.addCategory("android.intent.category.DEFAULT");
-        intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
-        Uri uri = Uri.fromFile(new File(param));
-        intent.setDataAndType(uri, "application/pdf");
-        return intent;
+    public static void close(RandomAccessFile randomAccessFile) {
+        if (randomAccessFile != null) {
+            try {
+                randomAccessFile.close();
+            } catch (Exception e) {
+            }
+        }
     }
 
-    /**
-     * 获取用于打开ZIP文件的intent
-     */
-    public static Intent getZipFileIntent(String param) {
-        Intent intent = new Intent("android.intent.action.VIEW");
-        intent.addCategory("android.intent.category.DEFAULT");
-        intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
-        Uri uri = Uri.fromFile(new File(param));
-        intent.setDataAndType(uri, "application/zip");
-        return intent;
+    public static void close(Writer writer) {
+        if (writer != null) {
+            try {
+                writer.close();
+            } catch (Exception e) {
+            }
+        }
     }
 
-    /**
-     * 获取用于打开ZIP文件的intent
-     */
-    public static Intent getRarFileIntent(String param) {
-        Intent intent = new Intent("android.intent.action.VIEW");
-        intent.addCategory("android.intent.category.DEFAULT");
-        intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
-        Uri uri = Uri.fromFile(new File(param));
-        intent.setDataAndType(uri, "application/rar");
-        return intent;
+    public static void close(Reader reader) {
+        if (reader != null) {
+            try {
+                reader.close();
+            } catch (Exception e) {
+            }
+        }
     }
-
 }

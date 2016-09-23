@@ -70,4 +70,7 @@
     <!--    gesture_end -->
 
 
+    <string name="success">success</string>
+
+
 </resources>
