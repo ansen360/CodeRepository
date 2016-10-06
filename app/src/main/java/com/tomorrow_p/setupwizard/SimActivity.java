@@ -44,6 +44,7 @@ public class SimActivity extends BaseActivity implements View.OnClickListener {
                 startActivity.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
                 startActivity(startActivity);
                 finish();
+                overridePendingTransition(R.anim.in_from_left, R.anim.out_from_right);
             }
         });
         actionBarTitle.setText(getResources().getString(R.string.setupwizard_check_sim));
@@ -63,6 +64,7 @@ public class SimActivity extends BaseActivity implements View.OnClickListener {
                     Log.e(TAG, e.getMessage());
                     startActivity(new Intent(this, OpenActivity.class));
                 }
+                overridePendingTransition(R.anim.in_from_right, R.anim.out_from_left);
                 finish();
                 break;
             case R.id.btn_shutdown:

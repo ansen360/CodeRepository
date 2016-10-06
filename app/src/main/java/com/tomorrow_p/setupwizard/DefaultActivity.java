@@ -58,6 +58,7 @@ public class DefaultActivity extends BaseActivity implements View.OnClickListene
 //        startWifiActivity();
         startActivity(new Intent(this, SimActivity.class));
         finish();
+        overridePendingTransition(R.anim.in_from_right,R.anim.out_from_left);
     }
 
     private void startWifiActivity() {

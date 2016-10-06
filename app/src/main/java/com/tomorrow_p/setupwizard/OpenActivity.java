@@ -22,6 +22,7 @@ public class OpenActivity extends BaseActivity {
             public void onClick(View v) {
                 init();
                 finish();
+                overridePendingTransition(R.anim.in_from_left, R.anim.out_from_right);
             }
         });
     }
