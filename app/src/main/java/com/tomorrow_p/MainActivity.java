@@ -9,6 +9,7 @@ import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 
 import com.tomorrow_p.common.encrypt.EncryptTestActivity;
+import com.tomorrow_p.draw.DrawOutlineActivity;
 import com.tomorrow_p.setupwizard.DefaultActivity;
 import com.tomorrow_p.view.FlowButton;
 import com.tomorrow_p.view.FlowLayout;
@@ -41,6 +42,12 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 startActivity(new Intent(mContext, com.tomorrow_p.gesture.MainActivity.class));
+            }
+        }));
+        mFlowLayout.addView(new FlowButton(this, "Draw Face", new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                startActivity(new Intent(mContext, DrawOutlineActivity.class));
             }
         }));
 

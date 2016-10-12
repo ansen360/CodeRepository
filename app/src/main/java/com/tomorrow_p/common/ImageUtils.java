@@ -402,7 +402,7 @@ public class ImageUtils {
         paint.setShader(shader);
         // Set the Transfer mode to be porter duff and destination in
         paint.setXfermode(new PorterDuffXfermode(Mode.DST_IN));
-        // Draw a rectangle using the paint with our linear gradient
+        // Draw a rectangle using the draw_outline_paint with our linear gradient
         canvas.drawRect(0, height, width, bitmapWithReflection.getHeight() + reflectionGap, paint);
 
         return bitmapWithReflection;
