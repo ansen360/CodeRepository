@@ -9,7 +9,7 @@ import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 
 import com.tomorrow_p.common.encrypt.EncryptTestActivity;
-import com.tomorrow_p.draw.DrawOutlineActivity;
+import com.tomorrow_p.view.drawoutline.DrawOutlineActivity;
 import com.tomorrow_p.setupwizard.DefaultActivity;
 import com.tomorrow_p.view.FlowButton;
 import com.tomorrow_p.view.FlowLayout;

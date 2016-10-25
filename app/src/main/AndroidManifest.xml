@@ -98,7 +98,7 @@
             android:exported="true" />
         <!--    gesture_end -->
 
-        <activity android:name=".draw.DrawOutlineActivity"></activity>
+        <activity android:name=".view.drawoutline.DrawOutlineActivity"></activity>
 
     </application>
 

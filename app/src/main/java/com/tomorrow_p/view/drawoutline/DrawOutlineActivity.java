@@ -1,4 +1,4 @@
-package com.tomorrow_p.draw;
+package com.tomorrow_p.view.drawoutline;
 
 import android.app.Activity;
 import android.graphics.Bitmap;
