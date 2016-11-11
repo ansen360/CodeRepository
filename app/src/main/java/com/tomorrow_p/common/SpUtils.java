@@ -17,35 +17,44 @@ import java.util.Map;
  * @Description: TODO
  */
 public class SpUtils {
-    private static String SP_NAME = "config";
-    public static final String SP_DEFVALUE = "0000";
 
-    public static SharedPreferences getSp(Context context) {
-        SharedPreferences sp = null;
-        if (sp == null) {
-            sp = context.getSharedPreferences(SP_NAME, Context.MODE_PRIVATE);
-        }
-        return sp;
+    private static String SP_NAME = "QuciiSDK";
+    public static final String SP_DEF_STRING_VALUE = "";
+
+    private SpUtils() {
     }
 
-    public static void setBoolean(Context context, String key, boolean value) {
+    public static SharedPreferences getSp(Context context) {
+        return context.getSharedPreferences(SP_NAME, Context.MODE_PRIVATE);
+    }
+
+    /**
+     * put boolean preferences
+     */
+    public static void putBoolean(Context context, String key, boolean value) {
         SharedPreferences sp = getSp(context);
         Editor edit = sp.edit();
         edit.putBoolean(key, value);
         edit.commit();
     }
 
+    /**
+     * get boolean preferences, default is false
+     */
     public static boolean getBoolean(Context context, String key) {
         SharedPreferences sp = getSp(context);
         return sp.getBoolean(key, false);
     }
 
+    /**
+     * get boolean preferences
+     */
     public static boolean getBoolean(Context context, String key, boolean defValue) {
         SharedPreferences sp = getSp(context);
         return sp.getBoolean(key, defValue);
     }
 
-    public static void setString(Context context, String key, String value) {
+    public static void putString(Context context, String key, String value) {
         SharedPreferences sp = getSp(context);
         Editor edit = sp.edit();
         edit.putString(key, value);
@@ -54,12 +63,37 @@ public class SpUtils {
 
     public static String getString(Context context, String key) {
         SharedPreferences sp = getSp(context);
-        return sp.getString(key, SP_DEFVALUE);
+        return sp.getString(key, SP_DEF_STRING_VALUE);
     }
 
     public static String getString(Context context, String key, String defValue) {
         SharedPreferences sp = getSp(context);
         return sp.getString(key, defValue);
+    }
+
+    /**
+     * put int preferences
+     */
+    public static boolean putInt(Context context, String key, int value) {
+        SharedPreferences settings = getSp(context);
+        SharedPreferences.Editor editor = settings.edit();
+        editor.putInt(key, value);
+        return editor.commit();
+    }
+
+    /**
+     * get int preferences
+     */
+    public static int getInt(Context context, String key) {
+        return getInt(context, key, -1);
+    }
+
+    /**
+     * get int preferences
+     */
+    public static int getInt(Context context, String key, int defaultValue) {
+        SharedPreferences settings = getSp(context);
+        return settings.getInt(key, defaultValue);
     }
 
     public static void putLong(Context context, String key, long value) {
@@ -77,6 +111,31 @@ public class SpUtils {
     public static long getLong(Context context, String key, long defValue) {
         SharedPreferences sp = getSp(context);
         return sp.getLong(key, defValue);
+    }
+
+    /**
+     * put float preferences
+     */
+    public static boolean putFloat(Context context, String key, float value) {
+        SharedPreferences settings = getSp(context);
+        SharedPreferences.Editor editor = settings.edit();
+        editor.putFloat(key, value);
+        return editor.commit();
+    }
+
+    /**
+     * get float preferences
+     */
+    public static float getFloat(Context context, String key) {
+        return getFloat(context, key, -1);
+    }
+
+    /**
+     * get float preferences
+     */
+    public static float getFloat(Context context, String key, float defaultValue) {
+        SharedPreferences settings = getSp(context);
+        return settings.getFloat(key, defaultValue);
     }
 
     /**
@@ -114,4 +173,13 @@ public class SpUtils {
         getSp(context).edit().clear().apply();
     }
 
+    public static void addOnChangeListener(Context context, SharedPreferences.OnSharedPreferenceChangeListener listener) {
+        SharedPreferences settings = getSp(context);
+        settings.registerOnSharedPreferenceChangeListener(listener);
+    }
+
+    public static void removeOnChangeListener(Context context, SharedPreferences.OnSharedPreferenceChangeListener listener) {
+        SharedPreferences settings = getSp(context);
+        settings.unregisterOnSharedPreferenceChangeListener(listener);
+    }
 }
