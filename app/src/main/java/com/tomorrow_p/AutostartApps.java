@@ -40,7 +40,7 @@ public class AutostartApps extends Fragment {
     private ArrayList<AppBean> mAllowList = new ArrayList<AppBean>();
     private ArrayList<AppBean> mDisallowList = new ArrayList<AppBean>();
     private AutostartAdapter mAllowAdapter, mdisAllowAdapter;
-    private TextView mAllowText, mDisallowText,mLoadData;
+    private TextView mAllowText, mDisallowText, mLoadData;
 
 
     @Nullable
@@ -52,7 +52,7 @@ public class AutostartApps extends Fragment {
         ListView mListDisallow = (ListView) root.findViewById(R.id.list_disallow);
         mAllowText = (TextView) root.findViewById(R.id.allow_text);
         mDisallowText = (TextView) root.findViewById(R.id.disallow_text);
-         mLoadData = (TextView) root.findViewById(R.id.load_data);
+        mLoadData = (TextView) root.findViewById(R.id.load_data);
         mAllowAdapter = new AutostartAdapter(mAllowList);
         mdisAllowAdapter = new AutostartAdapter(mDisallowList);
         mListAllow.setAdapter(mAllowAdapter);
@@ -98,7 +98,7 @@ public class AutostartApps extends Fragment {
 
         final ArrayList<AppBean> temp1 = new ArrayList<>();
         final ArrayList<AppBean> temp2 = new ArrayList<>();
-
+        String oldPackageName = "";
         for (ResolveInfo resolveInfo : resolveInfoList) {
             String packageName = resolveInfo.activityInfo.packageName;
             if ((packageName != null && packageName.contains("com.android")) || packageName.equals("android")) {
@@ -114,17 +114,22 @@ public class AutostartApps extends Fragment {
                 appBean.name = packageInfo.applicationInfo.loadLabel(mPackageManager);
                 appBean.componentName = componentName;
                 Log.d("ansen", "status: " + status + " appName: " + packageInfo.applicationInfo.loadLabel(mPackageManager) +
-                        "  packagename: " + resolveInfo.activityInfo.packageName);
+                        "  packagename: " + packageName);
             } catch (PackageManager.NameNotFoundException e) {
                 e.printStackTrace();
             }
             if (PackageManager.COMPONENT_ENABLED_STATE_ENABLED == status) {
                 appBean.status = true;
-                temp1.add(appBean);
+                if (!packageName.equals(oldPackageName)) {
+                    temp1.add(appBean);
+                }
             } else {
                 appBean.status = false;
-                temp2.add(appBean);
+                if (!packageName.equals(oldPackageName)) {
+                    temp2.add(appBean);
+                }
             }
+            oldPackageName = packageName;
         }
 
         getActivity().runOnUiThread(new Runnable() {
