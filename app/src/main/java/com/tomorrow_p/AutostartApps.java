@@ -36,6 +36,7 @@ import java.util.List;
  */
 public class AutostartApps extends Fragment {
 
+    private static final String TAG = "AutostartApps";
     PackageManager mPackageManager;
     private ArrayList<AppBean> mAllowList = new ArrayList<AppBean>();
     private ArrayList<AppBean> mDisallowList = new ArrayList<AppBean>();
@@ -113,20 +114,20 @@ public class AutostartApps extends Fragment {
                 appBean.icon = packageInfo.applicationInfo.loadIcon(mPackageManager);
                 appBean.name = packageInfo.applicationInfo.loadLabel(mPackageManager);
                 appBean.componentName = componentName;
-                Log.d("ansen", "status: " + status + " appName: " + packageInfo.applicationInfo.loadLabel(mPackageManager) +
+                Log.d(TAG, "status: " + status + " appName: " + packageInfo.applicationInfo.loadLabel(mPackageManager) +
                         "  packagename: " + packageName);
             } catch (PackageManager.NameNotFoundException e) {
                 e.printStackTrace();
             }
-            if (PackageManager.COMPONENT_ENABLED_STATE_ENABLED == status) {
-                appBean.status = true;
-                if (!packageName.equals(oldPackageName)) {
-                    temp1.add(appBean);
-                }
-            } else {
+            if (PackageManager.COMPONENT_ENABLED_STATE_DISABLED == status) {
                 appBean.status = false;
                 if (!packageName.equals(oldPackageName)) {
                     temp2.add(appBean);
+                }
+            } else {
+                appBean.status = true;
+                if (!packageName.equals(oldPackageName)) {
+                    temp1.add(appBean);
                 }
             }
             oldPackageName = packageName;
