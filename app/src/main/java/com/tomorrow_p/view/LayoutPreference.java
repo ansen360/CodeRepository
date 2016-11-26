@@ -1,10 +1,8 @@
 package com.tomorrow_p.view;
 
 import android.content.Context;
-import android.content.res.TypedArray;
 import android.preference.Preference;
 import android.util.AttributeSet;
-import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
@@ -26,7 +24,8 @@ public class LayoutPreference extends Preference {
     public LayoutPreference(Context context, AttributeSet attrs) {
         super(context, attrs);
         setSelectable(false);
-        final TypedArray a = context.obtainStyledAttributes(
+        //TODO:ansen 16.11.24
+        /*final TypedArray a = context.obtainStyledAttributes(
                 attrs, com.android.internal.R.styleable.Preference, 0, 0);
         int layoutResource = a.getResourceId(com.android.internal.R.styleable.Preference_layout,
                 0);
@@ -39,10 +38,10 @@ public class LayoutPreference extends Preference {
 
 //        final ViewGroup allDetails = (ViewGroup) view.findViewById(R.id.all_details);
 //        if (allDetails != null) {
-//            Utils.forceCustomPadding(allDetails, true /* additive padding */);
+//            Utils.forceCustomPadding(allDetails, true *//* additive padding *//*);
 //        }
         mRootView = view;
-        setShouldDisableView(false);
+        setShouldDisableView(false);*/
     }
 
     @Override

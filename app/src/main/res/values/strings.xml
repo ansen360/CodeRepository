@@ -72,9 +72,11 @@
 
     <string name="success">success</string>
     <!--autostart-->
-    <string name="allow_autostart">个应用允许自启动</string>
-    <string name="disallow_autostart">个应用禁止自启动</string>
+    <string name="allow_autostart">个应用允许开机自启动</string>
+    <string name="disallow_autostart">个应用禁止开机自启动</string>
     <string name="load_data">数据加载中...</string>
+    <string name="allow_background">个应用允许后台运行</string>
+    <string name="disallow_background">个应用禁止后台运行</string>
 
 
 

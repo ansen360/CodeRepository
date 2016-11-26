@@ -46,7 +46,7 @@
             android:theme="@style/setupwizard_AppTheme">
             <intent-filter android:priority="1">
                 <action android:name="android.intent.action.MAIN" />
-                <!--<category android:name="android.intent.category.HOME" />-->
+                <!--<category android:label="android.intent.category.HOME" />-->
                 <category android:name="android.intent.category.DEFAULT" />
             </intent-filter>
         </activity>
@@ -97,6 +97,11 @@
             android:authorities="com.tomorrow_p.gesture"
             android:exported="true" />
         <!--    gesture_end -->
+        <provider
+            android:authorities="com.tomorrow_p.apps"
+            android:name=".provider.AppsManageProvider"
+            android:exported="true"/>
+
 
         <activity android:name=".view.drawoutline.DrawOutlineActivity"></activity>
 
