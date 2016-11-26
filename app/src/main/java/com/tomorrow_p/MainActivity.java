@@ -8,11 +8,13 @@ import android.support.v7.app.ActionBar;
 import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 
+import com.tomorrow_p.activity.DateFormatActivity;
+import com.tomorrow_p.activity.DialogActivity;
 import com.tomorrow_p.common.encrypt.EncryptTestActivity;
-import com.tomorrow_p.view.drawoutline.DrawOutlineActivity;
 import com.tomorrow_p.setupwizard.DefaultActivity;
 import com.tomorrow_p.view.FlowButton;
 import com.tomorrow_p.view.FlowLayout;
+import com.tomorrow_p.view.drawoutline.DrawOutlineActivity;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -26,19 +28,19 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
         mFlowLayout = (FlowLayout) findViewById(R.id.flow_layout);
 
-        mFlowLayout.addView(new FlowButton(this, "EncryptTestActivity", new View.OnClickListener() {
+        mFlowLayout.addView(new FlowButton(this, "Encrypt", new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 startActivity(new Intent(mContext, EncryptTestActivity.class));
             }
         }));
-        mFlowLayout.addView(new FlowButton(this, "开机向导", new View.OnClickListener() {
+        mFlowLayout.addView(new FlowButton(this, "Boot the wizard", new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 startActivity(new Intent(mContext, DefaultActivity.class));
             }
         }));
-        mFlowLayout.addView(new FlowButton(this, "手势", new View.OnClickListener() {
+        mFlowLayout.addView(new FlowButton(this, "gesture", new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 startActivity(new Intent(mContext, com.tomorrow_p.gesture.MainActivity.class));
@@ -48,6 +50,18 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 startActivity(new Intent(mContext, DrawOutlineActivity.class));
+            }
+        }));
+        mFlowLayout.addView(new FlowButton(this, "Date Format", new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                startActivity(new Intent(mContext, DateFormatActivity.class));
+            }
+        }));
+        mFlowLayout.addView(new FlowButton(this, "Dialog", new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                startActivity(new Intent(mContext, DialogActivity.class));
             }
         }));
 

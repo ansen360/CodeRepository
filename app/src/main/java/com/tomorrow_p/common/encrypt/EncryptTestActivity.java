@@ -2,21 +2,26 @@ package com.tomorrow_p.common.encrypt;
 
 import android.app.Activity;
 import android.os.Bundle;
-import android.util.Log;
+import android.widget.TextView;
 
 import com.tomorrow_p.R;
+import com.tomorrow_p.common.Logger;
 
 public class EncryptTestActivity extends Activity {
 
-    private static final String TAG = "ansen";
+    private static final String TAG = "Encrypt";
+    private StringBuilder mStringBuilder;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.common_activity_encrypt);
+        setContentView(R.layout.seelog_activity);
+        TextView log = (TextView) findViewById(R.id.log);
+        mStringBuilder = new StringBuilder();
         testDes();
         testDes3();
         testRsa();
+        log.setText(mStringBuilder.toString());
 
     }
 
@@ -53,7 +58,9 @@ public class EncryptTestActivity extends Activity {
     }
 
     private void log(String en, String de) {
-        Log.d(TAG, "加密后: " + en);
-        Log.d(TAG, "解密后: " + de);
+        Logger.d(TAG, "加密后: " + en);
+        Logger.d(TAG, "解密后: " + de);
+        mStringBuilder.append("加密后: " + en + "\n");
+        mStringBuilder.append("解密后: " + de + "\n");
     }
 }

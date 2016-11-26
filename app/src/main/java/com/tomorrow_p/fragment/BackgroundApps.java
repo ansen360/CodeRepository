@@ -1,4 +1,4 @@
-package com.tomorrow_p;
+package com.tomorrow_p.fragment;
 
 import android.app.Fragment;
 import android.content.ContentResolver;
@@ -21,6 +21,8 @@ import android.widget.ImageView;
 import android.widget.ListView;
 import android.widget.Switch;
 import android.widget.TextView;
+
+import com.tomorrow_p.R;
 
 import java.util.ArrayList;
 import java.util.Collections;

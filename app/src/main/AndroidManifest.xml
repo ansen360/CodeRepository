@@ -22,6 +22,7 @@
         android:icon="@mipmap/ic_launcher"
         android:label="@string/app_name"
         android:supportsRtl="true"
+        android:name=".CodeApplication"
         android:theme="@style/AppTheme">
         <activity
             android:name=".MainActivity"
@@ -92,18 +93,21 @@
             </intent-filter>
         </activity>
 
+        <activity android:name=".view.drawoutline.DrawOutlineActivity"></activity>
+
+        <activity android:name=".activity.DateFormatActivity"></activity>
+        <activity android:name=".activity.DialogActivity"></activity>
+
         <provider
             android:name=".gesture.database.GestureContentProvider"
             android:authorities="com.tomorrow_p.gesture"
             android:exported="true" />
         <!--    gesture_end -->
         <provider
-            android:authorities="com.tomorrow_p.apps"
             android:name=".provider.AppsManageProvider"
-            android:exported="true"/>
+            android:authorities="com.tomorrow_p.apps"
+            android:exported="true" />
 
-
-        <activity android:name=".view.drawoutline.DrawOutlineActivity"></activity>
 
     </application>
 
