@@ -50,7 +50,7 @@ public class AutostartApps extends Fragment {
     @Override
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         mPackageManager = getActivity().getPackageManager();
-        View root = inflater.inflate(R.layout.fragemnt_autostart, null);
+        View root = inflater.inflate(R.layout.fragment_autostart, null);
         ListView mListAllow = (ListView) root.findViewById(R.id.list_allow);
         ListView mListDisallow = (ListView) root.findViewById(R.id.list_disallow);
         mAllowText = (TextView) root.findViewById(R.id.allow_text);

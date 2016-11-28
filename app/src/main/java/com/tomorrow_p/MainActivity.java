@@ -8,6 +8,7 @@ import android.support.v7.app.ActionBar;
 import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 
+import com.tomorrow_p.activity.CameraActivity;
 import com.tomorrow_p.activity.DateFormatActivity;
 import com.tomorrow_p.activity.DialogActivity;
 import com.tomorrow_p.common.encrypt.EncryptTestActivity;
@@ -62,6 +63,12 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 startActivity(new Intent(mContext, DialogActivity.class));
+            }
+        }));
+        mFlowLayout.addView(new FlowButton(this, "Camera", new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                startActivity(new Intent(mContext, CameraActivity.class));
             }
         }));
 
