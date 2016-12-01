@@ -1,6 +1,7 @@
 package com.tomorrow_p.fragment;
 
 import android.app.Fragment;
+import android.app.ProgressDialog;
 import android.content.ComponentName;
 import android.content.Intent;
 import android.content.pm.PackageInfo;
@@ -36,14 +37,16 @@ import java.util.List;
  * @PACKAGE_NAME: com.tomorrow_p
  * @Description: TODO
  */
-public class AutostartApps extends Fragment {
+public class BootAutostartApps extends Fragment {
 
-    private static final String TAG = "AutostartApps";
-    PackageManager mPackageManager;
+    private static final String TAG = "BootAutostartApps";
+    private PackageManager mPackageManager;
     private ArrayList<AppBean> mAllowList = new ArrayList<AppBean>();
     private ArrayList<AppBean> mDisallowList = new ArrayList<AppBean>();
     private AutostartAdapter mAllowAdapter, mdisAllowAdapter;
-    private TextView mAllowText, mDisallowText, mLoadData;
+    private TextView mAllowText, mDisallowText;
+    private ListView mListAllow, mListDisallow;
+    private ProgressDialog mProgressDialog;
 
 
     @Nullable
@@ -51,15 +54,16 @@ public class AutostartApps extends Fragment {
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         mPackageManager = getActivity().getPackageManager();
         View root = inflater.inflate(R.layout.fragment_autostart, null);
-        ListView mListAllow = (ListView) root.findViewById(R.id.list_allow);
-        ListView mListDisallow = (ListView) root.findViewById(R.id.list_disallow);
+        mListAllow = (ListView) root.findViewById(R.id.list_allow);
+        mListDisallow = (ListView) root.findViewById(R.id.list_disallow);
         mAllowText = (TextView) root.findViewById(R.id.allow_text);
         mDisallowText = (TextView) root.findViewById(R.id.disallow_text);
-        mLoadData = (TextView) root.findViewById(R.id.load_data);
         mAllowAdapter = new AutostartAdapter(mAllowList);
         mdisAllowAdapter = new AutostartAdapter(mDisallowList);
         mListAllow.setAdapter(mAllowAdapter);
         mListDisallow.setAdapter(mdisAllowAdapter);
+        mProgressDialog = new ProgressDialog(getActivity());
+        mProgressDialog.setMessage(getResources().getString(R.string.load_data));
         return root;
     }
 
@@ -69,7 +73,8 @@ public class AutostartApps extends Fragment {
         mAllowList.clear();
         mDisallowList.clear();
 
-        AsyncTask<Void, Void, Void> asyncTask = new AsyncTask<Void, Void, Void>() {
+        mProgressDialog.show();
+        AsyncTask<Void, Void, Void> mAsyncTask = new AsyncTask<Void, Void, Void>() {
 
             @Override
             protected Void doInBackground(Void... params) {
@@ -85,28 +90,32 @@ public class AutostartApps extends Fragment {
             @Override
             protected void onPostExecute(Void aVoid) {
                 super.onPostExecute(aVoid);
-                mLoadData.setVisibility(View.GONE);
-                mAllowText.setText(mAllowList.size() + getResources().getString(R.string.allow_autostart));
-                mDisallowText.setText(mDisallowList.size() + getResources().getString(R.string.disallow_autostart));
                 mAllowAdapter.notifyDataSetChanged();
                 mdisAllowAdapter.notifyDataSetChanged();
+                mAllowText.setText(mAllowList.size() + getResources().getString(R.string.allow_autostart));
+                mDisallowText.setText(mDisallowList.size() + getResources().getString(R.string.disallow_autostart));
+                mProgressDialog.dismiss();
             }
         };
-        asyncTask.execute();
+        mAsyncTask.execute();
     }
 
     private void initData() {
         Intent intent = new Intent(Intent.ACTION_BOOT_COMPLETED);
         List<ResolveInfo> resolveInfoList = mPackageManager.queryBroadcastReceivers(intent, PackageManager.GET_DISABLED_COMPONENTS);
 
-        final ArrayList<AppBean> temp1 = new ArrayList<>();
-        final ArrayList<AppBean> temp2 = new ArrayList<>();
+        final ArrayList<AppBean> temp1 = new ArrayList<AppBean>();
+        final ArrayList<AppBean> temp2 = new ArrayList<AppBean>();
         String oldPackageName = "";
         for (ResolveInfo resolveInfo : resolveInfoList) {
             String packageName = resolveInfo.activityInfo.packageName;
             if ((packageName != null && packageName.contains("com.android")) || packageName.equals("android")) {
                 continue;
             }
+            // TODO: for system process
+//            if(resolveInfo.system){
+//                continue;
+//            }
             ComponentName componentName = new ComponentName(packageName, resolveInfo.activityInfo.name);
             AppBean appBean = new AppBean();
             int status = getActivity().getPackageManager().getComponentEnabledSetting(componentName);

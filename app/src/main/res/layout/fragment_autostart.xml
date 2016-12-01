@@ -15,14 +15,6 @@
             android:gravity="center_vertical"
             android:paddingLeft="25dp"
             android:background="#f0f0f2" />
-        <TextView
-            android:id="@+id/load_data"
-            android:layout_width="match_parent"
-            android:layout_height="30dp"
-            android:gravity="center"
-            android:text="@string/load_data"
-            android:paddingLeft="25dp"
-            android:background="#f0f0f2" />
 
         <com.tomorrow_p.view.MatchListView
             android:id="@+id/list_allow"

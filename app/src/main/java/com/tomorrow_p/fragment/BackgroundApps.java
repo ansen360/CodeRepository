@@ -1,6 +1,7 @@
 package com.tomorrow_p.fragment;
 
 import android.app.Fragment;
+import android.app.ProgressDialog;
 import android.content.ContentResolver;
 import android.content.ContentValues;
 import android.content.Intent;
@@ -48,8 +49,10 @@ public class BackgroundApps extends Fragment {
     private ArrayList<AppBean> mAllowList = new ArrayList<AppBean>();
     private ArrayList<AppBean> mDisallowList = new ArrayList<AppBean>();
     private AutostartAdapter mAllowAdapter, mdisAllowAdapter;
-    private TextView mAllowText, mDisallowText, mLoadData;
+    private TextView mAllowText, mDisallowText;
     private ContentResolver mContentResolver;
+    private ListView mListAllow, mListDisallow;
+    private ProgressDialog mProgressDialog;
 
 
     @Nullable
@@ -58,15 +61,16 @@ public class BackgroundApps extends Fragment {
         mPackageManager = getActivity().getPackageManager();
         mContentResolver = getActivity().getContentResolver();
         View root = inflater.inflate(R.layout.fragment_autostart, null);
-        ListView mListAllow = (ListView) root.findViewById(R.id.list_allow);
-        ListView mListDisallow = (ListView) root.findViewById(R.id.list_disallow);
+        mListAllow = (ListView) root.findViewById(R.id.list_allow);
+        mListDisallow = (ListView) root.findViewById(R.id.list_disallow);
         mAllowText = (TextView) root.findViewById(R.id.allow_text);
         mDisallowText = (TextView) root.findViewById(R.id.disallow_text);
-        mLoadData = (TextView) root.findViewById(R.id.load_data);
         mAllowAdapter = new AutostartAdapter(mAllowList);
         mdisAllowAdapter = new AutostartAdapter(mDisallowList);
         mListAllow.setAdapter(mAllowAdapter);
         mListDisallow.setAdapter(mdisAllowAdapter);
+        mProgressDialog = new ProgressDialog(getActivity());
+        mProgressDialog.setMessage(getResources().getString(R.string.load_data));
         return root;
     }
 
@@ -76,26 +80,27 @@ public class BackgroundApps extends Fragment {
         super.onResume();
         mAllowList.clear();
         mDisallowList.clear();
-        getAutostartApps();
+        mProgressDialog.show();
+        getDisallowList();
         initData();
-        mLoadData.setVisibility(View.GONE);
         mAllowText.setText(mAllowList.size() + getResources().getString(R.string.allow_background));
         mDisallowText.setText(mDisallowList.size() + getResources().getString(R.string.disallow_background));
         mAllowAdapter.notifyDataSetChanged();
         mdisAllowAdapter.notifyDataSetChanged();
+        mProgressDialog.dismiss();
     }
 
-    private HashSet<String> mAutoStart = new HashSet<>();
+    private HashSet<String> mDisallowAutoStart = new HashSet<>();
     public static final Uri URI = Uri.parse("content://com.tomorrow_p.apps/autostart");
 
-    private void getAutostartApps() {
-        mAutoStart.clear();
+    private void getDisallowList() {
+        mDisallowAutoStart.clear();
         Cursor cursor = mContentResolver.query(URI, null, null, null, null);
         while (cursor != null && cursor.moveToNext()) {
             String package_name = cursor.getString(cursor.getColumnIndex("package_name"));
-            mAutoStart.add(package_name);
+            mDisallowAutoStart.add(package_name);
         }
-        Log.d(TAG,"mAutoStart size: "+mAutoStart.size());
+        Log.d(TAG, "mDisallowAutoStart size: " + mDisallowAutoStart.size());
         if (cursor != null) {
             cursor.close();
         }
@@ -109,6 +114,10 @@ public class BackgroundApps extends Fragment {
         Iterator localIterator = appList.iterator();
         while (localIterator.hasNext()) {
             ResolveInfo localResolveInfo = (ResolveInfo) localIterator.next();
+            //TODO: for system process
+//            if (localResolveInfo.system) {
+//                continue;
+//            }
             String packageName = localResolveInfo.activityInfo.packageName;
             String label = (String) localResolveInfo.loadLabel(mPackageManager);
             Drawable icon = localResolveInfo.loadIcon(mPackageManager);
@@ -116,12 +125,12 @@ public class BackgroundApps extends Fragment {
             appInfo.label = label;
             appInfo.icon = icon;
             appInfo.packagName = packageName;
-            if (mAutoStart.contains(packageName)) { //允许后台运行
-                mAllowList.add(appInfo);
-                appInfo.status = true;
-            } else {
+            if (mDisallowAutoStart.contains(packageName)) { //禁止后台运行
                 mDisallowList.add(appInfo);
                 appInfo.status = false;
+            } else {
+                mAllowList.add(appInfo);
+                appInfo.status = true;
             }
         }
     }
@@ -163,13 +172,13 @@ public class BackgroundApps extends Fragment {
                 @Override
                 public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
                     if (isChecked) {
+                        int delete = mContentResolver.delete(URI, "package_name = ?", new String[]{appBean.packagName});
+                        Log.e(TAG, "delete: " + delete);
+                    } else {
                         ContentValues contentValues = new ContentValues();
                         contentValues.put("package_name", appBean.packagName);
                         contentValues.put("app_name", appBean.label.toString());
                         mContentResolver.insert(URI, contentValues);
-                    } else {
-                        int delete = mContentResolver.delete(URI, "package_name = ?", new String[]{appBean.packagName});
-                        Log.e(TAG, "delete: " + delete);
                     }
                 }
             });
