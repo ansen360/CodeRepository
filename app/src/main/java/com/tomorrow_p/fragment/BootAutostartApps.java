@@ -43,6 +43,7 @@ public class BootAutostartApps extends Fragment {
     private PackageManager mPackageManager;
     private ArrayList<AppBean> mAllowList = new ArrayList<AppBean>();
     private ArrayList<AppBean> mDisallowList = new ArrayList<AppBean>();
+    private ArrayList<String> mRepeat = new ArrayList<String>();
     private AutostartAdapter mAllowAdapter, mdisAllowAdapter;
     private TextView mAllowText, mDisallowText;
     private ListView mListAllow, mListDisallow;
@@ -64,6 +65,7 @@ public class BootAutostartApps extends Fragment {
         mListDisallow.setAdapter(mdisAllowAdapter);
         mProgressDialog = new ProgressDialog(getActivity());
         mProgressDialog.setMessage(getResources().getString(R.string.load_data));
+
         return root;
     }
 
@@ -72,6 +74,7 @@ public class BootAutostartApps extends Fragment {
         super.onResume();
         mAllowList.clear();
         mDisallowList.clear();
+        mRepeat.clear();
 
         mProgressDialog.show();
         AsyncTask<Void, Void, Void> mAsyncTask = new AsyncTask<Void, Void, Void>() {
@@ -103,45 +106,50 @@ public class BootAutostartApps extends Fragment {
     private void initData() {
         Intent intent = new Intent(Intent.ACTION_BOOT_COMPLETED);
         List<ResolveInfo> resolveInfoList = mPackageManager.queryBroadcastReceivers(intent, PackageManager.GET_DISABLED_COMPONENTS);
-
         final ArrayList<AppBean> temp1 = new ArrayList<AppBean>();
         final ArrayList<AppBean> temp2 = new ArrayList<AppBean>();
-        String oldPackageName = "";
         for (ResolveInfo resolveInfo : resolveInfoList) {
             String packageName = resolveInfo.activityInfo.packageName;
+            // TODO: for system process
             if ((packageName != null && packageName.contains("com.android")) || packageName.equals("android")) {
                 continue;
             }
-            // TODO: for system process
 //            if(resolveInfo.system){
 //                continue;
 //            }
+            StringBuilder stringBuilder = new StringBuilder();
             ComponentName componentName = new ComponentName(packageName, resolveInfo.activityInfo.name);
-            AppBean appBean = new AppBean();
             int status = getActivity().getPackageManager().getComponentEnabledSetting(componentName);
-
-            try {
-                PackageInfo packageInfo = getActivity().getPackageManager().getPackageInfo(packageName, 0);
-                appBean.icon = packageInfo.applicationInfo.loadIcon(mPackageManager);
-                appBean.name = packageInfo.applicationInfo.loadLabel(mPackageManager);
-                appBean.componentName = componentName;
-                Log.d(TAG, "status: " + status + " appName: " + packageInfo.applicationInfo.loadLabel(mPackageManager) +
-                        "  packagename: " + packageName);
-            } catch (PackageManager.NameNotFoundException e) {
-                e.printStackTrace();
-            }
-            if (PackageManager.COMPONENT_ENABLED_STATE_DISABLED == status) {
-                appBean.status = false;
-                if (!packageName.equals(oldPackageName)) {
-                    temp2.add(appBean);
+            stringBuilder.append("status: " + status + "   packagename: " + packageName + "  classsName: " + resolveInfo.activityInfo.name);
+            if (mRepeat.contains(packageName)) {
+                for (AppBean bean : temp1) {
+                    if (packageName.equals(bean.packageName)) {
+                        stringBuilder.append("  AppName: " + bean.name);
+                        bean.components.add(componentName);
+                    }
                 }
-            } else {
-                appBean.status = true;
-                if (!packageName.equals(oldPackageName)) {
+                for (AppBean bean : temp2) {
+                    if (packageName.equals(bean.packageName)) {
+                        stringBuilder.append("  AppName: " + bean.name);
+                        bean.components.add(componentName);
+                    }
+                }
+            } else {    // 第一次添加
+                ArrayList<ComponentName> components = new ArrayList<>();
+                components.add(componentName);
+                AppBean appBean = getAppBean(packageName);
+                stringBuilder.append("  AppName: " + appBean.name);
+                appBean.components = components;
+                mRepeat.add(packageName);
+                if (PackageManager.COMPONENT_ENABLED_STATE_DISABLED == status) {    //禁止
+                    appBean.status = false;
+                    temp2.add(appBean);
+                } else {
+                    appBean.status = true;
                     temp1.add(appBean);
                 }
             }
-            oldPackageName = packageName;
+            Log.d(TAG, stringBuilder.toString());
         }
 
         getActivity().runOnUiThread(new Runnable() {
@@ -151,6 +159,20 @@ public class BootAutostartApps extends Fragment {
                 mDisallowList.addAll(temp2);
             }
         });
+    }
+
+    private AppBean getAppBean(String packageName) {
+        AppBean appBean = new AppBean();
+        try {
+            PackageInfo packageInfo = getActivity().getPackageManager().getPackageInfo(packageName, 0);
+            appBean.icon = packageInfo.applicationInfo.loadIcon(mPackageManager);
+            appBean.name = packageInfo.applicationInfo.loadLabel(mPackageManager);
+            appBean.packageName = packageName;
+        } catch (PackageManager.NameNotFoundException e) {
+            e.printStackTrace();
+            Log.e(TAG, e.getMessage());
+        }
+        return appBean;
     }
 
 
@@ -189,9 +211,11 @@ public class BootAutostartApps extends Fragment {
             switchStatus.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
                 @Override
                 public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
-                    mPackageManager.setComponentEnabledSetting(appBean.componentName,
-                            isChecked ? PackageManager.COMPONENT_ENABLED_STATE_ENABLED : PackageManager.COMPONENT_ENABLED_STATE_DISABLED,
-                            PackageManager.DONT_KILL_APP);
+                    for (ComponentName co : appBean.components) {
+                        mPackageManager.setComponentEnabledSetting(co,
+                                isChecked ? PackageManager.COMPONENT_ENABLED_STATE_ENABLED : PackageManager.COMPONENT_ENABLED_STATE_DISABLED,
+                                PackageManager.DONT_KILL_APP);
+                    }
 
                 }
             });
@@ -203,6 +227,7 @@ public class BootAutostartApps extends Fragment {
         public Drawable icon;
         public CharSequence name;
         public boolean status;
-        public ComponentName componentName;
+        public String packageName;
+        public ArrayList<ComponentName> components;
     }
 }
