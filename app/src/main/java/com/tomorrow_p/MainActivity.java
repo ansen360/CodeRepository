@@ -11,8 +11,9 @@ import android.view.View;
 import com.tomorrow_p.activity.CameraActivity;
 import com.tomorrow_p.activity.DateFormatActivity;
 import com.tomorrow_p.activity.DialogActivity;
+import com.tomorrow_p.activity.EncryptTestActivity;
+import com.tomorrow_p.activity.VibratorActivity;
 import com.tomorrow_p.activity.WarrantyActivity;
-import com.tomorrow_p.common.encrypt.EncryptTestActivity;
 import com.tomorrow_p.setupwizard.DefaultActivity;
 import com.tomorrow_p.view.FlowButton;
 import com.tomorrow_p.view.FlowLayout;
@@ -76,6 +77,12 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 startActivity(new Intent(mContext, WarrantyActivity.class));
+            }
+        }));
+        mFlowLayout.addView(new FlowButton(this, "Vibrator", new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                startActivity(new Intent(mContext, VibratorActivity.class));
             }
         }));
 

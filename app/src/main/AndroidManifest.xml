@@ -1,27 +1,37 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="com.tomorrow_p">
+    <!--拥有同一个User id的多个APK可以配置成运行在同一个进程中,把程序的UID配成android.uid.system,可以让程序运行在系统进程中,拥有系统权限-->
+    <!--android:sharedUserId="android.uid.system"-->
 
 
     <!--    gesture_start -->
+    <!--获取WiFi状态; 获取当前WiFi接入的状态以及WLAN热点的信息-->
     <uses-permission android:name="android.permission.ACCESS_WIFI_STATE" />
+    <!--拨打电话; 允许程序从非系统拨号器里输入电话号码-->
     <uses-permission android:name="android.permission.CALL_PHONE" />
     <uses-permission android:name="android.permission.READ_CALL_LOG" />
     <uses-permission android:name="android.permission.WRITE_CALL_LOG" />
+    <!--读写系统设置; 允许读写系统设置项-->
     <uses-permission android:name="android.permission.WRITE_SETTINGS" />
+    <!--唤醒锁定; 允许程序在手机屏幕关闭后后台进程仍然运行-->
     <uses-permission android:name="android.permission.WAKE_LOCK" />
-    <uses-permission android:name="android.permission.DISABLE_KEYGUARD" />
+    <!--获取任务信息; 允许程序获取当前或最近运行的应用-->
     <uses-permission android:name="android.permission.GET_TASKS" />
+    <!--禁用键盘锁; 允许程序禁用键盘锁-->
     <uses-permission android:name="android.permission.DISABLE_KEYGUARD" />
+    <!--开机自动允许; 允许程序开机自动运行-->
     <uses-permission android:name="android.permission.RECEIVE_BOOT_COMPLETED" />
     <!--    gesture_end -->
 
-    <!-- 调用摄像头权限 -->
+    <!--拍照权限; 允许访问摄像头进行拍照-->
     <uses-permission android:name="android.permission.CAMERA" />
-    <!-- 挂载sd卡 -->
+    <!--挂载文件系统; 挂载、反挂载外部文件系统-->
     <uses-permission android:name="android.permission.MOUNT_UNMOUNT_FILESYSTEMS" />
-    <!-- sd卡读写权限 -->
+    <!--写入外部存储; 允许程序写入外部存储，如SD卡上写文件-->
     <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
+    <!--使用振动; 允许振动-->
+    <uses-permission android:name="android.permission.VIBRATE" />
 
 
     <application
@@ -44,7 +54,7 @@
         <activity android:name=".view.TouchPanelEdge"></activity>
 
         <!--    view_end    -->
-        <activity android:name=".common.encrypt.EncryptTestActivity"></activity>
+        <activity android:name=".activity.EncryptTestActivity"></activity>
 
         <!--    setupwizard_start -->
         <activity
@@ -106,6 +116,7 @@
         <activity android:name=".activity.CameraActivity"></activity>
         <activity android:name=".activity.CameraPreviewImageActivity"></activity>
         <activity android:name=".activity.WarrantyActivity"></activity>
+        <activity android:name=".activity.VibratorActivity"></activity>
 
 
         <provider

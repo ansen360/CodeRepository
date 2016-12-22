@@ -1,4 +1,4 @@
-package com.tomorrow_p.common.encrypt;
+package com.tomorrow_p.activity;
 
 import android.app.Activity;
 import android.os.Bundle;
@@ -6,6 +6,9 @@ import android.widget.TextView;
 
 import com.tomorrow_p.R;
 import com.tomorrow_p.common.Logger;
+import com.tomorrow_p.common.encrypt.DES;
+import com.tomorrow_p.common.encrypt.DES3;
+import com.tomorrow_p.common.encrypt.RSA;
 
 public class EncryptTestActivity extends Activity {
 
@@ -15,7 +18,7 @@ public class EncryptTestActivity extends Activity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.seelog_activity);
+        setContentView(R.layout.activity_showlog);
         TextView log = (TextView) findViewById(R.id.log);
         mStringBuilder = new StringBuilder();
         testDes();

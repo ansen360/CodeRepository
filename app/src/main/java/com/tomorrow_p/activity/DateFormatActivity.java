@@ -33,7 +33,7 @@ public class DateFormatActivity extends Activity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.seelog_activity);
+        setContentView(R.layout.activity_showlog);
         TextView log = (TextView) findViewById(R.id.log);
         mStringBuilder = new StringBuilder();
         init();
