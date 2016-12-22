@@ -1,0 +1,126 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical">
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="45dp"
+        android:background="#f7f7f7"
+        android:gravity="center"
+        android:text="@string/warranty_title"
+        android:textColor="#333333"
+        android:textSize="18sp" />
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="0.5sp"
+        android:background="#33000000" />
+
+    <ImageView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center_horizontal"
+        android:layout_marginTop="26dp"
+        android:src="@mipmap/ic_warranty" />
+
+    <TextView
+        android:id="@+id/regist_success"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="26dp"
+        android:gravity="center_horizontal"
+        android:text="@string/regist_success"
+        android:textColor="#333333"
+        android:textSize="18sp"
+        android:visibility="gone" />
+
+    <TextView
+        android:id="@+id/regist_info"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="36dp"
+        android:layout_marginTop="24dp"
+        android:gravity="center_horizontal"
+        android:text="@string/regist_info"
+        android:textColor="#808080"
+        android:textSize="18sp" />
+
+    <TextView
+        android:id="@+id/tv_1"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="10dp"
+        android:paddingLeft="16dp"
+        android:paddingRight="16dp"
+        android:text="@string/warranty_des1"
+        android:textColor="#1a1a1a"
+        android:textSize="15sp" />
+
+    <TextView
+        android:id="@+id/tv_2"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="10dp"
+        android:paddingLeft="16dp"
+        android:paddingRight="16dp"
+        android:text="@string/warranty_des2"
+        android:textColor="#1a1a1a"
+        android:textSize="15sp" />
+
+    <TextView
+        android:id="@+id/tv_3"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="10dp"
+        android:paddingLeft="16dp"
+        android:paddingRight="16dp"
+        android:text="@string/warranty_des3"
+        android:textColor="#1a1a1a"
+        android:textSize="15sp" />
+
+    <LinearLayout
+        android:id="@+id/ll_btn"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="110dp"
+        android:orientation="vertical">
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="15dp"
+            android:gravity="center_horizontal"
+            android:text="@string/warranty_des"
+            android:textSize="10sp" />
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:padding="16dp">
+
+            <Button
+                android:id="@+id/btn_cancel"
+                android:layout_width="0dp"
+                android:layout_height="34dp"
+                android:layout_margin="5dp"
+                android:layout_weight="1"
+                android:background="@drawable/btn_circular_cancel"
+                android:text="@string/warranty_cancel"
+                android:textColor="#c8c6c6" />
+
+            <Button
+                android:id="@+id/btn_regist"
+                android:layout_width="0dp"
+                android:layout_height="34dp"
+                android:layout_margin="5dp"
+                android:layout_weight="1"
+                android:background="@drawable/btn_circular_confirm"
+                android:text="@string/warranty_regist"
+                android:textColor="#ffffff" />
+        </LinearLayout>
+    </LinearLayout>
+
+</LinearLayout>

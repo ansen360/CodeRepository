@@ -105,6 +105,7 @@
         <activity android:name=".activity.DialogActivity"></activity>
         <activity android:name=".activity.CameraActivity"></activity>
         <activity android:name=".activity.CameraPreviewImageActivity"></activity>
+        <activity android:name=".activity.WarrantyActivity"></activity>
 
 
         <provider

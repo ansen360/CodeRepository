@@ -11,6 +11,7 @@ import android.view.View;
 import com.tomorrow_p.activity.CameraActivity;
 import com.tomorrow_p.activity.DateFormatActivity;
 import com.tomorrow_p.activity.DialogActivity;
+import com.tomorrow_p.activity.WarrantyActivity;
 import com.tomorrow_p.common.encrypt.EncryptTestActivity;
 import com.tomorrow_p.setupwizard.DefaultActivity;
 import com.tomorrow_p.view.FlowButton;
@@ -69,6 +70,12 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 startActivity(new Intent(mContext, CameraActivity.class));
+            }
+        }));
+        mFlowLayout.addView(new FlowButton(this, "Warranty", new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                startActivity(new Intent(mContext, WarrantyActivity.class));
             }
         }));
 
