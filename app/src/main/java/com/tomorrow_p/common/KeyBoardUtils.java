@@ -4,6 +4,7 @@ import android.app.Activity;
 import android.content.Context;
 import android.util.Log;
 import android.view.View;
+import android.view.WindowManager;
 import android.view.inputmethod.InputMethodManager;
 import android.widget.EditText;
 
@@ -52,6 +53,15 @@ public class KeyboardUtils {
         InputMethodManager imm = (InputMethodManager) mContext.getSystemService(Context.INPUT_METHOD_SERVICE);
         imm.showSoftInput(mEditText, InputMethodManager.RESULT_SHOWN);
         imm.toggleSoftInput(InputMethodManager.SHOW_FORCED, InputMethodManager.HIDE_IMPLICIT_ONLY);
+    }
+    /**
+     * 显示软键盘
+     *
+     * @param activity  上下文
+     */
+    public static void showSoftInput(Activity activity) {
+        activity.getWindow().setSoftInputMode(WindowManager.LayoutParams.SOFT_INPUT_ADJUST_RESIZE |
+                WindowManager.LayoutParams.SOFT_INPUT_STATE_VISIBLE);
     }
 
     /**
