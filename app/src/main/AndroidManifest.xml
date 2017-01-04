@@ -3,6 +3,8 @@
     package="com.tomorrow_p">
     <!--拥有同一个User id的多个APK可以配置成运行在同一个进程中,把程序的UID配成android.uid.system,可以让程序运行在系统进程中,拥有系统权限-->
     <!--android:sharedUserId="android.uid.system"-->
+    <!--coreApp是android在bootmode下系统启动的最小子集,在这个模式下,有一组最少的,必须的app需要启动-->
+    <!--coreApp="true"-->
 
 
     <!--    gesture_start -->
@@ -12,6 +14,7 @@
     <uses-permission android:name="android.permission.CALL_PHONE" />
     <uses-permission android:name="android.permission.READ_CALL_LOG" />
     <uses-permission android:name="android.permission.WRITE_CALL_LOG" />
+    <uses-permission android:name="android.permission.WRITE_CONTACTS" />
     <!--读写系统设置; 允许读写系统设置项-->
     <uses-permission android:name="android.permission.WRITE_SETTINGS" />
     <!--唤醒锁定; 允许程序在手机屏幕关闭后后台进程仍然运行-->
@@ -32,6 +35,20 @@
     <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
     <!--使用振动; 允许振动-->
     <uses-permission android:name="android.permission.VIBRATE" />
+    <uses-permission android:name="android.permission.BLUETOOTH" />
+    <uses-permission android:name="android.permission.BLUETOOTH_ADMIN" />
+    <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
+    <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION" />
+
+
+    <!--该进程常驻系统,不会被杀掉-->
+    <!--android:persistent="true"-->
+    <!--标记应用程序的data是否允许被用户清除;android:allowBackup标记是否允许一个应用使用backup机制-->
+    <!--android:allowClearUserData和android:allowBackup-->
+    <!--不使用硬件加速-->
+    <!--android:hardwareAccelerated="false"-->
+    <!--这是Android4.1引入的一个功能，能够让排版支持从右到左-->
+    <!--android:supportsRtl-->
 
 
     <application
@@ -41,6 +58,13 @@
         android:label="@string/app_name"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
+
+
+        <!--通过这个Activity启动的任务是否会排除在”recent apps” 之外-->
+        <!--android:excludeFromRecents-->
+        <!--这个属性用于指示该服务是否能够被其他应用程序组件调用或跟它交互-->
+        <!--android:exported="true"-->
+
         <activity
             android:name=".MainActivity"
             android:launchMode="singleInstance">
@@ -117,6 +141,17 @@
         <activity android:name=".activity.CameraPreviewImageActivity"></activity>
         <activity android:name=".activity.WarrantyActivity"></activity>
         <activity android:name=".activity.VibratorActivity"></activity>
+        <activity android:name=".activity.BluetoothActivity"></activity>
+        <activity android:name=".activity.NotificationActivity"></activity>
+        <activity android:name=".activity.NotificationCustomActivity"></activity>
+        <activity android:name=".activity.NotificationProgressActivity"></activity>
+
+
+        <receiver android:name=".receiver.BootRecerver">
+            <intent-filter>
+                <action android:name="android.intent.action.BOOT_COMPLETED" />
+            </intent-filter>
+        </receiver>
 
 
         <provider

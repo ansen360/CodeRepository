@@ -61,7 +61,7 @@ public class WarrantyActivity extends Activity implements View.OnClickListener {
                 break;
             case R.id.btn_cancel:
                 registSuccess.setVisibility(View.GONE);
-                registInfo.setText(getResources().getString(R.string.regist_info));
+                registInfo.setText(getResources().getString(R.string.warranty_regist_info));
                 break;
         }
 
@@ -90,7 +90,7 @@ public class WarrantyActivity extends Activity implements View.OnClickListener {
             }else{  //  success
                 registSuccess.setVisibility(View.VISIBLE);
 //                mBtns.setVisibility(View.GONE);
-                registInfo.setText(getResources().getString(R.string.regist_info_success));
+                registInfo.setText(getResources().getString(R.string.warranty_regist_info_success));
             }
         }
     }

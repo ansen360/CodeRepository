@@ -1,5 +1,6 @@
 package com.tomorrow_p;
 
+import android.content.ComponentName;
 import android.content.Intent;
 import android.graphics.Color;
 import android.os.Build;
@@ -8,10 +9,12 @@ import android.support.v7.app.ActionBar;
 import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 
+import com.tomorrow_p.activity.BluetoothActivity;
 import com.tomorrow_p.activity.CameraActivity;
 import com.tomorrow_p.activity.DateFormatActivity;
 import com.tomorrow_p.activity.DialogActivity;
 import com.tomorrow_p.activity.EncryptTestActivity;
+import com.tomorrow_p.activity.NotificationActivity;
 import com.tomorrow_p.activity.VibratorActivity;
 import com.tomorrow_p.activity.WarrantyActivity;
 import com.tomorrow_p.setupwizard.DefaultActivity;
@@ -83,6 +86,43 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 startActivity(new Intent(mContext, VibratorActivity.class));
+            }
+        }));
+        mFlowLayout.addView(new FlowButton(this, "Bluetooth", new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                startActivity(new Intent(mContext, BluetoothActivity.class));
+            }
+        }));
+        mFlowLayout.addView(new FlowButton(this, "Notification", new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                startActivity(new Intent(mContext, NotificationActivity.class));
+            }
+        }));
+        mFlowLayout.addView(new FlowButton(this, "test", new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+//                startActivity(new Intent(mContext, BluetoothActivity.class));
+                /*if (ContextCompat.checkSelfPermission(mContext, Manifest.permission.WRITE_CALL_LOG)
+                        != PackageManager.PERMISSION_GRANTED) {
+                    ActivityCompat.requestPermissions(mContext, new String[]{Manifest.permission.WRITE_CALL_LOG, Manifest.permission.READ_CALL_LOG, Manifest.permission.READ_CONTACTS}, 1);
+//                    ActivityCompat.requestPermissions(mContext, new String[]{Manifest.permission.READ_CALL_LOG}, 1);
+//                    ActivityCompat.requestPermissions(mContext, new String[]{Manifest.permission.WRITE_CALL_LOG}, 1);
+//                    return;
+                }
+                Intent intent = new Intent();
+                intent.setAction(Intent.ACTION_CALL);
+                //url:统一资源定位符
+                //uri:统一资源标示符（更广）
+                intent.setData(Uri.parse("tel:" + "18520816072"));
+                //开启系统拨号器
+                startActivity(intent);*/
+                Intent resultIntent = new Intent();
+                resultIntent.setComponent(new ComponentName("com.qucii.usercenter", "com.qucii.usercenter.WarrantyActivity"));
+                resultIntent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+                startActivity(resultIntent);
+
             }
         }));
 

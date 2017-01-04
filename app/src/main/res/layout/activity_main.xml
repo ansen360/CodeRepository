@@ -4,11 +4,12 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@mipmap/icon"
-    android:padding="20dp"
+    android:paddingTop="25dp"
     tools:context="com.tomorrow_p.MainActivity">
 
     <com.tomorrow_p.view.FlowLayout
         android:id="@+id/flow_layout"
+        android:layout_margin="5dp"
         android:layout_width="match_parent"
         android:layout_height="match_parent" />
 </FrameLayout>

@@ -79,9 +79,9 @@
     <string name="disallow_background">个应用禁止后台运行</string>
 
     <!-- warranty-->
-    <string name="regist_success">恭喜您,电子保卡注册成功</string>
-    <string name="regist_info">注册电子保卡将享受一下权益</string>
-    <string name="regist_info_success">尊敬的Homecare用户,您将享受一下权益:</string>
+    <string name="warranty_regist_success">恭喜您,电子保卡注册成功</string>
+    <string name="warranty_regist_info">注册电子保卡将享受一下权益</string>
+    <string name="warranty_regist_info_success">尊敬的Homecare用户,您将享受一下权益:</string>
     <string name="warranty_des1">1.电子保卡与纸质保修卡等效,服务时提供首次注册的手机号码、姓名即可;</string>
     <string name="warranty_des2">2.电子保卡可在Homecare全国所有服务网点享受真诚、便捷的专业服务;</string>
     <string name="warranty_des3">3.恢复出出厂设置会将保存在手机的注册记录清除,你需要再次注册电子保卡,但是电子保卡有效时间以首次注册的记录为准,之后发送的注册信息系统不会记录。</string>

@@ -12,7 +12,7 @@ public class FlowButton extends Button {
     private static final int COLOR2 = 0xFF569874;
     private static final int COLOR3 = 0xaa5698CD;
     private static final int COLOR4 = 0x66CD9856;
-    private static final int PADDING = 10;
+    private static final int PADDING = 0;
 
     private static int[] COLORS = new int[]{COLOR1, COLOR2, COLOR3, COLOR4};
     private static int COLOR_INDEX = 0;
@@ -27,7 +27,8 @@ public class FlowButton extends Button {
         setText(buttonName);
         setBackgroundColor(backgroundRes);
         setOnClickListener(listener);
-        setTextSize(18.0f);
+        setAllCaps(false);
+        setTextSize(16);
         setPadding(PADDING, PADDING, PADDING, PADDING);
     }
 
@@ -37,7 +38,8 @@ public class FlowButton extends Button {
         setText(buttonName);
         setBackgroundColor(COLORS[COLOR_INDEX % COLORS.length]);
         setOnClickListener(listener);
-        setTextSize(18.0f);
+        setTextSize(16);
+        setAllCaps(false);
         setPadding(PADDING, PADDING, PADDING, PADDING);
     }
 }

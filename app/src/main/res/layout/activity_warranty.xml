@@ -31,7 +31,7 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="26dp"
         android:gravity="center_horizontal"
-        android:text="@string/regist_success"
+        android:text="@string/warranty_regist_success"
         android:textColor="#333333"
         android:textSize="18sp"
         android:visibility="gone" />
@@ -43,7 +43,7 @@
         android:layout_marginBottom="36dp"
         android:layout_marginTop="24dp"
         android:gravity="center_horizontal"
-        android:text="@string/regist_info"
+        android:text="@string/warranty_regist_info"
         android:textColor="#808080"
         android:textSize="18sp" />
 
