@@ -1,6 +1,5 @@
 package com.tomorrow_p;
 
-import android.content.ComponentName;
 import android.content.Intent;
 import android.graphics.Color;
 import android.os.Build;
@@ -17,7 +16,6 @@ import com.tomorrow_p.activity.EncryptTestActivity;
 import com.tomorrow_p.activity.NotificationActivity;
 import com.tomorrow_p.activity.VibratorActivity;
 import com.tomorrow_p.activity.WarrantyActivity;
-import com.tomorrow_p.setupwizard.DefaultActivity;
 import com.tomorrow_p.view.FlowButton;
 import com.tomorrow_p.view.FlowLayout;
 import com.tomorrow_p.view.drawoutline.DrawOutlineActivity;
@@ -40,18 +38,18 @@ public class MainActivity extends AppCompatActivity {
                 startActivity(new Intent(mContext, EncryptTestActivity.class));
             }
         }));
-        mFlowLayout.addView(new FlowButton(this, "Boot the wizard", new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                startActivity(new Intent(mContext, DefaultActivity.class));
-            }
-        }));
-        mFlowLayout.addView(new FlowButton(this, "gesture", new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                startActivity(new Intent(mContext, com.tomorrow_p.gesture.MainActivity.class));
-            }
-        }));
+//        mFlowLayout.addView(new FlowButton(this, "Boot the wizard", new View.OnClickListener() {
+//            @Override
+//            public void onClick(View v) {
+//                startActivity(new Intent(mContext, DefaultActivity.class));
+//            }
+//        }));
+//        mFlowLayout.addView(new FlowButton(this, "gesture", new View.OnClickListener() {
+//            @Override
+//            public void onClick(View v) {
+//                startActivity(new Intent(mContext, com.tomorrow_p.gesture.MainActivity.class));
+//            }
+//        }));
         mFlowLayout.addView(new FlowButton(this, "Draw Face", new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -103,7 +101,7 @@ public class MainActivity extends AppCompatActivity {
         mFlowLayout.addView(new FlowButton(this, "test", new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-//                startActivity(new Intent(mContext, BluetoothActivity.class));
+//                startActivity(new Intent(mContext, BluetoothClientActivity.class));
                 /*if (ContextCompat.checkSelfPermission(mContext, Manifest.permission.WRITE_CALL_LOG)
                         != PackageManager.PERMISSION_GRANTED) {
                     ActivityCompat.requestPermissions(mContext, new String[]{Manifest.permission.WRITE_CALL_LOG, Manifest.permission.READ_CALL_LOG, Manifest.permission.READ_CONTACTS}, 1);
@@ -118,10 +116,6 @@ public class MainActivity extends AppCompatActivity {
                 intent.setData(Uri.parse("tel:" + "18520816072"));
                 //开启系统拨号器
                 startActivity(intent);*/
-                Intent resultIntent = new Intent();
-                resultIntent.setComponent(new ComponentName("com.qucii.usercenter", "com.qucii.usercenter.WarrantyActivity"));
-                resultIntent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
-                startActivity(resultIntent);
 
             }
         }));

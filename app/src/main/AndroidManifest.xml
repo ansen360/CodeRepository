@@ -141,10 +141,12 @@
         <activity android:name=".activity.CameraPreviewImageActivity"></activity>
         <activity android:name=".activity.WarrantyActivity"></activity>
         <activity android:name=".activity.VibratorActivity"></activity>
-        <activity android:name=".activity.BluetoothActivity"></activity>
         <activity android:name=".activity.NotificationActivity"></activity>
         <activity android:name=".activity.NotificationCustomActivity"></activity>
         <activity android:name=".activity.NotificationProgressActivity"></activity>
+        <activity android:name=".activity.BluetoothActivity"></activity>
+        <activity android:name=".activity.BluetoothServerActivity"></activity>
+        <activity android:name=".activity.BluetoothClientActivity"></activity>
 
 
         <receiver android:name=".receiver.BootRecerver">
