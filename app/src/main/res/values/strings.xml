@@ -94,4 +94,7 @@
     <string name="warranty_failure_des2">2.手机无网络或网络故障</string>
 
 
+    <string name="WXAccessibilityService_description">微信红包</string>
+
+
 </resources>

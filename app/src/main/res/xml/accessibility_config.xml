@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="utf-8"?>
+<accessibility-service xmlns:android="http://schemas.android.com/apk/res/android"
+    android:accessibilityEventTypes="typeNotificationStateChanged|typeWindowStateChanged|typeWindowContentChanged|typeWindowsChanged"
+    android:accessibilityFeedbackType="feedbackGeneric"
+    android:accessibilityFlags="flagDefault"
+    android:canRetrieveWindowContent="true"
+    android:description="@string/WXAccessibilityService_description"
+    android:notificationTimeout="100"
+    android:packageNames="com.tencent.mm" />
+    <!--accessibilityEventTypes: 设置响应事件的类型,typeAllMask是响应所有类型的事件,还有单击、长按、滑动等-->
+    <!--accessibilityFeedbackType: 设置回馈给用户的方式,有语音播出和振动;可以配置一些TTS引擎,让它实现发音-->
+    <!--notificationTimeout: 响应时间的设置-->
+    <!--android:packageNames: 可以指定响应某个应用的事件,这里因为要响应所有应用的事件,所以不填,默认就是响应所有应用的事件;-->
+    <!--比如我们写一个微信抢红包的辅助程序,就可以在这里填写微信的包名,便可以监听微信产生的事件了-->
+
+
