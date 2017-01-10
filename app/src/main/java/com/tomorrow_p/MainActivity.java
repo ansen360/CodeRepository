@@ -7,6 +7,7 @@ import android.os.Bundle;
 import android.support.v7.app.ActionBar;
 import android.support.v7.app.AppCompatActivity;
 import android.view.View;
+import android.widget.FrameLayout;
 
 import com.tomorrow_p.activity.BluetoothActivity;
 import com.tomorrow_p.activity.CameraActivity;
@@ -14,23 +15,39 @@ import com.tomorrow_p.activity.DateFormatActivity;
 import com.tomorrow_p.activity.DialogActivity;
 import com.tomorrow_p.activity.EncryptTestActivity;
 import com.tomorrow_p.activity.NotificationActivity;
-import com.tomorrow_p.activity.VibratorActivity;
+import com.tomorrow_p.activity.RedPacketActivity;
 import com.tomorrow_p.activity.WarrantyActivity;
 import com.tomorrow_p.view.FlowButton;
-import com.tomorrow_p.view.FlowLayout;
 import com.tomorrow_p.view.drawoutline.DrawOutlineActivity;
+import com.tomorrow_p.view.flowlayout.FlowLayout;
 
 public class MainActivity extends AppCompatActivity {
 
     private FlowLayout mFlowLayout;
     private MainActivity mContext;
+    private static final int[] ICONS = new int[]{R.mipmap.icon1, R.mipmap.icon2, R.mipmap.icon3,
+            R.mipmap.icon4, R.mipmap.icon5, R.mipmap.icon6, R.mipmap.icon7, R.mipmap.icon8,
+            R.mipmap.icon9, R.mipmap.icon10, R.mipmap.icon11, R.mipmap.icon12};
+    private static int ICON_INDEX = 0;
+
+    private void nextIndex() {
+        ICON_INDEX = (++ICON_INDEX) % ICONS.length;
+    }
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        mContext = this;
         setContentView(R.layout.activity_main);
-        mFlowLayout = (FlowLayout) findViewById(R.id.flow_layout);
+        final FrameLayout rootLayout = (FrameLayout) findViewById(R.id.root_layout);
+        mFlowLayout = (FlowLayout) findViewById(R.id.flowlayout);
+        mContext = this;
+        rootLayout.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                nextIndex();
+                rootLayout.setBackgroundResource(ICONS[ICON_INDEX % ICONS.length]);
+            }
+        });
 
         mFlowLayout.addView(new FlowButton(this, "Encrypt", new View.OnClickListener() {
             @Override
@@ -38,90 +55,100 @@ public class MainActivity extends AppCompatActivity {
                 startActivity(new Intent(mContext, EncryptTestActivity.class));
             }
         }));
-//        mFlowLayout.addView(new FlowButton(this, "Boot the wizard", new View.OnClickListener() {
-//            @Override
-//            public void onClick(View v) {
-//                startActivity(new Intent(mContext, DefaultActivity.class));
-//            }
-//        }));
-//        mFlowLayout.addView(new FlowButton(this, "gesture", new View.OnClickListener() {
-//            @Override
-//            public void onClick(View v) {
-//                startActivity(new Intent(mContext, com.tomorrow_p.gesture.MainActivity.class));
-//            }
-//        }));
-        mFlowLayout.addView(new FlowButton(this, "Draw Face", new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                startActivity(new Intent(mContext, DrawOutlineActivity.class));
-            }
-        }));
+
         mFlowLayout.addView(new FlowButton(this, "Date Format", new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 startActivity(new Intent(mContext, DateFormatActivity.class));
             }
         }));
+
+        mFlowLayout.addView(new FlowButton(this, "Date Format", new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                startActivity(new Intent(mContext, DateFormatActivity.class));
+            }
+        }));
+
+        /*mFlowLayout.addView(new FlowButton(this, "Boot the wizard", new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                startActivity(new Intent(mContext, DefaultActivity.class));
+            }
+        }));
+
+        mFlowLayout.addView(new FlowButton(this, "gesture", new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                startActivity(new Intent(mContext, com.tomorrow_p.gesture.MainActivity.class));
+            }
+        }));*/
+
+        mFlowLayout.addView(new FlowButton(this, "DrawFace", new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                startActivity(new Intent(mContext, DrawOutlineActivity.class));
+            }
+        }));
+        mFlowLayout.addView(new FlowButton(this, "Test", new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                test();
+            }
+        }));
+
         mFlowLayout.addView(new FlowButton(this, "Dialog", new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 startActivity(new Intent(mContext, DialogActivity.class));
             }
         }));
+
         mFlowLayout.addView(new FlowButton(this, "Camera", new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 startActivity(new Intent(mContext, CameraActivity.class));
             }
         }));
+
         mFlowLayout.addView(new FlowButton(this, "Warranty", new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 startActivity(new Intent(mContext, WarrantyActivity.class));
             }
         }));
-        mFlowLayout.addView(new FlowButton(this, "Vibrator", new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                startActivity(new Intent(mContext, VibratorActivity.class));
-            }
-        }));
+
         mFlowLayout.addView(new FlowButton(this, "Bluetooth", new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 startActivity(new Intent(mContext, BluetoothActivity.class));
             }
         }));
+
         mFlowLayout.addView(new FlowButton(this, "Notification", new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 startActivity(new Intent(mContext, NotificationActivity.class));
             }
         }));
-        mFlowLayout.addView(new FlowButton(this, "test", new View.OnClickListener() {
+
+        mFlowLayout.addView(new FlowButton(this, "RedPacket", new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-//                startActivity(new Intent(mContext, BluetoothClientActivity.class));
-                /*if (ContextCompat.checkSelfPermission(mContext, Manifest.permission.WRITE_CALL_LOG)
-                        != PackageManager.PERMISSION_GRANTED) {
-                    ActivityCompat.requestPermissions(mContext, new String[]{Manifest.permission.WRITE_CALL_LOG, Manifest.permission.READ_CALL_LOG, Manifest.permission.READ_CONTACTS}, 1);
-//                    ActivityCompat.requestPermissions(mContext, new String[]{Manifest.permission.READ_CALL_LOG}, 1);
-//                    ActivityCompat.requestPermissions(mContext, new String[]{Manifest.permission.WRITE_CALL_LOG}, 1);
-//                    return;
-                }
-                Intent intent = new Intent();
-                intent.setAction(Intent.ACTION_CALL);
-                //url:统一资源定位符
-                //uri:统一资源标示符（更广）
-                intent.setData(Uri.parse("tel:" + "18520816072"));
-                //开启系统拨号器
-                startActivity(intent);*/
-
+                startActivity(new Intent(mContext, RedPacketActivity.class));
             }
         }));
 
 
         ImmersiveMode();
+    }
+
+    /**
+     * TODO: test
+     */
+    private void test() {
+
+
     }
 
     private void ImmersiveMode() {

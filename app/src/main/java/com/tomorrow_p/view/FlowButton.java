@@ -1,20 +1,28 @@
 package com.tomorrow_p.view;
 
 import android.content.Context;
-import android.widget.Button;
+import android.view.ViewGroup;
+import android.widget.LinearLayout;
+import android.widget.TextView;
+
+import com.tomorrow_p.R;
 
 /**
  * Created by admin on 2016/9/19.
  */
-public class FlowButton extends Button {
+public class FlowButton extends TextView {
 
     private static final int COLOR1 = 0xFF5698BB;
     private static final int COLOR2 = 0xFF569874;
-    private static final int COLOR3 = 0xaa5698CD;
-    private static final int COLOR4 = 0x66CD9856;
-    private static final int PADDING = 0;
+    private static final int COLOR3 = 0xFF5698CD;
+    private static final int COLOR4 = 0xFF003366;
+    private static final int COLOR5 = 0xFF9f5f9f;
+    private static final int COLOR6 = 0xFFff6ec7;
+    private static final int COLOR7 = 0xFF236b8e;
+    private static final int PADDING_TOP = 12;
+    private static final int PADDING_LEFT = 20;
 
-    private static int[] COLORS = new int[]{COLOR1, COLOR2, COLOR3, COLOR4};
+    private static int[] COLORS = new int[]{COLOR1, COLOR2, COLOR3, COLOR4, COLOR5, COLOR6, COLOR7};
     private static int COLOR_INDEX = 0;
 
     private void nextColor() {
@@ -25,21 +33,26 @@ public class FlowButton extends Button {
         super(context);
         nextColor();
         setText(buttonName);
-        setBackgroundColor(backgroundRes);
+        setBackgroundResource(backgroundRes);
         setOnClickListener(listener);
-        setAllCaps(false);
         setTextSize(16);
-        setPadding(PADDING, PADDING, PADDING, PADDING);
+        setTextColor(COLORS[COLOR_INDEX % COLORS.length]);
+        setPadding(PADDING_LEFT, PADDING_TOP, PADDING_LEFT, PADDING_TOP);
+
     }
 
     public FlowButton(Context context, String buttonName, OnClickListener listener) {
         super(context);
         nextColor();
         setText(buttonName);
-        setBackgroundColor(COLORS[COLOR_INDEX % COLORS.length]);
+        setBackgroundResource(R.drawable.btn_circular_cancel);
         setOnClickListener(listener);
         setTextSize(16);
-        setAllCaps(false);
-        setPadding(PADDING, PADDING, PADDING, PADDING);
+        setTextColor(COLORS[COLOR_INDEX % COLORS.length]);
+        int i = COLOR_INDEX % COLORS.length;
+        setPadding(PADDING_LEFT, PADDING_TOP, PADDING_LEFT, PADDING_TOP);
+        LinearLayout.LayoutParams layoutParams = new LinearLayout.LayoutParams(ViewGroup.LayoutParams.WRAP_CONTENT, ViewGroup.LayoutParams.WRAP_CONTENT);
+        layoutParams.setMargins(10, 10, 10, 10);
+        setLayoutParams(layoutParams);
     }
 }

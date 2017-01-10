@@ -1,15 +1,16 @@
 <?xml version="1.0" encoding="utf-8"?>
 <FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/root_layout"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@mipmap/icon"
+    android:background="@mipmap/icon1"
     android:paddingTop="25dp"
     tools:context="com.tomorrow_p.MainActivity">
 
-    <com.tomorrow_p.view.FlowLayout
-        android:id="@+id/flow_layout"
-        android:layout_margin="5dp"
+    <com.tomorrow_p.view.flowlayout.FlowLayout
+        android:id="@+id/flowlayout"
         android:layout_width="match_parent"
-        android:layout_height="match_parent" />
+        android:layout_height="match_parent"
+        android:layout_margin="5dp" />
 </FrameLayout>

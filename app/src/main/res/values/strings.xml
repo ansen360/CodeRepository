@@ -94,7 +94,8 @@
     <string name="warranty_failure_des2">2.手机无网络或网络故障</string>
 
 
-    <string name="WXAccessibilityService_description">微信红包</string>
+    <string name="WXAccessibilityService_description">开启此功能,即可使用微信抢红包功能.</string>
+    <string name="WXAccessibilityService_label">微信抢红包</string>
 
 
 </resources>
