@@ -16,7 +16,9 @@ import com.tomorrow_p.activity.DialogActivity;
 import com.tomorrow_p.activity.EncryptTestActivity;
 import com.tomorrow_p.activity.NotificationActivity;
 import com.tomorrow_p.activity.RedPacketActivity;
+import com.tomorrow_p.activity.TabLayoutActivity;
 import com.tomorrow_p.activity.WarrantyActivity;
+import com.tomorrow_p.common.GPSManager;
 import com.tomorrow_p.view.FlowButton;
 import com.tomorrow_p.view.drawoutline.DrawOutlineActivity;
 import com.tomorrow_p.view.flowlayout.FlowLayout;
@@ -138,6 +140,12 @@ public class MainActivity extends AppCompatActivity {
                 startActivity(new Intent(mContext, RedPacketActivity.class));
             }
         }));
+        mFlowLayout.addView(new FlowButton(this, "TabLayout", new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                startActivity(new Intent(mContext, TabLayoutActivity.class));
+            }
+        }));
 
 
         ImmersiveMode();
@@ -147,7 +155,9 @@ public class MainActivity extends AppCompatActivity {
      * TODO: test
      */
     private void test() {
-
+        GPSManager gpsManager = new GPSManager(this);
+        gpsManager.isOpen();
+        gpsManager.getGPSConfi(this);
 
     }
 

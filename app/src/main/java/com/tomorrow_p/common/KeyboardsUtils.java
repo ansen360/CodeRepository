@@ -18,9 +18,9 @@ import android.widget.EditText;
  * @PACKAGE_NAME: com.tomorrow_p.common
  * @Description: TODO
  */
-public class KeyboardUtils {
+public class KeyboardsUtils {
 
-    private KeyboardUtils() {
+    private KeyboardsUtils() {
     }
     /**
      * 避免输入法面板遮挡

@@ -7,7 +7,6 @@ import android.content.res.Resources;
 import android.os.Bundle;
 
 import com.tomorrow_p.R;
-import com.tomorrow_p.fragment.BackgroundApps;
 
 public class MainActivity extends Activity {
     public ContentResolver mContentResolver;
@@ -17,7 +16,7 @@ public class MainActivity extends Activity {
         super.onCreate(savedInstanceState);
         mContentResolver = getContentResolver();
         initDatabase();
-        getFragmentManager().beginTransaction().replace(android.R.id.content, new BackgroundApps()).commit();
+        getFragmentManager().beginTransaction().replace(android.R.id.content, new GesturePreference()).commit();
     }
     
     public void initDatabase() {

@@ -8,8 +8,6 @@
 
 
     <!--    gesture_start -->
-    <!--获取WiFi状态; 获取当前WiFi接入的状态以及WLAN热点的信息-->
-    <uses-permission android:name="android.permission.ACCESS_WIFI_STATE" />
     <!--拨打电话; 允许程序从非系统拨号器里输入电话号码-->
     <uses-permission android:name="android.permission.CALL_PHONE" />
     <uses-permission android:name="android.permission.READ_CALL_LOG" />
@@ -37,8 +35,12 @@
     <uses-permission android:name="android.permission.VIBRATE" />
     <uses-permission android:name="android.permission.BLUETOOTH" />
     <uses-permission android:name="android.permission.BLUETOOTH_ADMIN" />
+    <!--获取WiFi状态; 获取当前WiFi接入的状态以及WLAN热点的信息-->
+    <uses-permission android:name="android.permission.ACCESS_WIFI_STATE" />
     <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
     <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION" />
+    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
+    <uses-permission android:name="android.permission.CHANGE_WIFI_STATE" />
 
 
     <!--该进程常驻系统,不会被杀掉-->
@@ -148,6 +150,7 @@
         <activity android:name=".activity.BluetoothServerActivity"></activity>
         <activity android:name=".activity.BluetoothClientActivity"></activity>
         <activity android:name=".activity.RedPacketActivity"></activity>
+        <activity android:name=".activity.TabLayoutActivity"></activity>
 
 
         <receiver android:name=".receiver.BootRecerver">
