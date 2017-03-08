@@ -19,7 +19,7 @@ import java.util.List;
  *
  * @E-mail: tomorrow_p@163.com
  * @Blog: http://blog.csdn.net/qq_25804863
- * @Github: https://github.com/1031307403/
+ * @Github: https://github.com/ansen360
  * @PROJECT_NAME: CodeRepository
  * @PACKAGE_NAME: com.tomorrow_p.service
  * @Description: AccessibilityService可以获取当前页面的信息(view的节点), 并且可以模拟点击事件

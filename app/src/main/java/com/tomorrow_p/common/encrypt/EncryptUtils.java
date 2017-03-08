@@ -21,7 +21,7 @@ import static com.tomorrow_p.common.SizeUtils.hexString2Bytes;
  *
  * @E-mail: tomorrow_p@163.com
  * @Blog: http://blog.csdn.net/qq_25804863
- * @Github: https://github.com/1031307403/
+ * @Github: https://github.com/ansen360
  * @PROJECT_NAME: CodeRepository
  * @PACKAGE_NAME: com.tomorrow_p.common
  * @Description: TODO
