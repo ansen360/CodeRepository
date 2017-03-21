@@ -19,6 +19,7 @@ import com.tomorrow_p.activity.RedPacketActivity;
 import com.tomorrow_p.activity.TabLayoutActivity;
 import com.tomorrow_p.activity.WarrantyActivity;
 import com.tomorrow_p.common.GPSManager;
+import com.tomorrow_p.setupwizard.GuideActivity;
 import com.tomorrow_p.view.FlowButton;
 import com.tomorrow_p.view.drawoutline.DrawOutlineActivity;
 import com.tomorrow_p.view.flowlayout.FlowLayout;
@@ -144,6 +145,12 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 startActivity(new Intent(mContext, TabLayoutActivity.class));
+            }
+        }));
+        mFlowLayout.addView(new FlowButton(this, "GuideActivity", new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                startActivity(new Intent(mContext, GuideActivity.class));
             }
         }));
 

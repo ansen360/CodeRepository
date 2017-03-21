@@ -152,6 +152,11 @@
         <activity android:name=".activity.RedPacketActivity"></activity>
         <activity android:name=".activity.TabLayoutActivity"></activity>
 
+        <!--透明的样式-->
+        <!--android:theme="@android:style/Theme.Translucent"-->
+        <activity android:name=".setupwizard.GuideActivity"
+            android:theme="@style/translucent" >
+        </activity>
 
         <receiver android:name=".receiver.BootRecerver">
             <intent-filter>
