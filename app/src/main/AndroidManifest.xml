@@ -76,6 +76,14 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+        <activity android:name=".activity.TestActivity">
+            <!--<intent-filter>-->
+                <!--<action android:name="android.intent.action.MAIN" />-->
+
+                <!--<category android:name="android.intent.category.LAUNCHER" />-->
+            <!--</intent-filter>-->
+        </activity>
+
         <!--    view_start    -->
         <activity android:name=".view.TouchPanelEdge"></activity>
 
@@ -154,9 +162,9 @@
 
         <!--透明的样式-->
         <!--android:theme="@android:style/Theme.Translucent"-->
-        <activity android:name=".setupwizard.GuideActivity"
-            android:theme="@style/translucent" >
-        </activity>
+        <activity
+            android:name=".setupwizard.GuideActivity"
+            android:theme="@style/translucent"></activity>
 
         <receiver android:name=".receiver.BootRecerver">
             <intent-filter>
