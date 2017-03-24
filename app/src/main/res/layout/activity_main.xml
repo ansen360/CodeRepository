@@ -6,9 +6,9 @@
     android:layout_height="match_parent"
     android:background="@mipmap/icon1"
     android:paddingTop="25dp"
-    tools:context="com.tomorrow_p.MainActivity">
+    tools:context="com.ansen.MainActivity">
 
-    <com.tomorrow_p.view.flowlayout.FlowLayout
+    <com.ansen.view.flowlayout.FlowLayout
         android:id="@+id/flowlayout"
         android:layout_width="match_parent"
         android:layout_height="match_parent"

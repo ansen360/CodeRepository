@@ -16,11 +16,11 @@
             android:paddingLeft="25dp"
             android:background="#f0f0f2" />
 
-        <com.tomorrow_p.view.MatchListView
+        <com.ansen.view.MatchListView
             android:id="@+id/list_allow"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginLeft="15dp"></com.tomorrow_p.view.MatchListView>
+            android:layout_marginLeft="15dp"></com.ansen.view.MatchListView>
 
         <TextView
             android:id="@+id/disallow_text"
@@ -29,11 +29,11 @@
             android:gravity="center_vertical"
             android:paddingLeft="25dp"
             android:background="#f0f0f2"/>
-        <com.tomorrow_p.view.MatchListView
+        <com.ansen.view.MatchListView
             android:id="@+id/list_disallow"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginLeft="15dp"></com.tomorrow_p.view.MatchListView>
+            android:layout_marginLeft="15dp"></com.ansen.view.MatchListView>
 
     </LinearLayout>
 

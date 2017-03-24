@@ -31,10 +31,10 @@
         android:layout_centerHorizontal="true"
         android:layout_marginTop="80dp">
 
-        <com.tomorrow_p.setupwizard.WheelView
+        <com.ansen.setupwizard.WheelView
             android:id="@+id/wheelview"
             android:layout_width="200dp"
-            android:layout_height="200dp"></com.tomorrow_p.setupwizard.WheelView>
+            android:layout_height="200dp"></com.ansen.setupwizard.WheelView>
     </LinearLayout>
 
     <Button

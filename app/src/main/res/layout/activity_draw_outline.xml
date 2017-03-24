@@ -12,7 +12,7 @@
         android:background="#FFFFFF"
         android:src="@drawable/draw_outline_test" />
 
-    <com.tomorrow_p.view.drawoutline.DrawOutlineView
+    <com.ansen.view.drawoutline.DrawOutlineView
         android:id="@+id/outline"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content" />

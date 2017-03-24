@@ -21,6 +21,15 @@
     <style name="gesture_NoTitleTheme" parent="@android:style/Theme.Holo.Light.NoActionBar.TranslucentDecor">
         <item name="android:windowBackground">@null</item>
     </style>
+    <!--设置状态栏的颜色,sdk23-->
+    <!--<style name="GestureSettingsStyle" parent="@android:style/Theme.Material.Light.LightStatusBar">-->
+        <!--<item name="android:homeAsUpIndicator">@mipmap/ic_settings_back</item>-->
+        <!--<item name="android:colorPrimaryDark">#F7F7F7</item>-->
+        <!--<item name="android:colorPrimary">#F7F7F7</item>-->
+        <!--<item name="android:windowContentOverlay">@null</item>-->
+    <!--</style>-->
+
+
 
     <!--自定义Theme-->
     <style name="Theme.CodeRepository" parent="@android:style/Theme.Material.Light">

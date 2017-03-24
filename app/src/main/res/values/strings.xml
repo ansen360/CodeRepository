@@ -18,6 +18,7 @@
 
     <!--    gesture_start -->
     <string name="smart_induction">Smart gestures</string>
+    <string name="app_is_not_installed">请点击此项选择要启动的应用</string>
     <!-- Sleep gesture start -->
     <string name="smart_awake">Smart awake</string>
     <string name="gesture_sleep">Sleep gesture</string>
@@ -63,10 +64,18 @@
 
     <!-- Smart call start -->
     <string name="smart_call">Smart call</string>
-    <string name="call_flip_mute">Flip mute</string>
-    <string name="call_flip_mute_summary">Flip the device to mute the call</string>
-
+    <string name="smart_call_content">将设备拿近您的耳朵来呼叫当前通话记录第一个号码或者短信会话界面的联系人,可以接听来电</string>
+    <string name="smart_dial">体感拨号</string>
+    <string name="smart_answer">体感接听</string>
     <!-- Smart call end -->
+    <!-- Smart mute start -->
+    <string name="smart_mute">智能静音</string>
+    <string name="call_flip_mute">来电静音</string>
+    <string name="call_flip_mute_summary">来电翻转手机静音</string>
+    <string name="alarm_flip_mute">关闭闹钟</string>
+    <string name="alarm_flip_mute_summary">翻转手机关闭闹钟</string>
+    <!-- Smart mute end -->
+
     <!--    gesture_end -->
 
 
