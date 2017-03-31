@@ -72,13 +72,6 @@ public class MainActivity extends AppCompatActivity {
             }
         }));
 
-        mFlowLayout.addView(new FlowButton(this, "Date Format", new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                startActivity(new Intent(mContext, DateFormatActivity.class));
-            }
-        }));
-
         /*mFlowLayout.addView(new FlowButton(this, "Boot the wizard", new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -159,7 +152,12 @@ public class MainActivity extends AppCompatActivity {
 //                startActivity(new Intent(mContext, GuideActivity.class));
 //            }
 //        }));
-
+//        mFlowLayout.addView(new FlowButton(this, "Socket", new View.OnClickListener() {
+//            @Override
+//            public void onClick(View v) {
+//                startActivity(new Intent(mContext, SocketActivity.class));
+//            }
+//        }));
 
         ImmersiveMode();
     }
@@ -176,6 +174,15 @@ public class MainActivity extends AppCompatActivity {
 
 
     }
+
+
+
+
+
+
+
+
+
 
     private void ImmersiveMode() {
 //        transparentStatusBar();

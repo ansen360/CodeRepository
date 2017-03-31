@@ -41,6 +41,7 @@
     <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION" />
     <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
     <uses-permission android:name="android.permission.CHANGE_WIFI_STATE" />
+    <uses-permission android:name="android.permission.INTERNET"/>
 
 
     <!--该进程常驻系统,不会被杀掉-->
@@ -160,6 +161,11 @@
         <activity android:name="com.ansen.activity.RedPacketActivity"></activity>
         <activity android:name="com.ansen.activity.TabLayoutActivity"></activity>
 
+        <activity android:name=".activity.SocketActivity"></activity>
+        <activity android:name=".activity.SocketClientActivity"></activity>
+
+
+
         <!--透明的样式-->
         <!--android:theme="@android:style/Theme.Translucent"-->
         <activity
@@ -185,7 +191,7 @@
                 android:name="android.accessibilityservice"
                 android:resource="@xml/accessibility_config" />
         </service>
-
+        <service android:name=".activity.SocketServerService"></service>
 
         <provider
             android:name="com.ansen.gesture.database.GestureContentProvider"
