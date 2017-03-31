@@ -1,3 +1,77 @@
+## 代码库
+
+#### Android工具类
+- ActivityStackUtils
+- AnimationUtil
+- AppUtils
+- Assert
+- BadgeUtil
+- BitmapLruCache
+- Blur
+- CollectionUtils
+- Config
+- ContactsUtils
+- DeviceUtils
+- DialogUtil
+- DisplayUtils
+- DriveUUIDUtil
+- EditTextViewUtils
+- EMailUtils
+- FileUtils
+- GPSManager
+- GsonUtils
+- HttpErrorUtils
+- HttpUtil
+- ImageUtils
+- IntentUtils
+- IoUtils
+- KeyboardsUtils
+- LbsUtil
+- Logger
+- LruCacheUtil
+- NetworkUtils
+- PackageUtils
+- PhoneUtils
+- RecoderUtils
+- RegularUtils
+- ResourceUtils
+- ScreenUtils
+- SettingsUtils
+- SHAUtil
+- ShellUtils
+- ShockUtil
+- SizeUtils
+- SpUtils
+- SQLiteUtil
+- TextViewUtils
+- ThreadPoolManager
+- TimeUtils
+- ToastUtils
+- UiUtils
+- UmUtils
+- Utils
+- ViedoUtil
+- WeekDateObj
+- ZipUtils
+
+
+#### 获取不同格式的当前时间日期
+http://blog.csdn.net/qq_25804863/article/details/49703779
+#### DES3,RSA.对称加密和非对称加密Demo
+#### Android微信抢红包Demo
+#### Android沉浸模式
+#### Android TabLayout Demo
+#### Android FlowLayout Demo
+#### Android相机DemoTabLayout
+http://blog.csdn.net/qq_25804863/article/details/49742159
+#### Android通知栏大全Notification
+#### Android对话框大全Dialog
+http://blog.csdn.net/qq_25804863/article/details/48688611
+#### 通过Messenger实现的IPC进程间通讯
+http://blog.csdn.net/qq_25804863/article/details/43936223
+
+
+
 ## 命名规范
 - 包名全部采用小写
 - 常量、枚举等均采用大写形式，用下划线区分各单词。使用static final
@@ -42,6 +116,8 @@ protected ContentResolver mContentResolver;
 - 若功能已完成，但存在效率等潜在问题时，使用XXX加以标记
 - 若代码存在严重问题或仅用于调试，使用FIXME加以标记
 - values目录下文件名称较固定，不得随意更改
+
+---
 
 ### 提交规范
 - 代码及时更新,不要和服务器有太大的差别,减少merge的log
