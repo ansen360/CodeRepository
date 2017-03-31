@@ -41,7 +41,7 @@
     <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION" />
     <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
     <uses-permission android:name="android.permission.CHANGE_WIFI_STATE" />
-    <uses-permission android:name="android.permission.INTERNET"/>
+    <uses-permission android:name="android.permission.INTERNET" />
 
 
     <!--该进程常驻系统,不会被杀掉-->
@@ -79,9 +79,9 @@
         </activity>
         <activity android:name="com.ansen.activity.TestActivity">
             <!--<intent-filter>-->
-                <!--<action android:name="android.intent.action.MAIN" />-->
+            <!--<action android:name="android.intent.action.MAIN" />-->
 
-                <!--<category android:name="android.intent.category.LAUNCHER" />-->
+            <!--<category android:name="android.intent.category.LAUNCHER" />-->
             <!--</intent-filter>-->
         </activity>
 
@@ -164,6 +164,7 @@
         <activity android:name=".activity.SocketActivity"></activity>
         <activity android:name=".activity.SocketClientActivity"></activity>
 
+        <activity android:name=".ipc.MessengerClient"></activity>
 
 
         <!--透明的样式-->
@@ -177,6 +178,7 @@
                 <action android:name="android.intent.action.BOOT_COMPLETED" />
             </intent-filter>
         </receiver>
+
         <service
             android:name="com.ansen.service.WXAccessibilityService"
             android:enabled="true"
@@ -192,6 +194,10 @@
                 android:resource="@xml/accessibility_config" />
         </service>
         <service android:name=".activity.SocketServerService"></service>
+
+        <service
+            android:name=".ipc.MessengerService"
+            android:process=":Messenger"></service>
 
         <provider
             android:name="com.ansen.gesture.database.GestureContentProvider"

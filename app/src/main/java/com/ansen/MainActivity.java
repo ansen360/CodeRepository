@@ -20,6 +20,7 @@ import com.ansen.activity.TabLayoutActivity;
 import com.ansen.activity.TestActivity;
 import com.ansen.activity.WarrantyActivity;
 import com.ansen.common.GPSManager;
+import com.ansen.ipc.MessengerClient;
 import com.ansen.view.FlowButton;
 import com.ansen.view.drawoutline.DrawOutlineActivity;
 import com.ansen.view.flowlayout.FlowLayout;
@@ -158,6 +159,12 @@ public class MainActivity extends AppCompatActivity {
 //                startActivity(new Intent(mContext, SocketActivity.class));
 //            }
 //        }));
+        mFlowLayout.addView(new FlowButton(this, "IPC-Messenger", new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                startActivity(new Intent(mContext, MessengerClient.class));
+            }
+        }));
 
         ImmersiveMode();
     }
@@ -171,17 +178,7 @@ public class MainActivity extends AppCompatActivity {
         gpsManager.getGPSConfi(this);
 
 
-
-
     }
-
-
-
-
-
-
-
-
 
 
     private void ImmersiveMode() {
