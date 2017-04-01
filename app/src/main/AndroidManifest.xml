@@ -165,6 +165,7 @@
         <activity android:name=".activity.SocketClientActivity"></activity>
 
         <activity android:name=".ipc.MessengerClient"></activity>
+        <activity android:name=".ipc.AIDLClient"></activity>
 
 
         <!--透明的样式-->
@@ -196,8 +197,17 @@
         <service android:name=".activity.SocketServerService"></service>
 
         <service
-            android:name=".ipc.MessengerService"
-            android:process=":Messenger"></service>
+            android:name="com.ansen.ipc.MessengerService"
+            android:process=":MessengerService"></service>
+
+        <service
+            android:name="com.ansen.ipc.AIDLService"
+            android:process=":AIDLService">
+            <intent-filter>
+                <action android:name="com.aidl.service"></action>
+            </intent-filter>
+        </service>
+
 
         <provider
             android:name="com.ansen.gesture.database.GestureContentProvider"

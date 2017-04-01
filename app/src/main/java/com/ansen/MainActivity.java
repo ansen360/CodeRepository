@@ -20,6 +20,7 @@ import com.ansen.activity.TabLayoutActivity;
 import com.ansen.activity.TestActivity;
 import com.ansen.activity.WarrantyActivity;
 import com.ansen.common.GPSManager;
+import com.ansen.ipc.AIDLClient;
 import com.ansen.ipc.MessengerClient;
 import com.ansen.view.FlowButton;
 import com.ansen.view.drawoutline.DrawOutlineActivity;
@@ -163,6 +164,12 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 startActivity(new Intent(mContext, MessengerClient.class));
+            }
+        }));
+        mFlowLayout.addView(new FlowButton(this, "IPC-AIDL", new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                startActivity(new Intent(mContext, AIDLClient.class));
             }
         }));
 

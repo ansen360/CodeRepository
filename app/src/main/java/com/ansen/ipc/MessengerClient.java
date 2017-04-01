@@ -28,6 +28,7 @@ import com.ansen.common.ToastUtils;
 public class MessengerClient extends Activity {
     private static final String TAG = "ansen";
     private static Messenger mMessenger;
+    private Connection mConnection;
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
@@ -36,8 +37,8 @@ public class MessengerClient extends Activity {
         mMessenger = new Messenger(mHandler);
         //2.绑定服务
         Intent intent = new Intent(this, MessengerService.class);
-        MyServiceConnection myServiceConnection = new MyServiceConnection();
-        bindService(intent, myServiceConnection, BIND_AUTO_CREATE);
+        mConnection = new Connection();
+        bindService(intent, mConnection, BIND_AUTO_CREATE);
 
     }
 
@@ -55,7 +56,7 @@ public class MessengerClient extends Activity {
     /**
      * 服务连接状态的监听
      */
-    private class MyServiceConnection implements ServiceConnection {
+    private class Connection implements ServiceConnection {
 
         @Override
         public void onServiceConnected(ComponentName name, IBinder service) {
@@ -82,4 +83,9 @@ public class MessengerClient extends Activity {
         }
     }
 
+    @Override
+    protected void onDestroy() {
+        super.onDestroy();
+        unbindService(mConnection);
+    }
 }
