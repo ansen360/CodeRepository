@@ -10,24 +10,16 @@ import java.util.concurrent.Executors;
 import java.util.concurrent.Future;
 import java.util.concurrent.LinkedBlockingQueue;
 import java.util.concurrent.RejectedExecutionHandler;
-import java.util.concurrent.ScheduledExecutorService;
 import java.util.concurrent.ScheduledFuture;
 import java.util.concurrent.ThreadFactory;
 import java.util.concurrent.ThreadPoolExecutor;
 import java.util.concurrent.TimeUnit;
 import java.util.concurrent.TimeoutException;
 
-/*  java线程池:
-    newCachedThreadPool创建一个可缓存线程池，如果线程池长度超过处理需要，可灵活回收空闲线程，若无可回收，则新建线程。
-    newFixedThreadPool 创建一个定长线程池，可控制线程最大并发数，超出的线程会在队列中等待。Runtime.getRuntime().availableProcessors();
-    newScheduledThreadPool 创建一个定长线程池，支持定时及周期性任务执行。
-    newSingleThreadExecutor 创建一个单线程化的线程池，它只会用唯一的工作线程来执行任务，保证所有任务按照指定顺序(FIFO, LIFO, 优先级)执行。
- */
-
 /**
  * Created by Ansen on 2015/8/10.
  *
- * @E-mail: tomorrow_p@163.com
+ * @E-mail: ansen360@126.com
  * @Blog: http://blog.csdn.net/qq_25804863
  * @Github: https://github.com/ansen360
  * @PROJECT_NAME: CodeRepository
@@ -35,35 +27,78 @@ import java.util.concurrent.TimeoutException;
  * @Description: TODO
  */
 public class ThreadPoolManager {
-    private static ExecutorService mExecutorService;
-    private static ScheduledExecutorService mScheduledThreadPool;
+    private static ExecutorService mFixedThread;
+    private static ExecutorService mSingleThread;
+    private static ExecutorService mCachedThread;
+    private static ExecutorService mScheduledThread;
     private ThreadPoolExecutor mThreadPoolExecutor;
 
 
     private static final int CORE_POOL_SIZE = 5;
 
+    /**
+     * 创建一个定长线程池，可控制线程最大并发数，超出的线程会在队列中等待。Runtime.getRuntime().availableProcessors();
+     */
     public static ExecutorService getThreadPool() {
-        mExecutorService = Executors.newFixedThreadPool(CORE_POOL_SIZE);
-        return mExecutorService;
+        if (mFixedThread == null) {
+            synchronized (ThreadPoolManager.class) {
+                if (mFixedThread == null) {
+                    mFixedThread = Executors.newFixedThreadPool(CORE_POOL_SIZE);
+                }
+            }
+        }
+        return mFixedThread;
     }
 
+    /**
+     * 创建一个单线程化的线程池，它只会用唯一的工作线程来执行任务，保证所有任务按照指定顺序(FIFO, LIFO, 优先级)执行。
+     */
     public static ExecutorService getSingleThread() {
-        mExecutorService = Executors.newSingleThreadExecutor();
-        return mExecutorService;
+        if (mSingleThread == null) {
+            synchronized (ThreadPoolManager.class) {
+                if (mSingleThread == null) {
+                    mSingleThread = Executors.newSingleThreadExecutor();
+                }
+            }
+        }
+        return mSingleThread;
     }
 
+    /**
+     * 创建一个可缓存线程池，如果线程池长度超过处理需要，可灵活回收空闲线程，若无可回收，则新建线程
+     */
     public static ExecutorService getCacheThread() {
-        mExecutorService = Executors.newCachedThreadPool();
-        return mExecutorService;
+        if (mCachedThread == null) {
+            synchronized (ThreadPoolManager.class) {
+                if (mCachedThread == null) {
+                    mCachedThread = Executors.newCachedThreadPool();
+                }
+            }
+        }
+        return mCachedThread;
     }
 
+    /**
+     * 创建一个定长线程池，支持定时及周期性任务执行
+     */
     public static ExecutorService getScheduledThread() {
-        mScheduledThreadPool = Executors.newScheduledThreadPool(CORE_POOL_SIZE);
-        mExecutorService = mScheduledThreadPool;
-        return mExecutorService;
+        if (mScheduledThread == null) {
+            synchronized (ThreadPoolManager.class) {
+                if (mScheduledThread == null) {
+                    mScheduledThread = Executors.newScheduledThreadPool(CORE_POOL_SIZE);
+                }
+            }
+        }
+        return mScheduledThread;
     }
 
-    public ThreadPoolExecutor getThreadPoolExecutor(int corePoolSize, int maximumPoolSize, long keepAliveTime) {// 核心的线程数 最大的线程数 保持存活的时间
+    /**
+     * @param corePoolSize    核心的线程数
+     * @param maximumPoolSize 最大的线程数
+     * @param keepAliveTime   保持存活的时间
+     * @return 自定义线程池
+     */
+    public ThreadPoolExecutor getThreadPoolExecutor(int corePoolSize, int maximumPoolSize, long keepAliveTime) {
         if (mThreadPoolExecutor == null) {
             synchronized (ThreadPoolManager.class) {
                 if (mThreadPoolExecutor == null) {
@@ -79,48 +114,15 @@ public class ThreadPoolManager {
                 }
             }
         }
-        mExecutorService = mThreadPoolExecutor;
         return mThreadPoolExecutor;
-    }
-
-    public void execute(Runnable command) {
-        mExecutorService.execute(command);
-    }
-
-    public void execute(List<Runnable> commands) {
-        for (Runnable command : commands) {
-            mExecutorService.execute(command);
-        }
-    }
-
-    /**
-     * 已经提交的任务执行完毕后关闭线程池
-     */
-    public void shutDown() {
-        mExecutorService.shutdown();
-    }
-
-    /**
-     * 停止所有正在执行的活动任务
-     *
-     * @return 等待执行的任务的列表
-     */
-    public List<Runnable> shutDownNow() {
-        return mExecutorService.shutdownNow();
-    }
-
-    /**
-     * 判断线程池是否已经关闭
-     */
-    public boolean isShutDown() {
-        return mExecutorService.isShutdown();
     }
 
     /**
      * 关闭线程池后判断所有任务是否都已完成
      */
     public boolean isTerminated() {
-        return mExecutorService.isTerminated();
+//        return mExecutorService.isTerminated();
+        return false;
     }
 
     /**
@@ -132,7 +134,8 @@ public class ThreadPoolManager {
      * @return {@code true}: 请求成功<br>{@code false}: 请求超时
      */
     public boolean awaitTermination(long timeout, TimeUnit unit) throws InterruptedException {
-        return mExecutorService.awaitTermination(timeout, unit);
+//        return mExecutorService.awaitTermination(timeout, unit);
+        return false;
     }
 
     /**
@@ -143,7 +146,8 @@ public class ThreadPoolManager {
      * @return 表示任务等待完成的Future, 该Future的{@code get}方法在成功完成时将会返回该任务的结果。
      */
     public <T> Future<T> submit(Callable<T> task) {
-        return mExecutorService.submit(task);
+//        return mExecutorService.submit(task);
+        return null;
     }
 
     /**
@@ -154,7 +158,8 @@ public class ThreadPoolManager {
      * @return 表示任务等待完成的Future, 该Future的{@code get}方法在成功完成时将会返回该任务的结果。
      */
     public <T> Future<T> submit(Runnable task, T result) {
-        return mExecutorService.submit(task, result);
+//        return mExecutorService.submit(task, result);
+        return null;
     }
 
     /**
@@ -164,7 +169,8 @@ public class ThreadPoolManager {
      * @return 表示任务等待完成的Future, 该Future的{@code get}方法在成功完成时将会返回null结果。
      */
     public Future<?> submit(Runnable task) {
-        return mExecutorService.submit(task);
+//        return mExecutorService.submit(task);
+        return null;
     }
 
     /**
@@ -179,7 +185,8 @@ public class ThreadPoolManager {
      * @throws InterruptedException 如果等待时发生中断，在这种情况下取消尚未完成的任务。
      */
     public <T> List<Future<T>> invokeAll(Collection<? extends Callable<T>> tasks) throws InterruptedException {
-        return mExecutorService.invokeAll(tasks);
+//        return mExecutorService.invokeAll(tasks);
+        return null;
     }
 
     /**
@@ -198,7 +205,8 @@ public class ThreadPoolManager {
      */
     public <T> List<Future<T>> invokeAll(Collection<? extends Callable<T>> tasks, long timeout, TimeUnit unit) throws
             InterruptedException {
-        return mExecutorService.invokeAll(tasks, timeout, unit);
+//        return mExecutorService.invokeAll(tasks, timeout, unit);
+        return null;
     }
 
     /**
@@ -213,7 +221,8 @@ public class ThreadPoolManager {
      * @throws ExecutionException   如果没有任务成功完成
      */
     public <T> T invokeAny(Collection<? extends Callable<T>> tasks) throws InterruptedException, ExecutionException {
-        return mExecutorService.invokeAny(tasks);
+//        return mExecutorService.invokeAny(tasks);
+        return null;
     }
 
     /**
@@ -232,7 +241,8 @@ public class ThreadPoolManager {
      */
     public <T> T invokeAny(Collection<? extends Callable<T>> tasks, long timeout, TimeUnit unit) throws
             InterruptedException, ExecutionException, TimeoutException {
-        return mExecutorService.invokeAny(tasks, timeout, unit);
+//        return mExecutorService.invokeAny(tasks, timeout, unit);
+        return null;
     }
 
     /**
@@ -244,10 +254,8 @@ public class ThreadPoolManager {
      * @return 表示挂起任务完成的ScheduledFuture，并且其{@code get()}方法在完成后将返回{@code null}
      */
     public ScheduledFuture<?> schedule(Runnable command, long delay, TimeUnit unit) {
-        if (mThreadPoolExecutor == null) {
-            throw new RuntimeException("ThreadPoolExecutor not null");
-        }
-        return mScheduledThreadPool.schedule(command, delay, unit);
+//        return mScheduledThreadPool.schedule(command, delay, unit);
+        return null;
     }
 
     /**
@@ -259,10 +267,8 @@ public class ThreadPoolManager {
      * @return 可用于提取结果或取消的ScheduledFuture
      */
     public <V> ScheduledFuture<V> schedule(Callable<V> callable, long delay, TimeUnit unit) {
-        if (mThreadPoolExecutor == null) {
-            throw new RuntimeException("ThreadPoolExecutor not null");
-        }
-        return mScheduledThreadPool.schedule(callable, delay, unit);
+//        return mScheduledThreadPool.schedule(callable, delay, unit);
+        return null;
     }
 
     /**
@@ -275,10 +281,8 @@ public class ThreadPoolManager {
      * @return 表示挂起任务完成的ScheduledFuture，并且其{@code get()}方法在取消后将抛出异常
      */
     public ScheduledFuture<?> scheduleWithFixedRate(Runnable command, long initialDelay, long period, TimeUnit unit) {
-        if (mThreadPoolExecutor == null) {
-            throw new RuntimeException("ThreadPoolExecutor not null");
-        }
-        return mScheduledThreadPool.scheduleAtFixedRate(command, initialDelay, period, unit);
+//        return mScheduledThreadPool.scheduleAtFixedRate(command, initialDelay, period, unit);
+        return null;
     }
 
     /**
@@ -291,13 +295,7 @@ public class ThreadPoolManager {
      * @return 表示挂起任务完成的ScheduledFuture，并且其{@code get()}方法在取消后将抛出异常
      */
     public ScheduledFuture<?> scheduleWithFixedDelay(Runnable command, long initialDelay, long delay, TimeUnit unit) {
-        if (mThreadPoolExecutor == null) {
-            throw new RuntimeException("ThreadPoolExecutor not null");
-        }
-        return mScheduledThreadPool.scheduleWithFixedDelay(command, initialDelay, delay, unit);
-    }
-
-    public void removeTask(Runnable command) {
-        mThreadPoolExecutor.remove(command);
+//        return mScheduledThreadPool.scheduleWithFixedDelay(command, initialDelay, delay, unit);
+        return null;
     }
 }

@@ -22,6 +22,8 @@ import com.ansen.activity.WarrantyActivity;
 import com.ansen.common.GPSManager;
 import com.ansen.ipc.AIDLClient;
 import com.ansen.ipc.MessengerClient;
+import com.ansen.socket.TCPClient;
+import com.ansen.socket.UDPClient;
 import com.ansen.view.FlowButton;
 import com.ansen.view.drawoutline.DrawOutlineActivity;
 import com.ansen.view.flowlayout.FlowLayout;
@@ -172,7 +174,18 @@ public class MainActivity extends AppCompatActivity {
                 startActivity(new Intent(mContext, AIDLClient.class));
             }
         }));
-
+        mFlowLayout.addView(new FlowButton(this, "UDP-Socket", new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                startActivity(new Intent(mContext, UDPClient.class));
+            }
+        }));
+        mFlowLayout.addView(new FlowButton(this, "TCP-Socket", new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                startActivity(new Intent(mContext, TCPClient.class));
+            }
+        }));
         ImmersiveMode();
     }
 

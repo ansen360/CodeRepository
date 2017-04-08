@@ -310,4 +310,27 @@ public class NetworkUtils {
                 return "NETWORK_UNKNOWN";
         }
     }
+
+    /**
+     * 将得到的int类型的IP转换为String类型
+     *
+     * @param ip
+     * @return
+     */
+    public static String intIP2StringIP(int ip) {
+        return (ip & 0xFF) + "." +
+                ((ip >> 8) & 0xFF) + "." +
+                ((ip >> 16) & 0xFF) + "." +
+                (ip >> 24 & 0xFF);
+    }
+
+    /**
+     * 获取WIFI IP地址
+     */
+    public static String getIpAddress(Context context) {
+        WifiManager wifiManager = (WifiManager) context.getSystemService(Context.WIFI_SERVICE);
+        WifiInfo wifiInfo = wifiManager.getConnectionInfo();
+        String ipAddress = intIP2StringIP(wifiInfo.getIpAddress());//得到IPV4地址
+        return ipAddress;
+    }
 }

@@ -166,6 +166,8 @@
 
         <activity android:name=".ipc.MessengerClient"></activity>
         <activity android:name=".ipc.AIDLClient"></activity>
+        <activity android:name=".socket.UDPClient"></activity>
+        <activity android:name=".socket.TCPClient"></activity>
 
 
         <!--透明的样式-->
@@ -195,6 +197,13 @@
                 android:resource="@xml/accessibility_config" />
         </service>
         <service android:name=".activity.SocketServerService"></service>
+        <service
+            android:name=".socket.UDPServer"
+            android:process=":UDPServer"></service>
+        <service
+            android:name=".socket.TCPServer"
+            android:process=":TCPServer"></service>
+
 
         <service
             android:name="com.ansen.ipc.MessengerService"
