@@ -14,6 +14,7 @@ import com.ansen.activity.CameraActivity;
 import com.ansen.activity.DateFormatActivity;
 import com.ansen.activity.DialogActivity;
 import com.ansen.activity.EncryptTestActivity;
+import com.ansen.activity.JNIActivity;
 import com.ansen.activity.NotificationActivity;
 import com.ansen.activity.RedPacketActivity;
 import com.ansen.activity.TabLayoutActivity;
@@ -184,6 +185,12 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 startActivity(new Intent(mContext, TCPClient.class));
+            }
+        }));
+        mFlowLayout.addView(new FlowButton(this, "JNI", new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                startActivity(new Intent(mContext, JNIActivity.class));
             }
         }));
         ImmersiveMode();

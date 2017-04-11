@@ -69,8 +69,10 @@ http://blog.csdn.net/qq_25804863/article/details/49742159
 http://blog.csdn.net/qq_25804863/article/details/48688611
 #### 通过Messenger实现的IPC进程间通讯
 http://blog.csdn.net/qq_25804863/article/details/43936223
-
-
+#### JNI Demo
+http://blog.csdn.net/qq_25804863/article/details/48566327
+#### Socket通讯,tcp&udp协议
+http://blog.csdn.net/qq_25804863/article/details/48698873
 
 ## 命名规范
 - 包名全部采用小写

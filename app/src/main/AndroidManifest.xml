@@ -168,6 +168,7 @@
         <activity android:name=".ipc.AIDLClient"></activity>
         <activity android:name=".socket.UDPClient"></activity>
         <activity android:name=".socket.TCPClient"></activity>
+        <activity android:name=".activity.JNIActivity"></activity>
 
 
         <!--透明的样式-->

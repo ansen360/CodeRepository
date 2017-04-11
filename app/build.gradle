@@ -17,12 +17,28 @@ android {
             proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
         }
     }
+    // for JNI @{
+    sourceSets.main {
+        jni.srcDirs = []
+        jniLibs.srcDir 'src/main/libs'
+    }
+    task nativeLibsToJar(type:Zip,description:"create a jar archive of the native libs"){
+        destinationDir file("$projectDir/libs")
+        baseName "libJniTest"
+        extension "jar"
+        from fileTree(dir: "libs",include: "**/*.so")
+        into "lib"
+    }
+    tasks.withType(JavaCompile){
+        compileTask -> compileTask.dependsOn(nativeLibsToJar)
+    }
+    //}@
 }
 
 dependencies {
     compile fileTree(include: ['*.jar'], dir: 'libs')
     testCompile 'junit:junit:4.12'
-    compile 'com.android.support:appcompat-v7:23.4.0'
+    compile 'com.android.support:appcompat-v7:23.2.0'
     compile 'com.google.code.gson:gson:2.6.2'
     compile 'com.squareup.okhttp3:okhttp:3.4.1'
     compile 'com.android.support:design:23.2.0'
