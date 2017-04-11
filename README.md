@@ -60,8 +60,6 @@ http://blog.csdn.net/qq_25804863/article/details/49703779
 #### DES3,RSA.对称加密和非对称加密Demo
 #### Android微信抢红包Demo
 #### Android沉浸模式
-#### Android TabLayout Demo
-#### Android FlowLayout Demo
 #### Android相机DemoTabLayout
 http://blog.csdn.net/qq_25804863/article/details/49742159
 #### Android通知栏大全Notification
@@ -73,6 +71,16 @@ http://blog.csdn.net/qq_25804863/article/details/43936223
 http://blog.csdn.net/qq_25804863/article/details/48566327
 #### Socket通讯,tcp&udp协议
 http://blog.csdn.net/qq_25804863/article/details/48698873
+#### java自定义注解
+#### 蓝牙通讯Demo
+#### Camera调用Demo
+
+### 自定义控件:
+#### TableLayout
+#### FlowLayout流式布局
+#### 图片轮廓绘制
+#### WheelView
+
 
 ## 命名规范
 - 包名全部采用小写
