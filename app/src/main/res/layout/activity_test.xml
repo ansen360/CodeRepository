@@ -4,7 +4,7 @@
     android:layout_height="match_parent"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:orientation="vertical">
-    <com.ansen.view.WheelView
+    <com.code.view.WheelView
         android:id="@+id/wheelView"
         android:layout_width="100dp"
         android:layout_height="wrap_content"
