@@ -155,7 +155,7 @@
         <activity android:name="com.code.activity.NotificationActivity"></activity>
         <activity android:name="com.code.activity.NotificationCustomActivity"></activity>
         <activity android:name="com.code.activity.NotificationProgressActivity"></activity>
-        <activity android:name="com.code.activity.BluetoothActivity"></activity>
+        <activity android:name="com.code.activity.BluetoothChatActivity"></activity>
         <activity android:name="com.code.activity.BluetoothServerActivity"></activity>
         <activity android:name="com.code.activity.BluetoothClientActivity"></activity>
         <activity android:name="com.code.activity.RedPacketActivity"></activity>

@@ -3,17 +3,35 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical">
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_margin="14dp"
+        android:text="蓝牙通讯"
+        android:textSize="20dp"
+        android:textColor="#888"
+        android:gravity="center"
+        android:layout_height="wrap_content" />
+    <View
+        android:layout_width="match_parent"
+        android:background="#888"
+        android:layout_height="1px"/>
 
     <Button
+        android:layout_marginTop="30dp"
         android:id="@+id/bluetooth_client"
         android:layout_width="match_parent"
+        android:background="@android:color/holo_blue_light"
+        android:textColor="#888"
         android:layout_height="wrap_content"
-        android:text="client" />
+        android:text="客户端" />
 
     <Button
+        android:layout_marginTop="2dp"
         android:id="@+id/bluetooth_server"
         android:layout_width="match_parent"
+        android:textColor="#888"
+        android:background="@android:color/holo_blue_dark"
         android:layout_height="wrap_content"
-        android:text="server" />
+        android:text="服务端" />
 
 </LinearLayout>
