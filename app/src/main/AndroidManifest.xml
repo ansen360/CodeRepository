@@ -33,7 +33,9 @@
     <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
     <!--使用振动; 允许振动-->
     <uses-permission android:name="android.permission.VIBRATE" />
+    <!--允许程序连接配对过的蓝牙设备-->
     <uses-permission android:name="android.permission.BLUETOOTH" />
+    <!--允许程序进行发现和配对新的蓝牙设备-->
     <uses-permission android:name="android.permission.BLUETOOTH_ADMIN" />
     <!--获取WiFi状态; 获取当前WiFi接入的状态以及WLAN热点的信息-->
     <uses-permission android:name="android.permission.ACCESS_WIFI_STATE" />
@@ -44,6 +46,12 @@
     <uses-permission android:name="android.permission.INTERNET" />
 
 
+    <!--required为true:应用只能在支持BLE的设备上安装运行;required为false:Android设备均可正常安装运行-->
+    <uses-feature
+        android:name="android.hardware.bluetooth_le"
+        android:required="false" />
+
+
     <!--该进程常驻系统,不会被杀掉-->
     <!--android:persistent="true"-->
     <!--标记应用程序的data是否允许被用户清除;android:allowBackup标记是否允许一个应用使用backup机制-->
@@ -52,7 +60,6 @@
     <!--android:hardwareAccelerated="false"-->
     <!--这是Android4.1引入的一个功能，能够让排版支持从右到左-->
     <!--android:supportsRtl-->
-
 
     <application
         android:name="com.code.CodeApplication"
@@ -137,14 +144,6 @@
             </intent-filter>
         </activity>
 
-        <activity
-            android:name="com.code.gesture.AnimationActivity"
-            android:theme="@style/gesture_NoTitleTheme">
-            <intent-filter>
-                <action android:name="android.intent.action.MAIN" />
-            </intent-filter>
-        </activity>
-
         <activity android:name="com.code.view.drawoutline.DrawOutlineActivity"></activity>
         <activity android:name="com.code.activity.DateFormatActivity"></activity>
         <activity android:name="com.code.activity.DialogActivity"></activity>
@@ -155,9 +154,10 @@
         <activity android:name="com.code.activity.NotificationActivity"></activity>
         <activity android:name="com.code.activity.NotificationCustomActivity"></activity>
         <activity android:name="com.code.activity.NotificationProgressActivity"></activity>
-        <activity android:name="com.code.activity.BluetoothChatActivity"></activity>
-        <activity android:name="com.code.activity.BluetoothServerActivity"></activity>
-        <activity android:name="com.code.activity.BluetoothClientActivity"></activity>
+        <activity android:name="com.code.bluetooth.BluetoothChatActivity"></activity>
+        <activity android:name="com.code.bluetooth.BluetoothServerActivity"></activity>
+        <activity android:name="com.code.bluetooth.BluetoothClientActivity"></activity>
+        <activity android:name="com.code.bluetooth.BLEActivity"></activity>
         <activity android:name="com.code.activity.RedPacketActivity"></activity>
         <activity android:name="com.code.activity.TabLayoutActivity"></activity>
 

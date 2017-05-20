@@ -9,7 +9,7 @@ import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 import android.widget.FrameLayout;
 
-import com.code.activity.BluetoothChatActivity;
+import com.code.bluetooth.BluetoothChatActivity;
 import com.code.activity.CameraActivity;
 import com.code.activity.DateFormatActivity;
 import com.code.activity.DialogActivity;
