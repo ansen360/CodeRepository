@@ -24,12 +24,27 @@ import java.util.UUID;
  * @PACKAGE_NAME: com.tomorrow_p.activity
  * @Description: TODO
  */
+
+/**
+ * 在蓝牙3.0及一下版本中，UUID被用于唯一标识一个服务，比如文件传输服务，串口服务、打印机服务等，如下： 
+ * #蓝牙串口服务 
+ * SerialPortServiceClass_UUID = '{00001101-0000-1000-8000-00805F9B34FB}' 
+ * LANAccessUsingPPPServiceClass_UUID = '{00001102-0000-1000-8000-00805F9B34FB}' 
+ * #拨号网络服务 
+ * DialupNetworkingServiceClass_UUID = '{00001103-0000-1000-8000-00805F9B34FB}' 
+ * #信息同步服务 
+ * IrMCSyncServiceClass_UUID = '{00001104-0000-1000-8000-00805F9B34FB}' 
+ * SDP_OBEXObjectPushServiceClass_UUID = '{00001105-0000-1000-8000-00805F9B34FB}' 
+ * #文件传输服务 
+ * OBEXFileTransferServiceClass_UUID = '{00001106-0000-1000-8000-00805F9B34FB}' 
+ * IrMCSyncCommandServiceClass_UUID = '{00001107-0000-1000-8000-00805F9B34FB}' 
+ * 蓝牙的连接有主从设备，提供服务的可以认为是从设备。主设备通过UUID访问从设备提供具有相同UUID的服务，从而建立客服端—服务器（C/S）模式。 
+ */
 public class BluetoothServerActivity extends Activity {
 
     private BluetoothAdapter mBluetoothAdapter;
     private StringBuilder mStringBuilder;
-    private BluetoothSocket mBluetoothSocket;
-    ;
+    private BluetoothServerSocket mBluetoothServerSocket;
     private TextView mLog;
 
     @Override
@@ -39,21 +54,20 @@ public class BluetoothServerActivity extends Activity {
         mLog = (TextView) findViewById(R.id.log);
         mStringBuilder = new StringBuilder();
         initBluetooth();
-        ServerThread startServerThread = new ServerThread();
-        startServerThread.start();
+        new ServerThread().start();
 
     }
 
     private void initBluetooth() {
         mBluetoothAdapter = BluetoothAdapter.getDefaultAdapter();
-        if (mBluetoothAdapter == null) {    //判断是否有蓝牙
+        if (mBluetoothAdapter == null) {
             return;
         }
-        if (!mBluetoothAdapter.isEnabled()) { //判断蓝牙 是否开启
+        if (!mBluetoothAdapter.isEnabled()) {
             Intent intent = new Intent(BluetoothAdapter.ACTION_REQUEST_ENABLE);
             startActivityForResult(intent, 0);
         }
-        //使本机蓝牙在300秒内可被搜索
+        // 设置蓝牙在300秒内可被搜索
         if (mBluetoothAdapter.getScanMode() != BluetoothAdapter.SCAN_MODE_CONNECTABLE_DISCOVERABLE) {
             Intent discoverableIntent = new Intent(BluetoothAdapter.ACTION_REQUEST_DISCOVERABLE);
             discoverableIntent.putExtra(BluetoothAdapter.EXTRA_DISCOVERABLE_DURATION, 300);
@@ -67,18 +81,26 @@ public class BluetoothServerActivity extends Activity {
     private class ServerThread extends Thread {
         public void run() {
             try {
-                BluetoothServerSocket mserverSocket = mBluetoothAdapter.listenUsingRfcommWithServiceRecord("btspp",
-                        UUID.fromString("00001101-0000-1000-8000-00805F9B34FB"));   //UUID被用于唯一标识一个服务,如文件传输服务，串口服务、打印机服务等
-                show("服务端:等待连接");
+                mBluetoothServerSocket = mBluetoothAdapter.listenUsingRfcommWithServiceRecord("ansen",
+                        // UUID被用于唯一标识一个服务,如文件传输服务，串口服务、打印机服务等
+                        UUID.fromString("00001101-0000-1000-8000-00805F9B34FB"));
+                show("服务器 等待连接...");
 
-                mBluetoothSocket = mserverSocket.accept();
-                show("服务端:连接成功");
+                BluetoothSocket socket1 = mBluetoothServerSocket.accept();
+                show(socket1.getRemoteDevice().getName() + " 连接成功");
+                new ReadThread(socket1).start();
 
-                ReadThread mreadThread = new ReadThread(mBluetoothSocket);
-                mreadThread.start();
-                show("服务端:启动接受数据");
+                BluetoothSocket socket2 = mBluetoothServerSocket.accept();
+                show(socket2.getRemoteDevice().getName() + " 连接成功");
+                new ReadThread(socket2).start();
+
+                BluetoothSocket socket3 = mBluetoothServerSocket.accept();
+                show(socket3.getRemoteDevice().getName() + " 连接成功");
+                new ReadThread(socket3).start();
+
+
             } catch (IOException e) {
-                e.printStackTrace();
+                show(e.getMessage());
             }
         }
     }
@@ -109,7 +131,7 @@ public class BluetoothServerActivity extends Activity {
                                 buf_data[i] = buffer[i];
                             }
                             String s = new String(buf_data);
-                            show("服务端:读取数据了~~" + s);
+                            show(bluetoothSocket.getRemoteDevice().getName() + " " + s);
                         }
                     } catch (IOException e) {
                         try {
@@ -120,8 +142,8 @@ public class BluetoothServerActivity extends Activity {
                         break;
                     }
                 }
-            } catch (IOException e1) {
-                e1.printStackTrace();
+            } catch (IOException e) {
+                show(e.getMessage());
             }
         }
     }
@@ -139,9 +161,9 @@ public class BluetoothServerActivity extends Activity {
     @Override
     protected void onDestroy() {
         super.onDestroy();
-        if (mBluetoothSocket != null) {
+        if (mBluetoothServerSocket != null) {
             try {
-                mBluetoothSocket.close();
+                mBluetoothServerSocket.close();
             } catch (IOException e) {
                 e.printStackTrace();
             }

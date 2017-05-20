@@ -4,17 +4,33 @@
     android:layout_height="match_parent"
     android:orientation="vertical">
 
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="10dp"
+        android:gravity="center"
+        android:text="设备搜索中.." />
+
     <ListView
         android:id="@+id/list"
         android:layout_width="match_parent"
         android:layout_height="200dp"></ListView>
+
     <EditText
-        android:layout_width="match_parent"
         android:id="@+id/bluetooth_msg"
-        android:layout_height="wrap_content" />
+        android:layout_width="300dp"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:background="@drawable/bg_regist" />
+
     <Button
-        android:layout_width="wrap_content"
         android:id="@+id/bluetooth_send"
-        android:layout_height="wrap_content" />
+        android:layout_width="300dp"
+        android:layout_height="30dp"
+        android:layout_gravity="center"
+        android:layout_marginTop="10dp"
+        android:background="@drawable/bg_login"
+        android:text="发送"
+        android:textColor="#fff" />
 
 </LinearLayout>

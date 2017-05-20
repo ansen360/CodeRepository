@@ -1,16 +1,21 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_marginTop="15dp"
     android:layout_height="match_parent"
+    android:layout_marginTop="15dp"
     tools:context="com.code.MainActivity">
 
-    <TextView
-        android:id="@+id/log"
+    <ScrollView
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:textSize="20sp"
-        android:textColor="@color/colorPrimaryDark"
-        android:text="see log" />
-</LinearLayout>
+        android:layout_height="match_parent">
+
+        <TextView
+            android:id="@+id/log"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:text="see log" />
+    </ScrollView>
+
+
+</ScrollView>

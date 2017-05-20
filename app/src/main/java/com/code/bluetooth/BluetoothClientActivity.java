@@ -15,6 +15,7 @@ import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.v4.app.ActivityCompat;
 import android.support.v4.content.ContextCompat;
+import android.text.TextUtils;
 import android.util.Log;
 import android.view.View;
 import android.view.ViewGroup;
@@ -51,21 +52,6 @@ import static com.code.common.ToastUtils.show;
  * @Description: TODO
  */
 
-/**
- * 在蓝牙3.0及一下版本中，UUID被用于唯一标识一个服务，比如文件传输服务，串口服务、打印机服务等，如下： 
- * #蓝牙串口服务 
- * SerialPortServiceClass_UUID = '{00001101-0000-1000-8000-00805F9B34FB}' 
- * LANAccessUsingPPPServiceClass_UUID = '{00001102-0000-1000-8000-00805F9B34FB}' 
- * #拨号网络服务 
- * DialupNetworkingServiceClass_UUID = '{00001103-0000-1000-8000-00805F9B34FB}' 
- * #信息同步服务 
- * IrMCSyncServiceClass_UUID = '{00001104-0000-1000-8000-00805F9B34FB}' 
- * SDP_OBEXObjectPushServiceClass_UUID = '{00001105-0000-1000-8000-00805F9B34FB}' 
- * #文件传输服务 
- * OBEXFileTransferServiceClass_UUID = '{00001106-0000-1000-8000-00805F9B34FB}' 
- * IrMCSyncCommandServiceClass_UUID = '{00001107-0000-1000-8000-00805F9B34FB}' 
- * 蓝牙的连接有主从设备，提供服务的可以认为是从设备。主设备通过UUID访问从设备提供具有相同UUID的服务，从而建立客服端—服务器（C/S）模式。 
- */
 public class BluetoothClientActivity extends Activity implements AdapterView.OnItemClickListener, View.OnClickListener {
 
     private static final String TAG = "ansen";
@@ -101,6 +87,21 @@ public class BluetoothClientActivity extends Activity implements AdapterView.OnI
 
     }
 
+    private void initBluetooth() {
+        mBluetoothAdapter = BluetoothAdapter.getDefaultAdapter();
+        if (mBluetoothAdapter == null) {    //是否支持蓝牙
+            return;
+        }
+        if (!mBluetoothAdapter.isEnabled()) {
+            // 打开蓝牙方式一,直接打开
+            mBluetoothAdapter.enable();
+            // 打开蓝牙方式二,调用对话框打开: onActivityResult()提供打开成功的回调
+//            Intent intent = new Intent(BluetoothAdapter.ACTION_REQUEST_ENABLE);
+//            startActivityForResult(intent, 0);
+        }
+
+    }
+
     private void registerBTReceiver() {
         IntentFilter intent = new IntentFilter();
         intent.addAction(BluetoothDevice.ACTION_FOUND); // 用BroadcastReceiver来取得搜索结果
@@ -112,20 +113,9 @@ public class BluetoothClientActivity extends Activity implements AdapterView.OnI
         registerReceiver(mReceiver, intent);
     }
 
-    private void initBluetooth() {
-        mBluetoothAdapter = BluetoothAdapter.getDefaultAdapter();
-        if (mBluetoothAdapter == null) {    //判断是否有蓝牙
-            return;
-        }
-        if (!mBluetoothAdapter.isEnabled()) { // 打开蓝牙
-//            mBluetoothAdapter.enable();
-            Intent intent = new Intent(BluetoothAdapter.ACTION_REQUEST_ENABLE);
-            startActivityForResult(intent, 0);
-        }
-
-    }
-
-
+    /**
+     * 配对设备
+     */
     private void createBond(BluetoothDevice bluetoothDevice) {
         try {
             Method createBondMethod = BluetoothDevice.class.getMethod("createBond");
@@ -135,13 +125,18 @@ public class BluetoothClientActivity extends Activity implements AdapterView.OnI
         }
     }
 
-    // 与设备解除配对
+    /**
+     * 与设备解除配对
+     */
     public boolean removeBond(BluetoothDevice bluetoothDevice) throws Exception {
         Method removeBondMethod = BluetoothDevice.class.getMethod("removeBond");
         Boolean returnValue = (Boolean) removeBondMethod.invoke(bluetoothDevice);
         return returnValue.booleanValue();
     }
 
+    /**
+     * 获取配对过的设备
+     */
     private Set<BluetoothDevice> getBondedDevices() {
         pairedDevices = mBluetoothAdapter.getBondedDevices();
         for (BluetoothDevice device : pairedDevices) {
@@ -165,14 +160,14 @@ public class BluetoothClientActivity extends Activity implements AdapterView.OnI
      */
     public void sendMessage() {
         if (mBluetoothSocket == null) {
-            Toast.makeText(this, "没有连接", Toast.LENGTH_SHORT).show();
+            Toast.makeText(this, "请连接蓝牙设备", Toast.LENGTH_SHORT).show();
             return;
         }
         try {
             OutputStream os = mBluetoothSocket.getOutputStream();
             os.write(mMsg.getText().toString().getBytes());
             os.flush();
-            ToastUtils.show("客户端:发送信息成功");
+            ToastUtils.show("客户端: 发送成功");
         } catch (IOException e) {
             e.printStackTrace();
         }
@@ -181,20 +176,21 @@ public class BluetoothClientActivity extends Activity implements AdapterView.OnI
     @Override
     public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
         BluetoothDevice bluetoothDevice = mDevices.get(position);
+        // 蓝牙配对
         if (BluetoothDevice.BOND_NONE == bluetoothDevice.getBondState()) {
             mBluetoothDevice = bluetoothDevice;
             createBond(mDevices.get(position));
-        } else {
+            show("设备配对..");
+        } else {// 蓝牙配对过,直接连接
             try {
-                show("客户端:开始连接:");
+                show("连接设备..");
                 ClientThread clientConnectThread = new ClientThread(bluetoothDevice);
                 clientConnectThread.start();
             } catch (Exception e) {
-                e.printStackTrace();
+                show(e.getMessage());
             }
         }
     }
-
 
     private class DeviceAdapter extends BaseAdapter {
 
@@ -218,13 +214,17 @@ public class BluetoothClientActivity extends Activity implements AdapterView.OnI
         public View getView(int position, View convertView, ViewGroup parent) {
             BluetoothDevice bluetoothDevice = mDevices.get(position);
             TextView textView = new TextView(BluetoothClientActivity.this);
-            textView.setPadding(10, 10, 10, 10);
+            textView.setPadding(30, 30, 30, 30);
             textView.setTextSize(18);
-            textView.setText(bluetoothDevice.getName());
-            if (BluetoothDevice.BOND_NONE == bluetoothDevice.getBondState()) {
-                textView.setTextColor(Color.RED);
+            if (TextUtils.isEmpty(bluetoothDevice.getName())) {
+                textView.setText(bluetoothDevice.getAddress());
             } else {
-                textView.setTextColor(Color.GREEN);
+                textView.setText(bluetoothDevice.getName());
+            }
+            if (BluetoothDevice.BOND_NONE == bluetoothDevice.getBondState()) {
+                textView.setTextColor(getResources().getColor(R.color.colorWarning));
+            } else {
+                textView.setTextColor(getResources().getColor(R.color.colorBlue));
             }
             return textView;
         }
@@ -247,7 +247,7 @@ public class BluetoothClientActivity extends Activity implements AdapterView.OnI
                 // 已配对
                 if (connectState == BluetoothDevice.BOND_BONDED) {
                     try {
-                        show("客户端:开始连接:");
+                        show("连接中...");
                         ClientThread clientConnectThread = new ClientThread(mBluetoothDevice);
                         clientConnectThread.start();
                     } catch (Exception e) {
@@ -276,16 +276,13 @@ public class BluetoothClientActivity extends Activity implements AdapterView.OnI
                 //创建一个Socket连接：只需要服务器在注册时的UUID号
                 mBluetoothSocket = bluetoothDevice.createRfcommSocketToServiceRecord(
                         UUID.fromString("00001101-0000-1000-8000-00805F9B34FB"));   //UUID被用于唯一标识一个服务,如文件传输服务，串口服务、打印机服务等
-                //连接
-                show("客户端:开始连接...");
                 mBluetoothSocket.connect();
-                show("客户端:连接成功");
+                show("连接成功");
                 //启动接受数据
-                show("客户端:启动接受数据");
-                ReadThread mreadThread = new ReadThread(mBluetoothSocket);
-                mreadThread.start();
+                new ReadThread(mBluetoothSocket).start();
+                ;
             } catch (IOException e) {
-                show("客户端:连接服务端异常！断开连接重新试一试");
+                show("连接服务端异常！断开连接重新试一试");
                 e.printStackTrace();
             }
         }
@@ -302,51 +299,27 @@ public class BluetoothClientActivity extends Activity implements AdapterView.OnI
         }
 
         public void run() {
-            byte[] buffer = new byte[1024];
-            int bytes;
-            InputStream is = null;
             try {
-                is = bluetoothSocket.getInputStream();
-                ToastUtils.show("客户端:获得输入流");
-            } catch (IOException e1) {
-                e1.printStackTrace();
-            }
-            while (true) {
-                try {
+
+                byte[] buffer = new byte[1024];
+                int bytes;
+                InputStream is = bluetoothSocket.getInputStream();
+
+                while (true) {
                     if ((bytes = is.read(buffer)) > 0) {
                         byte[] buf_data = new byte[bytes];
                         for (int i = 0; i < bytes; i++) {
                             buf_data[i] = buffer[i];
                         }
                         String s = new String(buf_data);
-                        ToastUtils.show("客户端:读取数据了" + s);
+                        ToastUtils.show("服务器: " + s);
                     }
-                } catch (IOException e) {
-                    try {
-                        is.close();
-                    } catch (IOException e1) {
-                        e1.printStackTrace();
-                    }
+                    is.close();
                     break;
                 }
+            } catch (Exception e) {
+                ToastUtils.show(e.getMessage());
             }
-        }
-    }
-
-
-    @Override
-    public void onRequestPermissionsResult(int requestCode, @NonNull String[] permissions, @NonNull int[]
-            grantResults) {
-        super.onRequestPermissionsResult(requestCode, permissions, grantResults);
-    }
-
-    @Override
-    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
-        super.onActivityResult(requestCode, resultCode, data);
-
-        if (requestCode == 0) {
-            //蓝牙已经开启
-            show("蓝牙已开启");
         }
     }
 

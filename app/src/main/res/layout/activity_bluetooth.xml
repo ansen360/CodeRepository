@@ -19,19 +19,37 @@
     <Button
         android:layout_marginTop="30dp"
         android:id="@+id/bluetooth_client"
-        android:layout_width="match_parent"
-        android:background="@android:color/holo_blue_light"
+        android:layout_width="300dp"
+        android:layout_gravity="center"
+        android:background="@drawable/bg_regist"
         android:textColor="#888"
-        android:layout_height="wrap_content"
+        android:layout_height="30dp"
         android:text="客户端" />
 
     <Button
-        android:layout_marginTop="2dp"
+        android:layout_marginTop="5dp"
         android:id="@+id/bluetooth_server"
+        android:layout_gravity="center"
+        android:layout_width="300dp"
+        android:textColor="#fff"
+        android:background="@drawable/bg_login"
+        android:layout_height="30dp"
+        android:text="服务端(支持多连接)" />
+
+    <View
+        android:layout_marginTop="30dp"
+        android:layout_marginBottom="30dp"
         android:layout_width="match_parent"
-        android:textColor="#888"
-        android:background="@android:color/holo_blue_dark"
-        android:layout_height="wrap_content"
-        android:text="服务端" />
+        android:background="#888"
+        android:layout_height="1px"/>
+
+    <Button
+        android:layout_marginTop="2dp"
+        android:layout_gravity="center"
+        android:layout_width="300dp"
+        android:textColor="#fff"
+        android:background="@drawable/bg_login"
+        android:layout_height="30dp"
+        android:text="BLE" />
 
 </LinearLayout>

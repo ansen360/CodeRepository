@@ -18,7 +18,7 @@ import com.code.R;
  * @PACKAGE_NAME: com.tomorrow_p.activity
  * @Description: TODO
  */
-public class BluetoothChatActivity extends Activity implements View.OnClickListener {
+public class BluetoothActivity extends Activity implements View.OnClickListener {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
