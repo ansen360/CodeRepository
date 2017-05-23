@@ -9,6 +9,7 @@ import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 import android.widget.FrameLayout;
 
+import com.code.activity.RotateActivity;
 import com.code.bluetooth.BluetoothActivity;
 import com.code.activity.CameraActivity;
 import com.code.activity.DateFormatActivity;
@@ -191,6 +192,12 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 startActivity(new Intent(mContext, JNIActivity.class));
+            }
+        }));
+        mFlowLayout.addView(new FlowButton(this, "RotateActivity", new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                startActivity(new Intent(mContext, RotateActivity.class));
             }
         }));
         ImmersiveMode();

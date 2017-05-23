@@ -169,6 +169,7 @@
         <activity android:name="com.code.socket.UDPClient"></activity>
         <activity android:name="com.code.socket.TCPClient"></activity>
         <activity android:name="com.code.activity.JNIActivity"></activity>
+        <activity android:name="com.code.activity.RotateActivity"></activity>
 
 
         <!--透明的样式-->
