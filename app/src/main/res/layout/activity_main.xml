@@ -6,9 +6,9 @@
     android:layout_height="match_parent"
     android:background="@mipmap/icon1"
     android:paddingTop="25dp"
-    tools:context="com.code.MainActivity">
+    tools:context="com.code.com.MainActivity">
 
-    <com.code.view.flowlayout.FlowLayout
+    <org.code.view.flowlayout.FlowLayout
         android:id="@+id/flowlayout"
         android:layout_width="match_parent"
         android:layout_height="match_parent"

@@ -4,7 +4,7 @@
     android:layout_height="match_parent"
     android:orientation="vertical">
 
-    <com.code.view.RotateImageView
+    <org.code.view.RotateImageView
         android:id="@+id/riv"
         android:layout_width="match_parent"
         android:src="@mipmap/icon4"

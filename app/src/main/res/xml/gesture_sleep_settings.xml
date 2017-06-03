@@ -3,35 +3,35 @@
     android:key="main_preference_key"
     android:title="@string/gesture_sleep" >
 
-    <com.code.gesture.GestureSwitchPreference
+    <org.code.gesture.GestureSwitchPreference
         android:key="sleep_up_gesture"
         android:title="@string/sleep_up_gesture" />
 
-    <com.code.gesture.GestureSwitchPreference
+    <org.code.gesture.GestureSwitchPreference
         android:key="sleep_down_gesture"
         android:title="@string/sleep_down_gesture" />
 
-    <com.code.gesture.GestureSwitchPreference
+    <org.code.gesture.GestureSwitchPreference
         android:key="sleep_left_gesture"
         android:title="@string/sleep_left_gesture" />
 
-    <com.code.gesture.GestureSwitchPreference
+    <org.code.gesture.GestureSwitchPreference
         android:key="sleep_right_gesture"
         android:title="@string/sleep_right_gesture" />
 
-    <com.code.gesture.GestureSwitchPreference
+    <org.code.gesture.GestureSwitchPreference
         android:key="sleep_d_gesture"
         android:title="@string/sleep_d_gesture" />
 
-    <com.code.gesture.GestureSwitchPreference
+    <org.code.gesture.GestureSwitchPreference
         android:key="sleep_v_gesture"
         android:title="@string/sleep_v_gesture" />
 
-    <com.code.gesture.GestureSwitchPreference
+    <org.code.gesture.GestureSwitchPreference
         android:key="sleep_m_gesture"
         android:title="@string/sleep_m_gesture" />
 
-    <com.code.gesture.GestureSwitchPreference
+    <org.code.gesture.GestureSwitchPreference
         android:key="sleep_w_gesture"
         android:title="@string/sleep_w_gesture" />
 </PreferenceScreen>

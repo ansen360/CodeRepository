@@ -4,11 +4,11 @@
     android:layout_height="match_parent"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:orientation="vertical">
-    <com.code.view.WheelView
+    <org.code.view.WheelView
         android:id="@+id/wheelView"
         android:layout_width="100dp"
         android:layout_height="wrap_content"
-        app:itemCount="4"
+        app:itemCount="3"
         app:lineColor="@android:color/holo_blue_dark"
         app:lineHeight="1.3dp"
         app:maskHeight="32dp"

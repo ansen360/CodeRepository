@@ -45,7 +45,7 @@
     <!-- smart call -->
     <PreferenceCategory
         android:title="@string/smart_call">
-        <com.code.gesture.WallOfTextPreference
+        <org.code.gesture.WallOfTextPreference
             android:key="description"
             android:summary="@string/smart_call_content"
             android:persistent="false"

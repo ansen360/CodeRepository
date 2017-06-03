@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
-    package="com.code">
+    package="org.code">
     <!--拥有同一个User id的多个APK可以配置成运行在同一个进程中,把程序的UID配成android.uid.system,可以让程序运行在系统进程中,拥有系统权限-->
     <!--android:sharedUserId="android.uid.system"-->
     <!--coreApp是android在bootmode下系统启动的最小子集,在这个模式下,有一组最少的,必须的app需要启动-->
@@ -62,7 +62,7 @@
     <!--android:supportsRtl-->
 
     <application
-        android:name="com.code.CodeApplication"
+        android:name="org.code.CodeApplication"
         android:allowBackup="true"
         android:icon="@mipmap/ic_launcher"
         android:label="@string/app_name"
@@ -76,7 +76,7 @@
         <!--android:exported="true"-->
 
         <activity
-            android:name="com.code.MainActivity"
+            android:name="org.code.MainActivity"
             android:launchMode="singleInstance">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -84,7 +84,7 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name="com.code.activity.TestActivity">
+        <activity android:name="org.code.activity.TestActivity">
             <!--<intent-filter>-->
             <!--<action android:name="android.intent.action.MAIN" />-->
 
@@ -93,14 +93,14 @@
         </activity>
 
         <!--    view_start    -->
-        <activity android:name="com.code.view.TouchPanelEdge"></activity>
+        <activity android:name="org.code.view.TouchPanelEdge"></activity>
 
         <!--    view_end    -->
-        <activity android:name="com.code.activity.EncryptTestActivity"></activity>
+        <activity android:name="org.code.activity.EncryptTestActivity"></activity>
 
         <!--    setupwizard_start -->
         <activity
-            android:name="com.code.setupwizard.DefaultActivity"
+            android:name="org.code.setupwizard.DefaultActivity"
             android:label="@string/setupwizard_app_name"
             android:launchMode="singleInstance"
             android:theme="@style/setupwizard_AppTheme">
@@ -112,7 +112,7 @@
         </activity>
 
         <activity
-            android:name="com.code.setupwizard.SimActivity"
+            android:name="org.code.setupwizard.SimActivity"
             android:theme="@style/setupwizard_AppTheme">
             <intent-filter>
                 <action android:name="com.android.provision.SimActivity"></action>
@@ -120,7 +120,7 @@
             </intent-filter>
         </activity>
         <activity
-            android:name="com.code.setupwizard.OpenActivity"
+            android:name="org.code.setupwizard.OpenActivity"
             android:theme="@style/setupwizard_AppTheme">
             <intent-filter>
                 <action android:name="com.android.provision.OpenActivity"></action>
@@ -131,7 +131,7 @@
 
         <!--    gesture_start -->
         <activity
-            android:name="com.code.gesture.MainActivity"
+            android:name="org.code.gesture.MainActivity"
             android:label="@string/smart_induction"
             android:theme="@android:style/Theme.Material.Settings">
             <intent-filter>
@@ -144,48 +144,48 @@
             </intent-filter>
         </activity>
 
-        <activity android:name="com.code.view.drawoutline.DrawOutlineActivity"></activity>
-        <activity android:name="com.code.activity.DateFormatActivity"></activity>
-        <activity android:name="com.code.activity.DialogActivity"></activity>
-        <activity android:name="com.code.activity.CameraActivity"></activity>
-        <activity android:name="com.code.activity.CameraPreviewImageActivity"></activity>
-        <activity android:name="com.code.activity.WarrantyActivity"></activity>
-        <activity android:name="com.code.activity.VibratorActivity"></activity>
-        <activity android:name="com.code.activity.NotificationActivity"></activity>
-        <activity android:name="com.code.activity.NotificationCustomActivity"></activity>
-        <activity android:name="com.code.activity.NotificationProgressActivity"></activity>
-        <activity android:name="com.code.bluetooth.BluetoothActivity"></activity>
-        <activity android:name="com.code.bluetooth.BluetoothServerActivity"></activity>
-        <activity android:name="com.code.bluetooth.BluetoothClientActivity"></activity>
-        <activity android:name="com.code.bluetooth.BLEActivity"></activity>
-        <activity android:name="com.code.activity.RedPacketActivity"></activity>
-        <activity android:name="com.code.activity.TabLayoutActivity"></activity>
+        <activity android:name="org.code.view.drawoutline.DrawOutlineActivity"></activity>
+        <activity android:name="org.code.activity.DateFormatActivity"></activity>
+        <activity android:name="org.code.activity.DialogActivity"></activity>
+        <activity android:name="org.code.activity.CameraActivity"></activity>
+        <activity android:name="org.code.activity.CameraPreviewImageActivity"></activity>
+        <activity android:name="org.code.activity.WarrantyActivity"></activity>
+        <activity android:name="org.code.activity.VibratorActivity"></activity>
+        <activity android:name="org.code.activity.NotificationActivity"></activity>
+        <activity android:name="org.code.activity.NotificationCustomActivity"></activity>
+        <activity android:name="org.code.activity.NotificationProgressActivity"></activity>
+        <activity android:name="org.code.bluetooth.BluetoothActivity"></activity>
+        <activity android:name="org.code.bluetooth.BluetoothServerActivity"></activity>
+        <activity android:name="org.code.bluetooth.BluetoothClientActivity"></activity>
+        <activity android:name="org.code.bluetooth.BLEActivity"></activity>
+        <activity android:name="org.code.activity.RedPacketActivity"></activity>
+        <activity android:name="org.code.activity.TabLayoutActivity"></activity>
 
-        <activity android:name="com.code.activity.SocketActivity"></activity>
-        <activity android:name="com.code.activity.SocketClientActivity"></activity>
+        <activity android:name="org.code.activity.SocketActivity"></activity>
+        <activity android:name="org.code.activity.SocketClientActivity"></activity>
 
-        <activity android:name="com.code.ipc.MessengerClient"></activity>
-        <activity android:name="com.code.ipc.AIDLClient"></activity>
-        <activity android:name="com.code.socket.UDPClient"></activity>
-        <activity android:name="com.code.socket.TCPClient"></activity>
-        <activity android:name="com.code.activity.JNIActivity"></activity>
-        <activity android:name="com.code.activity.RotateActivity"></activity>
+        <activity android:name="org.code.ipc.MessengerClient"></activity>
+        <activity android:name="org.code.ipc.AIDLClient"></activity>
+        <activity android:name="org.code.socket.UDPClient"></activity>
+        <activity android:name="org.code.socket.TCPClient"></activity>
+        <activity android:name="org.code.activity.JNIActivity"></activity>
+        <activity android:name="org.code.activity.RotateActivity"></activity>
 
 
         <!--透明的样式-->
         <!--android:theme="@android:style/Theme.Translucent"-->
         <activity
-            android:name="com.code.setupwizard.GuideActivity"
+            android:name="org.code.setupwizard.GuideActivity"
             android:theme="@style/translucent"></activity>
 
-        <receiver android:name="com.code.receiver.BootRecerver">
+        <receiver android:name="org.code.receiver.BootRecerver">
             <intent-filter>
                 <action android:name="android.intent.action.BOOT_COMPLETED" />
             </intent-filter>
         </receiver>
 
         <service
-            android:name="com.code.service.WXAccessibilityService"
+            android:name="org.code.service.WXAccessibilityService"
             android:enabled="true"
             android:exported="true"
             android:label="@string/WXAccessibilityService_label"
@@ -198,21 +198,21 @@
                 android:name="android.accessibilityservice"
                 android:resource="@xml/accessibility_config" />
         </service>
-        <service android:name="com.code.activity.SocketServerService"></service>
+        <service android:name="org.code.activity.SocketServerService"></service>
         <service
-            android:name="com.code.socket.UDPServer"
+            android:name="org.code.socket.UDPServer"
             android:process=":UDPServer"></service>
         <service
-            android:name="com.code.socket.TCPServer"
+            android:name="org.code.socket.TCPServer"
             android:process=":TCPServer"></service>
 
 
         <service
-            android:name="com.code.ipc.MessengerService"
+            android:name="org.code.ipc.MessengerService"
             android:process=":MessengerService"></service>
 
         <service
-            android:name="com.code.ipc.AIDLService"
+            android:name="org.code.ipc.AIDLService"
             android:process=":AIDLService">
             <intent-filter>
                 <action android:name="com.aidl.service"></action>
@@ -221,13 +221,13 @@
 
 
         <provider
-            android:name="com.code.gesture.database.GestureContentProvider"
-            android:authorities="com.code.gesture"
+            android:name="org.code.gesture.database.GestureContentProvider"
+            android:authorities="org.code.gesture"
             android:exported="true" />
 
         <provider
-            android:name="com.code.provider.AppsManageProvider"
-            android:authorities="com.code.apps"
+            android:name="org.code.provider.AppsManageProvider"
+            android:authorities="org.code.apps"
             android:exported="true" />
 
 
