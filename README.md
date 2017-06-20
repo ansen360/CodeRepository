@@ -1,6 +1,10 @@
 ## 代码库
 
 #### Toast 工具类
+CodeRepository\app\src\main\java\org\code\common\ToastUtils.java
+
+[效果图](http://oma689k8f.bkt.clouddn.com/note/10/toast)
+
 ![](http://oma689k8f.bkt.clouddn.com/note/10/toast)
 #### 获取不同格式的当前时间日期
 http://blog.csdn.net/qq_25804863/article/details/49703779
