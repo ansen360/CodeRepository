@@ -1,5 +1,34 @@
 ## 代码库
 
+#### Toast 工具类
+![](http://oma689k8f.bkt.clouddn.com/note/10/toast)
+#### 获取不同格式的当前时间日期
+http://blog.csdn.net/qq_25804863/article/details/49703779
+#### DES3,RSA.对称加密和非对称加密Demo
+#### Android微信抢红包Demo
+#### Android沉浸模式
+#### Android相机DemoTabLayout
+http://blog.csdn.net/qq_25804863/article/details/49742159
+#### Android通知栏大全Notification
+#### Android对话框大全Dialog
+http://blog.csdn.net/qq_25804863/article/details/48688611
+#### 通过Messenger实现的IPC进程间通讯
+http://blog.csdn.net/qq_25804863/article/details/43936223
+#### JNI Demo
+http://blog.csdn.net/qq_25804863/article/details/48566327
+#### Socket通讯,tcp&udp协议
+http://blog.csdn.net/qq_25804863/article/details/48698873
+#### java自定义注解
+#### 蓝牙通讯Demo
+#### Camera调用Demo
+
+### 自定义控件:
+#### TableLayout
+#### FlowLayout流式布局
+#### 图片轮廓绘制
+#### WheelView
+
+
 #### Android工具类
 - ActivityStackUtils
 - AnimationUtil
@@ -53,34 +82,6 @@
 - ViedoUtil
 - WeekDateObj
 - ZipUtils
-
-
-#### 获取不同格式的当前时间日期
-http://blog.csdn.net/qq_25804863/article/details/49703779
-#### DES3,RSA.对称加密和非对称加密Demo
-#### Android微信抢红包Demo
-#### Android沉浸模式
-#### Android相机DemoTabLayout
-http://blog.csdn.net/qq_25804863/article/details/49742159
-#### Android通知栏大全Notification
-#### Android对话框大全Dialog
-http://blog.csdn.net/qq_25804863/article/details/48688611
-#### 通过Messenger实现的IPC进程间通讯
-http://blog.csdn.net/qq_25804863/article/details/43936223
-#### JNI Demo
-http://blog.csdn.net/qq_25804863/article/details/48566327
-#### Socket通讯,tcp&udp协议
-http://blog.csdn.net/qq_25804863/article/details/48698873
-#### java自定义注解
-#### 蓝牙通讯Demo
-#### Camera调用Demo
-
-### 自定义控件:
-#### TableLayout
-#### FlowLayout流式布局
-#### 图片轮廓绘制
-#### WheelView
-
 
 ## 命名规范
 - 包名全部采用小写

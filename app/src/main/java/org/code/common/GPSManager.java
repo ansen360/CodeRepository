@@ -55,7 +55,7 @@ public class GPSManager {
         Intent GPSIntent = new Intent();
         GPSIntent.setClassName("com.android.settings", "com.android.settings.widget.SettingsAppWidgetProvide");
         GPSIntent.addCategory("android.intent.category.ALTERNATIVE");
-        GPSIntent.setData(Uri.parse("custom:3"));
+        GPSIntent.setData(Uri.parse("toast:3"));
 
         try {
             //使用PendingIntent发送广播告诉手机去开启GPS功能

@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="utf-8"?>
+<vector xmlns:android="http://schemas.android.com/apk/res/android" android:viewportWidth="192"
+    android:viewportHeight="192" android:width="192dp" android:height="192dp">
+    <group android:name="#ffffffff">
+        <path android:fillColor="#FFFFFF"
+            android:pathData=" M 72.00 129.35 C 100.24 101.14 128.43 72.88 156.69 44.68 C 160.45 48.46 164.23 52.22 168.00 56.00 C 136.00 88.00 104.00 120.00 72.00 152.00 C 57.10 137.11 42.20 122.21 27.31 107.31 C 31.09 103.54 34.85 99.75 38.64 96.00 C 49.75 107.13 60.87 118.24 72.00 129.35 Z" />
+    </group>
+</vector>

@@ -16,9 +16,9 @@ import org.code.common.ToastUtils;
 /**
  * Created by Ansen on 2015/09/08 18:21.
  *
- * @E-mail: tomorrow_p@163.com
- * @Blog: http://blog.csdn.net/qq_25804863
- * @Github: https://github.com/ansen360
+ * @E-mail: ansen360@126.com
+ * @Blog: "http://blog.csdn.net/qq_25804863"
+ * @Github: "https://github.com/ansen360"
  * @PROJECT_NAME: CodeRepository
  * @PACKAGE_NAME: com.tomorrow_p.activity
  * @Description: TODO

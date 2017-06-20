@@ -9,21 +9,16 @@ import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 import android.widget.FrameLayout;
 
-import org.code.activity.RotateActivity;
-import org.code.bluetooth.BluetoothActivity;
-import org.code.activity.CameraActivity;
 import org.code.activity.DateFormatActivity;
 import org.code.activity.DialogActivity;
 import org.code.activity.EncryptTestActivity;
-import org.code.activity.JNIActivity;
 import org.code.activity.NotificationActivity;
-import org.code.activity.RedPacketActivity;
+import org.code.activity.RotateActivity;
 import org.code.activity.TabLayoutActivity;
 import org.code.activity.TestActivity;
-import org.code.activity.WarrantyActivity;
+import org.code.bluetooth.BluetoothActivity;
 import org.code.common.GPSManager;
-import org.code.ipc.AIDLClient;
-import org.code.ipc.MessengerClient;
+import org.code.common.ToastUtils;
 import org.code.socket.TCPClient;
 import org.code.socket.UDPClient;
 import org.code.view.FlowButton;
@@ -111,6 +106,24 @@ public class MainActivity extends AppCompatActivity {
                 startActivity(new Intent(mContext, DialogActivity.class));
             }
         }));
+        mFlowLayout.addView(new FlowButton(this, "Notification", new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                startActivity(new Intent(mContext, NotificationActivity.class));
+            }
+        }));
+        mFlowLayout.addView(new FlowButton(this, "Toast", new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                ToastUtils.showSuccess("success");
+                ToastUtils.showInfo("Info");
+                ToastUtils.showWarning("Warning");
+                ToastUtils.showError("Error");
+                ToastUtils.showIcon("Icon", R.mipmap.ic_launcher);
+                ToastUtils.show("normal");
+                ToastUtils.show("normal2", getResources().getColor(R.color.colorBlue));
+            }
+        }));
 
 //        mFlowLayout.addView(new FlowButton(this, "Camera", new View.OnClickListener() {
 //            @Override
@@ -133,12 +146,6 @@ public class MainActivity extends AppCompatActivity {
             }
         }));
 
-        mFlowLayout.addView(new FlowButton(this, "Notification", new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                startActivity(new Intent(mContext, NotificationActivity.class));
-            }
-        }));
 
 //        mFlowLayout.addView(new FlowButton(this, "RedPacket", new View.OnClickListener() {
 //            @Override
@@ -207,9 +214,9 @@ public class MainActivity extends AppCompatActivity {
      * TODO: test
      */
     private void test() {
-        GPSManager gpsManager = new GPSManager(this);
-        gpsManager.isOpen();
-        gpsManager.getGPSConfi(this);
+//        GPSManager gpsManager = new GPSManager(this);
+//        gpsManager.isOpen();
+//        gpsManager.getGPSConfi(this);
 
 
     }
