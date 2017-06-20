@@ -120,7 +120,7 @@ public class MainActivity extends AppCompatActivity {
                 ToastUtils.showWarning("Warning");
                 ToastUtils.showError("Error");
                 ToastUtils.showIcon("Icon", R.mipmap.ic_launcher);
-                ToastUtils.show("normal");
+                ToastUtils.show("normal1");
                 ToastUtils.show("normal2", getResources().getColor(R.color.colorBlue));
             }
         }));

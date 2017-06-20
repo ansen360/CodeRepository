@@ -41,6 +41,10 @@ public class ToastUtils {
 
     private static final String TAG = "ToastUtils";
 
+    private static final int what1 = 1;
+    private static final int what2 = 2;
+    private static final int what3 = 3;
+
     private static final int COLOR_TEXT = Color.parseColor("#FFFFFF");
 
     private static final int COLOR_SUCCESS = Color.parseColor("#388E3C");
@@ -59,8 +63,24 @@ public class ToastUtils {
         @Override
         public void handleMessage(Message msg) {
             super.handleMessage(msg);
-            String text = (String) msg.obj;
-            show(text);
+            switch (msg.what) {
+                case what1:
+                    String text = (String) msg.obj;
+                    show(text);
+                    break;
+                case what2: //text为string
+                    String text2 = (String) msg.obj;
+                    int arg1 = msg.arg1;
+                    int arg2 = msg.arg2;
+                    toast(text2, COLOR_TEXT, arg1, arg2);
+                    break;
+                case what3: //text为int
+                    int text3 = (int) msg.obj;
+                    int arg3 = msg.arg1;
+                    int arg4 = msg.arg2;
+                    toast(text3, COLOR_TEXT, arg3, arg4);
+                    break;
+            }
         }
     };
 
@@ -72,22 +92,24 @@ public class ToastUtils {
         if (TextUtils.isEmpty(text)) {
             return;
         }
-        if (Looper.myLooper() == Looper.getMainLooper()) {
+        if (isMainThread()) {
             Toast.makeText(mContext, text, Toast.LENGTH_SHORT).show();
         } else {
             Message message = new Message();
             message.obj = text;
+            message.what = what1;
             mHandler.sendMessage(message);
         }
     }
 
     public static void show(int textRes) {
         String text = mContext.getResources().getString(textRes);
-        if (Looper.myLooper() == Looper.getMainLooper()) {
+        if (isMainThread()) {
             Toast.makeText(mContext, text, Toast.LENGTH_SHORT).show();
         } else {
             Message message = new Message();
             message.obj = text;
+            message.what = what1;
             mHandler.sendMessage(message);
         }
     }
@@ -96,54 +118,163 @@ public class ToastUtils {
      * 设置文本Toast的背景
      */
     public static void show(CharSequence text, int tintColor) {
-        toast(text, COLOR_TEXT, 0, tintColor);
+        if (isMainThread()) {
+            toast(text, COLOR_TEXT, 0, tintColor);
+        } else {
+            Message message = new Message();
+            message.obj = text;
+            message.what = what2;
+            message.arg1 = 0;
+            message.arg2 = tintColor;
+            mHandler.sendMessage(message);
+        }
     }
 
     /**
      * 设置文本Toast的背景
      */
     public static void show(int textRes, int tintColor) {
-        toast(textRes, COLOR_TEXT, 0, tintColor);
+        if (isMainThread()) {
+            toast(textRes, COLOR_TEXT, 0, tintColor);
+        } else {
+            Message message = new Message();
+            message.obj = textRes;
+            message.what = what3;
+            message.arg1 = 0;
+            message.arg2 = tintColor;
+            mHandler.sendMessage(message);
+        }
     }
 
     public static void showSuccess(CharSequence text) {
-        toast(text, COLOR_TEXT, R.drawable.ic_toast_success, COLOR_SUCCESS);
+        if (isMainThread()) {
+            toast(text, COLOR_TEXT, R.drawable.ic_toast_success, COLOR_SUCCESS);
+        } else {
+            Message message = new Message();
+            message.obj = text;
+            message.what = what2;
+            message.arg1 = R.drawable.ic_toast_success;
+            message.arg2 = COLOR_SUCCESS;
+            mHandler.sendMessage(message);
+        }
     }
 
     public static void showSuccess(int textRes) {
-        toast(textRes, COLOR_TEXT, R.drawable.ic_toast_success, COLOR_SUCCESS);
+        if (isMainThread()) {
+            toast(textRes, COLOR_TEXT, R.drawable.ic_toast_success, COLOR_SUCCESS);
+        } else {
+            Message message = new Message();
+            message.obj = textRes;
+            message.what = what3;
+            message.arg1 = R.drawable.ic_toast_success;
+            message.arg2 = COLOR_SUCCESS;
+            mHandler.sendMessage(message);
+        }
     }
 
     public static void showInfo(CharSequence text) {
-        toast(text, COLOR_TEXT, R.drawable.ic_toast_info, COLOR_INFO);
+        if (isMainThread()) {
+            toast(text, COLOR_TEXT, R.drawable.ic_toast_info, COLOR_INFO);
+        } else {
+            Message message = new Message();
+            message.obj = text;
+            message.what = what2;
+            message.arg1 = R.drawable.ic_toast_info;
+            message.arg2 = COLOR_INFO;
+            mHandler.sendMessage(message);
+        }
     }
 
     public static void showInfo(int textRes) {
-        toast(textRes, COLOR_TEXT, R.drawable.ic_toast_info, COLOR_INFO);
+        if (isMainThread()) {
+            toast(textRes, COLOR_TEXT, R.drawable.ic_toast_info, COLOR_INFO);
+        } else {
+            Message message = new Message();
+            message.obj = textRes;
+            message.what = what3;
+            message.arg1 = R.drawable.ic_toast_info;
+            message.arg2 = COLOR_INFO;
+            mHandler.sendMessage(message);
+        }
     }
 
     public static void showWarning(CharSequence text) {
-        toast(text, COLOR_TEXT, R.drawable.ic_toast_warning, COLOR_WARNING);
+        if (isMainThread()) {
+            toast(text, COLOR_TEXT, R.drawable.ic_toast_warning, COLOR_WARNING);
+        } else {
+            Message message = new Message();
+            message.obj = text;
+            message.what = what2;
+            message.arg1 = R.drawable.ic_toast_warning;
+            message.arg2 = COLOR_WARNING;
+            mHandler.sendMessage(message);
+        }
     }
 
     public static void showWarning(int textId) {
-        toast(textId, COLOR_TEXT, R.drawable.ic_toast_warning, COLOR_WARNING);
+        if (isMainThread()) {
+            toast(textId, COLOR_TEXT, R.drawable.ic_toast_warning, COLOR_WARNING);
+        } else {
+            Message message = new Message();
+            message.obj = textId;
+            message.what = what3;
+            message.arg1 = R.drawable.ic_toast_warning;
+            message.arg2 = COLOR_WARNING;
+            mHandler.sendMessage(message);
+        }
     }
 
     public static void showError(CharSequence text) {
-        toast(text, COLOR_TEXT, R.drawable.ic_toast_error, COLOR_ERROR);
+        if (isMainThread()) {
+            toast(text, COLOR_TEXT, R.drawable.ic_toast_error, COLOR_ERROR);
+        } else {
+            Message message = new Message();
+            message.obj = text;
+            message.what = what2;
+            message.arg1 = R.drawable.ic_toast_error;
+            message.arg2 = COLOR_ERROR;
+            mHandler.sendMessage(message);
+        }
     }
 
+
     public static void showError(int textRes) {
-        toast(textRes, COLOR_TEXT, R.drawable.ic_toast_error, COLOR_ERROR);
+        if (isMainThread()) {
+            toast(textRes, COLOR_TEXT, R.drawable.ic_toast_error, COLOR_ERROR);
+        } else {
+            Message message = new Message();
+            message.obj = textRes;
+            message.what = what3;
+            message.arg1 = R.drawable.ic_toast_error;
+            message.arg2 = COLOR_ERROR;
+            mHandler.sendMessage(message);
+        }
     }
 
     public static void showIcon(CharSequence text, int iconRes) {
-        toast(text, COLOR_TEXT, iconRes, COLOR_INFO);
+        if (isMainThread()) {
+            toast(text, COLOR_TEXT, iconRes, COLOR_INFO);
+        } else {
+            Message message = new Message();
+            message.obj = text;
+            message.what = what2;
+            message.arg1 = iconRes;
+            message.arg2 = COLOR_INFO;
+            mHandler.sendMessage(message);
+        }
     }
 
     public static void showIcon(int textId, int iconRes) {
-        toast(textId, COLOR_TEXT, iconRes, COLOR_INFO);
+        if (isMainThread()) {
+            toast(textId, COLOR_TEXT, iconRes, COLOR_INFO);
+        } else {
+            Message message = new Message();
+            message.obj = textId;
+            message.what = what3;
+            message.arg1 = iconRes;
+            message.arg2 = COLOR_INFO;
+            mHandler.sendMessage(message);
+        }
     }
 
     /**
@@ -216,6 +347,10 @@ public class ToastUtils {
             drawable.setColorFilter(new PorterDuffColorFilter(tintColor, PorterDuff.Mode.SRC_IN));
         }
         view.setBackground(drawable);
+    }
+
+    private static boolean isMainThread() {
+        return Looper.myLooper() == Looper.getMainLooper();
     }
 
     /**

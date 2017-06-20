@@ -1,8 +1,30 @@
-## 代码库
+## 简介
+本项目整合了开发过程中常用工具类,常用技术的示例代码.抱着学无止境的态度,该项目将会持续更新.目前已上架应用宝
+#### Toast 工具
+> CodeRepository\app\src\main\java\org\code\common\ToastUtils.java
 
-#### Toast 工具类
-CodeRepository\app\src\main\java\org\code\common\ToastUtils.java
+**Usage:**(支持在子线程中Toast)
 
+setp1:(程序入口初始化)
+```
+public class CodeApplication extends Application {
+    @Override
+    public void onCreate() {
+        super.onCreate();
+        ToastUtils.init(this);
+    }
+}
+```
+setp2:(使用)
+```
+    ToastUtils.showSuccess("success");
+    ToastUtils.showInfo("Info");
+    ToastUtils.showWarning("Warning");
+    ToastUtils.showError("Error");
+    ToastUtils.showIcon("Icon", R.mipmap.ic_launcher);
+    ToastUtils.show("normal");
+    ToastUtils.show("normal2", getResources().getColor(R.color.colorBlue));
+```
 [效果图](http://oma689k8f.bkt.clouddn.com/note/10/toast)
 
 ![](http://oma689k8f.bkt.clouddn.com/note/10/toast)
