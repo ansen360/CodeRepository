@@ -1,5 +1,6 @@
 ## 简介
 本项目整合了开发过程中常用工具类,常用技术的示例代码.抱着学无止境的态度,该项目将会持续更新.目前已上架应用宝
+[![](https://jitpack.io/v/ansen360/CodeRepository.svg)](https://jitpack.io/#ansen360/CodeRepository)
 #### Toast 工具
 > CodeRepository\app\src\main\java\org\code\common\ToastUtils.java
 

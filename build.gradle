@@ -5,7 +5,13 @@ buildscript {
         jcenter()
     }
     dependencies {
-        classpath 'com.android.tools.build:gradle:2.3.2'
+        classpath 'com.android.tools.build:gradle:2.3.3'
+
+        /**JitPack: 1
+         * JitPack 是一个仓库，类似 maven，binary, 主要是帮我们生产 android 项目的 aar or jar 的平台。
+         * 基于 GitHub，可以很方便将 library 发布到远程，然后可以用 gradle 依赖到任何一个项目中(https://jitpack.io/)
+         */
+//        compile 'com.github.User:Repo:Tag'
 
         // NOTE: Do not place your application dependencies here; they belong
         // in the individual module build.gradle files
@@ -15,6 +21,8 @@ buildscript {
 allprojects {
     repositories {
         jcenter()
+        // JitPack: 2
+        maven { url 'https://jitpack.io' }
     }
 }
 
