@@ -4,6 +4,7 @@ import android.content.Intent;
 import android.graphics.Color;
 import android.os.Build;
 import android.os.Bundle;
+import android.provider.Settings;
 import android.support.v7.app.ActionBar;
 import android.support.v7.app.AppCompatActivity;
 import android.view.View;
@@ -19,6 +20,7 @@ import org.code.activity.TestActivity;
 import org.code.bluetooth.BluetoothActivity;
 import org.code.common.GPSManager;
 import org.code.common.ToastUtils;
+import org.code.service.NetSpeedService;
 import org.code.socket.TCPClient;
 import org.code.socket.UDPClient;
 import org.code.view.FlowButton;
@@ -110,6 +112,20 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 startActivity(new Intent(mContext, NotificationActivity.class));
+            }
+        }));
+        mFlowLayout.addView(new FlowButton(this, "Mobile data", new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
+                    if (!Settings.canDrawOverlays(MainActivity.this)) {
+                        Intent intent = new Intent(Settings.ACTION_MANAGE_OVERLAY_PERMISSION);
+                        startActivity(intent);
+                        return;
+                    }
+                }
+                Intent intent = new Intent(MainActivity.this, NetSpeedService.class);
+                startService(intent);
             }
         }));
         mFlowLayout.addView(new FlowButton(this, "Toast", new View.OnClickListener() {

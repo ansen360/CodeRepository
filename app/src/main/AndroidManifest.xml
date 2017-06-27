@@ -44,6 +44,7 @@
     <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
     <uses-permission android:name="android.permission.CHANGE_WIFI_STATE" />
     <uses-permission android:name="android.permission.INTERNET" />
+    <uses-permission android:name="android.permission.SYSTEM_ALERT_WINDOW" />
 
 
     <!--required为true:应用只能在支持BLE的设备上安装运行;required为false:Android设备均可正常安装运行-->
@@ -199,6 +200,7 @@
                 android:resource="@xml/accessibility_config" />
         </service>
         <service android:name="org.code.activity.SocketServerService"></service>
+        <service android:name="org.code.service.NetSpeedService"></service>
         <service
             android:name="org.code.socket.UDPServer"
             android:process=":UDPServer"></service>
