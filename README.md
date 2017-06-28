@@ -28,9 +28,11 @@ setp2:(使用)
     ToastUtils.show("normal");
     ToastUtils.show("normal2", getResources().getColor(R.color.colorBlue));
 ```
-[效果图](http://oma689k8f.bkt.clouddn.com/note/10/toast)
+![](https://github.com/ansen360/CodeRepository/blob/master/gif/1_toast.gif)
+#### 网速监控悬浮窗
+> D:\Workspace_AS\CodeRepository\app\src\main\java\org\code\service\NetSpeedService.java
 
-![](http://oma689k8f.bkt.clouddn.com/note/10/toast)
+![](https://github.com/ansen360/CodeRepository/blob/master/gif/1_toast.gif)
 #### 获取不同格式的当前时间日期
 http://blog.csdn.net/qq_25804863/article/details/49703779
 #### DES3,RSA.对称加密和非对称加密Demo
