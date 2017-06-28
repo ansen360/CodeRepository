@@ -32,7 +32,7 @@ setp2:(使用)
 #### 网速监控悬浮窗
 > D:\Workspace_AS\CodeRepository\app\src\main\java\org\code\service\NetSpeedService.java
 
-![](https://github.com/ansen360/CodeRepository/blob/master/gif/1_toast.gif)
+![](https://github.com/ansen360/CodeRepository/blob/master/gif/2_mobiledata.gif)
 #### 获取不同格式的当前时间日期
 http://blog.csdn.net/qq_25804863/article/details/49703779
 #### DES3,RSA.对称加密和非对称加密Demo
