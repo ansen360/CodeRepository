@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical">
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_margin="12dp"
+        android:text="截屏"
+        android:textSize="20dp"
+        android:textColor="#888"
+        android:gravity="center"
+        android:layout_height="wrap_content" />
+    <View
+        android:layout_width="match_parent"
+        android:background="#888"
+        android:layout_height="1px"/>
+
+    <Button
+        android:layout_marginTop="30dp"
+        android:id="@+id/start_cut"
+        android:layout_width="300dp"
+        android:layout_gravity="center"
+        android:background="@drawable/bg_regist"
+        android:textColor="#888"
+        android:layout_height="30dp"
+        android:text="开启截屏服务" />
+
+    <Button
+        android:layout_marginTop="5dp"
+        android:id="@+id/stop_cut"
+        android:layout_gravity="center"
+        android:layout_width="300dp"
+        android:textColor="#fff"
+        android:background="@drawable/bg_login"
+        android:layout_height="30dp"
+        android:text="关闭截屏服务" />
+
+    <View
+        android:layout_marginTop="30dp"
+        android:layout_marginBottom="30dp"
+        android:layout_width="match_parent"
+        android:background="#888"
+        android:layout_height="1px"/>
+
+    <Button
+        android:layout_marginTop="2dp"
+        android:layout_gravity="center"
+        android:layout_width="300dp"
+        android:textColor="#fff"
+        android:background="@drawable/bg_login"
+        android:layout_height="30dp"
+        android:text="区域截屏" />
+
+</LinearLayout>

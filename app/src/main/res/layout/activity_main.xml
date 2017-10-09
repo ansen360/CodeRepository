@@ -6,11 +6,17 @@
     android:layout_height="match_parent"
     android:background="@mipmap/icon1"
     android:paddingTop="25dp"
-    tools:context="com.code.com.MainActivity">
+    tools:context="org.code.MainActivity">
 
     <org.code.view.flowlayout.FlowLayout
         android:id="@+id/flowlayout"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:layout_margin="5dp" />
+    <org.code.view.ClipImageView
+        android:id="@+id/crop_display"
+        android:visibility="gone"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"/>
+
 </FrameLayout>

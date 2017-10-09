@@ -42,9 +42,7 @@ public class NetSpeedService extends Service {
 
     private static final String TAG = "NetSpeedService";
 
-    // 定义浮动窗口布局
     public LinearLayout mFloatLayout;
-    // 创建浮动窗口设置布局参数的对象
     public WindowManager mWindowManager;
     public WindowManager.LayoutParams wmParams;
     private TextView mFloatView;
@@ -62,18 +60,17 @@ public class NetSpeedService extends Service {
     }
 
     private void initView() {
-        wmParams = new WindowManager.LayoutParams();
         mWindowManager = (WindowManager) getApplication().getSystemService(getApplication().WINDOW_SERVICE);
-        wmParams.type = WindowManager.LayoutParams.TYPE_SYSTEM_ALERT;// 设置window
-        // type为TYPE_SYSTEM_ALERT
-        wmParams.format = PixelFormat.RGBA_8888;// 设置图片格式，效果为背景透明
+        wmParams = new WindowManager.LayoutParams();
+        wmParams.type = WindowManager.LayoutParams.TYPE_SYSTEM_ALERT;// 设置window type为TYPE_SYSTEM_ALERT
+        wmParams.format = PixelFormat.RGBA_8888;// 设置图片格式,效果为背景透明
         wmParams.flags = WindowManager.LayoutParams.FLAG_NOT_FOCUSABLE;// 设置浮动窗口不可聚焦（实现操作除浮动窗口外的其他可见窗口的操作）
         wmParams.gravity = Gravity.LEFT | Gravity.TOP;// 默认位置：左上角
         wmParams.width = WindowManager.LayoutParams.WRAP_CONTENT;
         wmParams.height = WindowManager.LayoutParams.WRAP_CONTENT;
         wmParams.x = (ScreenUtils.getScreenWidth(getApplicationContext()) - wmParams.width) / 2;// 设置x、y初始值，相对于gravity
         wmParams.y = 10;
-        // 获取浮动窗口视图所在布局
+        // 浮动窗口布局
         mFloatLayout = (LinearLayout) LayoutInflater.from(getApplication()).inflate(R.layout.service_netspeed, null);
         mWindowManager.addView(mFloatLayout, wmParams);// 添加mFloatLayout
         mFloatView = (TextView) mFloatLayout.findViewById(R.id.speed);

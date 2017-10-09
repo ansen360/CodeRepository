@@ -15,6 +15,7 @@ import org.code.activity.DialogActivity;
 import org.code.activity.EncryptTestActivity;
 import org.code.activity.NotificationActivity;
 import org.code.activity.RotateActivity;
+import org.code.activity.ScreenshotActivity;
 import org.code.activity.TabLayoutActivity;
 import org.code.activity.TestActivity;
 import org.code.bluetooth.BluetoothActivity;
@@ -121,6 +122,7 @@ public class MainActivity extends AppCompatActivity {
                     if (!Settings.canDrawOverlays(MainActivity.this)) {
                         Intent intent = new Intent(Settings.ACTION_MANAGE_OVERLAY_PERMISSION);
                         startActivity(intent);
+                        ToastUtils.show("勾选允许后,再次点击开启网速悬浮窗");
                         return;
                     }
                 }
@@ -221,6 +223,12 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 startActivity(new Intent(mContext, RotateActivity.class));
+            }
+        }));
+        mFlowLayout.addView(new FlowButton(this, "Screenshot", new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                startActivity(new Intent(mContext, ScreenshotActivity.class));
             }
         }));
         ImmersiveMode();

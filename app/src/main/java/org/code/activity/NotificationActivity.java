@@ -142,9 +142,9 @@ public class NotificationActivity extends Activity implements View.OnClickListen
     public void showBigStyleNotify() {
         NotificationCompat.InboxStyle inboxStyle = new NotificationCompat.InboxStyle();
         String[] events = new String[5];
-        // Sets a title for the Inbox style big view
+        // Sets a title for the Inbox style big mScrollView
         inboxStyle.setBigContentTitle("大视图内容:");
-        // Moves events into the big view
+        // Moves events into the big mScrollView
         for (int i = 0; i < events.length; i++) {
             inboxStyle.addLine(events[i]);
         }

@@ -31,6 +31,7 @@
     <uses-permission android:name="android.permission.MOUNT_UNMOUNT_FILESYSTEMS" />
     <!--写入外部存储; 允许程序写入外部存储，如SD卡上写文件-->
     <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
+    <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
     <!--使用振动; 允许振动-->
     <uses-permission android:name="android.permission.VIBRATE" />
     <!--允许程序连接配对过的蓝牙设备-->
@@ -171,6 +172,7 @@
         <activity android:name="org.code.socket.TCPClient"></activity>
         <activity android:name="org.code.activity.JNIActivity"></activity>
         <activity android:name="org.code.activity.RotateActivity"></activity>
+        <activity android:name=".activity.ScreenshotActivity"></activity>
 
 
         <!--透明的样式-->
@@ -201,6 +203,7 @@
         </service>
         <service android:name="org.code.activity.SocketServerService"></service>
         <service android:name="org.code.service.NetSpeedService"></service>
+        <service android:name="org.code.service.ScreenshotService"></service>
         <service
             android:name="org.code.socket.UDPServer"
             android:process=":UDPServer"></service>
@@ -231,7 +234,6 @@
             android:name="org.code.provider.AppsManageProvider"
             android:authorities="org.code.apps"
             android:exported="true" />
-
 
     </application>
 

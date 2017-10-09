@@ -20,8 +20,11 @@ import android.graphics.drawable.BitmapDrawable;
 import android.graphics.drawable.Drawable;
 import android.net.Uri;
 import android.os.Environment;
+import android.support.v7.widget.RecyclerView;
 import android.util.Base64;
+import android.util.Log;
 import android.view.View;
+import android.widget.ScrollView;
 
 import java.io.BufferedInputStream;
 import java.io.BufferedOutputStream;
@@ -273,24 +276,15 @@ public class ImageUtils {
     }
 
     /**
-     * 保存图片到sd卡 /data/data/com.maizuo.main/files/
-     *
-     * @param bitmap
-     * @param fileName
-     * @return
+     * 保存图片到 /data/data/com.maizuo.main/files/
      */
-    public boolean saveImage(Context context, Bitmap bitmap, String fileName) {
+    public static boolean saveImage(Context context, String fileName, Bitmap bitmap) {
         boolean bool = false;
         BufferedOutputStream bos = null;
         BufferedInputStream bis = null;
         ByteArrayOutputStream baos = null;
         try {
-            // if (FREE_SD_SPACE_NEEDED_TO_CACHE > freeSpaceOnSd()) {
-            // Logger.w(TAG, "Low free space onsd, do not cache");
-            // return false;
-            // }
             bos = new BufferedOutputStream(context.openFileOutput(fileName, 0));
-
             baos = new ByteArrayOutputStream();
             bitmap.compress(Bitmap.CompressFormat.PNG, 100, baos);
             bis = new BufferedInputStream(new ByteArrayInputStream(baos.toByteArray()));
@@ -301,8 +295,7 @@ public class ImageUtils {
             bool = true;
         } catch (Exception e) {
             bool = false;
-            //itheima-debugLogger.i(TAG, "the local storage is not available");
-
+            e.printStackTrace();
         } finally {
             try {
                 if (bos != null) {
@@ -313,12 +306,49 @@ public class ImageUtils {
                 }
             } catch (IOException e) {
                 bool = false;
-                //itheima-debugLogger.i(TAG, "the local storage is not available");
-
+                e.printStackTrace();
             }
         }
         return bool;
     }
+
+    /**
+     * 保存图片到sd卡
+     */
+    public static boolean saveImage(Context context, Bitmap bitmap, String fileName) {
+        boolean bool = false;
+        BufferedOutputStream bos = null;
+        BufferedInputStream bis = null;
+        ByteArrayOutputStream baos = null;
+        try {
+            bos = new BufferedOutputStream(new FileOutputStream(FileUtils.getSDCardPath() + fileName));
+            baos = new ByteArrayOutputStream();
+            bitmap.compress(Bitmap.CompressFormat.PNG, 100, baos);
+            bis = new BufferedInputStream(new ByteArrayInputStream(baos.toByteArray()));
+            int b = -1;
+            while ((b = bis.read()) != -1) {
+                bos.write(b);
+            }
+            bool = true;
+        } catch (IOException e) {
+            bool = false;
+            e.printStackTrace();
+        } finally {
+            try {
+                if (bos != null) {
+                    bos.close();
+                }
+                if (bis != null) {
+                    bis.close();
+                }
+            } catch (IOException e) {
+                bool = false;
+                e.printStackTrace();
+            }
+        }
+        return bool;
+    }
+
 
     /**
      * 删掉图片
@@ -790,4 +820,68 @@ public class ImageUtils {
 
         return inSampleSize;
     }
+
+    /**
+     * 获取scrollview的屏幕
+     **/
+    public static Bitmap getScrollViewBitmap(ScrollView scrollView, String picpath) {
+        int h = 0;
+        Bitmap bitmap;
+        for (int i = 0; i < scrollView.getChildCount(); i++) {
+            h += scrollView.getChildAt(i).getHeight();
+        }
+        bitmap = Bitmap.createBitmap(scrollView.getWidth(), h,
+                Bitmap.Config.ARGB_8888);
+        final Canvas canvas = new Canvas(bitmap);
+        scrollView.draw(canvas);
+        FileOutputStream out = null;
+        try {
+            out = new FileOutputStream(picpath);
+        } catch (FileNotFoundException e) {
+            e.printStackTrace();
+        }
+        try {
+            if (null != out) {
+                bitmap.compress(Bitmap.CompressFormat.PNG, 100, out);
+                out.flush();
+                out.close();
+            }
+        } catch (IOException e) {
+        }
+        return bitmap;
+    }
+
+    /**
+     * 获取recyclerview截图
+     **/
+    public static Bitmap getRecyclerviewBitmap(RecyclerView recyclerview, String picpath) {
+        int h = 0;
+        Bitmap bitmap;
+        // 获取recyclerview实际高度
+        for (int i = 0; i < recyclerview.getChildCount(); i++) {
+            h += recyclerview.getChildAt(i).getHeight();
+        }
+        // 创建对应大小的bitmap
+        bitmap = Bitmap.createBitmap(recyclerview.getWidth(), h,
+                Bitmap.Config.ARGB_8888);
+        final Canvas canvas = new Canvas(bitmap);
+        recyclerview.draw(canvas);
+        // 测试输出
+        FileOutputStream out = null;
+        try {
+            out = new FileOutputStream(picpath);
+        } catch (FileNotFoundException e) {
+            e.printStackTrace();
+        }
+        try {
+            if (null != out) {
+                bitmap.compress(Bitmap.CompressFormat.PNG, 100, out);
+                out.flush();
+                out.close();
+            }
+        } catch (IOException e) {
+        }
+        return bitmap;
+    }
+
 }
