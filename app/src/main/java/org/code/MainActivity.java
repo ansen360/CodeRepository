@@ -15,11 +15,9 @@ import org.code.activity.DialogActivity;
 import org.code.activity.EncryptTestActivity;
 import org.code.activity.NotificationActivity;
 import org.code.activity.RotateActivity;
-import org.code.activity.ScreenshotActivity;
 import org.code.activity.TabLayoutActivity;
 import org.code.activity.TestActivity;
 import org.code.bluetooth.BluetoothActivity;
-import org.code.common.GPSManager;
 import org.code.common.ToastUtils;
 import org.code.service.NetSpeedService;
 import org.code.socket.TCPClient;
@@ -223,12 +221,6 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 startActivity(new Intent(mContext, RotateActivity.class));
-            }
-        }));
-        mFlowLayout.addView(new FlowButton(this, "Screenshot", new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                startActivity(new Intent(mContext, ScreenshotActivity.class));
             }
         }));
         ImmersiveMode();
