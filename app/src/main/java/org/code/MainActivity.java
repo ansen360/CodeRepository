@@ -15,6 +15,7 @@ import org.code.activity.DialogActivity;
 import org.code.activity.EncryptTestActivity;
 import org.code.activity.NotificationActivity;
 import org.code.activity.RotateActivity;
+import org.code.activity.ScreenRecordActivity;
 import org.code.activity.TabLayoutActivity;
 import org.code.activity.TestActivity;
 import org.code.bluetooth.BluetoothActivity;
@@ -221,6 +222,12 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 startActivity(new Intent(mContext, RotateActivity.class));
+            }
+        }));
+        mFlowLayout.addView(new FlowButton(this, "ScreenRecordActivity", new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                startActivity(new Intent(mContext, ScreenRecordActivity.class));
             }
         }));
         ImmersiveMode();

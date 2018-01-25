@@ -45,6 +45,7 @@
     <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
     <uses-permission android:name="android.permission.CHANGE_WIFI_STATE" />
     <uses-permission android:name="android.permission.INTERNET" />
+    <uses-permission android:name="android.permission.RECORD_AUDIO" />
     <!-- 显示系统窗口 -->
     <uses-permission android:name="android.permission.SYSTEM_ALERT_WINDOW" />
 
@@ -173,6 +174,7 @@
         <activity android:name="org.code.socket.TCPClient"></activity>
         <activity android:name="org.code.activity.JNIActivity"></activity>
         <activity android:name="org.code.activity.RotateActivity"></activity>
+        <activity android:name=".activity.ScreenRecordActivity"></activity>
 
 
         <!--透明的样式-->
@@ -203,6 +205,7 @@
         </service>
         <service android:name="org.code.activity.SocketServerService"></service>
         <service android:name="org.code.service.NetSpeedService"></service>
+        <service android:name=".service.ScreenRecordService"></service>
         <service
             android:name="org.code.socket.UDPServer"
             android:process=":UDPServer"></service>

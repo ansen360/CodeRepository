@@ -1,5 +1,5 @@
 ## 简介
-本项目整合了开发过程中常用工具类,常用技术的示例代码.抱着学无止境的态度,该项目将会持续更新.目前已上架应用宝
+本项目整合了开发过程中常用工具类,常用技术的示例代码.抱着学无止境的态度,该项目将会持续更新.可以下载体验,目前已上架应用宝
 [![](https://jitpack.io/v/ansen360/CodeRepository.svg)](https://jitpack.io/#ansen360/CodeRepository)
 [![Codacy Badge](https://api.codacy.com/project/badge/Grade/42ae3b1def3b4278b1df9ef4bb7d47a0)](https://www.codacy.com/app/ansen360/CodeRepository?utm_source=github.com&amp;utm_medium=referral&amp;utm_content=ansen360/CodeRepository&amp;utm_campaign=Badge_Grade)
 [![](https://img.shields.io/badge/author-ansen-ff69b4.svg)](http://blog.csdn.net/qq_25804863?viewmode=contents)
@@ -30,9 +30,16 @@ setp2:(使用)
 ```
 ![](https://github.com/ansen360/CodeRepository/blob/master/gif/1_toast.gif)
 #### 网速监控悬浮窗
-> D:\Workspace_AS\CodeRepository\app\src\main\java\org\code\service\NetSpeedService.java
+> CodeRepository\app\src\main\java\org\code\service\NetSpeedService.java
 
 ![](https://github.com/ansen360/CodeRepository/blob/master/gif/2_mobiledata.gif)
+
+#### 屏幕录制
+> CodeRepository\app\src\main\java\org\code\service\ScreenRecordService.java
+
+http://blog.csdn.net/qq_25804863/article/details/49703787
+
+![](https://github.com/ansen360/CodeRepository/blob/master/gif/3_screenrecord.gif)
 #### 获取不同格式的当前时间日期
 http://blog.csdn.net/qq_25804863/article/details/49703779
 #### DES3,RSA.对称加密和非对称加密Demo
