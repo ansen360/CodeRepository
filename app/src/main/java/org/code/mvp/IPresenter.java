@@ -3,7 +3,12 @@ package org.code.mvp;
 /**
  * Presenter层接口
  */
-public interface IPresenter {
+public abstract class IPresenter extends BasePresenter<IView, IModel> {
 
-    void loadData();
+    abstract void doWork1();
+
+    abstract void doWork2();
+
+
+
 }

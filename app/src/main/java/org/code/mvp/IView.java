@@ -7,5 +7,5 @@ public interface IView {
 
     void onProgressLoading(int progress);
 
-    void setData(String data);
+    void showText(String data);
 }

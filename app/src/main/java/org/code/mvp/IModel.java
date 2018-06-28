@@ -5,7 +5,8 @@ package org.code.mvp;
  */
 public interface IModel {
 
-    void getData(ICallback callback);
+    void getData1(ICallback callback);
+    void getData2(ICallback callback);
 
     interface ICallback {
 

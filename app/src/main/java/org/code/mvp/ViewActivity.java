@@ -22,9 +22,11 @@ public class ViewActivity extends Activity implements IView {
         // progressBar = null;
         // infoText = null;
 
+        // 初始化Presenter
+        mPresenter = new MyPresenter();
+        mPresenter.attachView(this);
         // 实现仅仅通过Presenter来处理业务逻辑
-        mPresenter = new Presenter(this);
-        mPresenter.loadData();
+        mPresenter.doWork1();
     }
 
     @Override
@@ -34,8 +36,14 @@ public class ViewActivity extends Activity implements IView {
     }
 
     @Override
-    public void setData(String data) {
+    public void showText(String data) {
         // UI展示 业务处理完成结果
         infoText.setText(data);
+    }
+
+    @Override
+    protected void onDestroy() {
+        super.onDestroy();
+        mPresenter.detachView();
     }
 }

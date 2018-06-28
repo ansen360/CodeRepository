@@ -6,7 +6,7 @@ package org.code.mvp;
 public class Model implements IModel {
 
     @Override
-    public void getData(final ICallback callback) {
+    public void getData1(final ICallback callback) {
         new Thread() {
             @Override
             public void run() {
@@ -20,6 +20,10 @@ public class Model implements IModel {
                 }
             }
         }.start();
+
+    }
+
+    public void getData2(final ICallback callback) {
 
     }
 }
