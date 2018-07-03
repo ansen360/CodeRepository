@@ -12,6 +12,7 @@ import android.location.LocationManager;
 import android.net.Uri;
 import android.os.Bundle;
 import android.support.v4.app.ActivityCompat;
+import android.util.Log;
 
 /**
  * Created by Ansen on 2017/1/16 15:43.
@@ -25,6 +26,7 @@ import android.support.v4.app.ActivityCompat;
  */
 public class GPSManager {
 
+    private static final String TAG = "GPSManager";
     private LocationManager mLocationManager;
     private Context mContext;
 
@@ -35,12 +37,11 @@ public class GPSManager {
     }
 
     /**
-     * 判断手机GPS是否开启
+     * 判断定位服务是否开启
      */
     public boolean isOpen() {
-        //通过GPS卫星定位,定位级别到街
         boolean gps = mLocationManager.isProviderEnabled(LocationManager.GPS_PROVIDER);
-        //通过WLAN或者移动网络确定位置
+        // WLAN或移动网络
         boolean network = mLocationManager.isProviderEnabled(LocationManager.NETWORK_PROVIDER);
         if (gps || network) {
             return true;
@@ -49,7 +50,7 @@ public class GPSManager {
     }
 
     /**
-     * 开启手机GPS
+     * 打开定位服务
      */
     public void openGPS(Context context) {
         Intent GPSIntent = new Intent();
@@ -66,18 +67,11 @@ public class GPSManager {
     }
 
     /**
-     * GPS功能已经打开-->根据GPS去获取经纬度
+     * 获取经纬度信息
      */
     public void getGPSConfi(Activity activity) {
         if (ActivityCompat.checkSelfPermission(activity, Manifest.permission.ACCESS_FINE_LOCATION) != PackageManager.PERMISSION_GRANTED &&
                 ActivityCompat.checkSelfPermission(activity, Manifest.permission.ACCESS_COARSE_LOCATION) != PackageManager.PERMISSION_GRANTED) {
-            // TODO: Consider calling
-            //    ActivityCompat#requestPermissions
-            // here to request the missing permissions, and then overriding
-            //   public void onRequestPermissionsResult(int requestCode, String[] permissions,
-            //                                          int[] grantResults)
-            // to handle the case where the user grants the permission. See the documentation
-            // for ActivityCompat#requestPermissions for more details.
             ActivityCompat.requestPermissions(activity, new String[]{Manifest.permission.ACCESS_COARSE_LOCATION}, 0);
             return;
         }
@@ -93,31 +87,35 @@ public class GPSManager {
         if (location != null) {
             double latitude = location.getLatitude();
             double longitude = location.getLongitude();
-            ToastUtils.show("经纬度:" + latitude + "--" + longitude);
+            Log.d(TAG, "经纬度:" + latitude + "--" + longitude);
         } else {
-            ToastUtils.show("未获取到经纬度数据");
+            Log.d(TAG, "未获取到经纬度数据");
         }
     }
 
-    public LocationListener mLocationListener = new LocationListener() {
+    private LocationListener mLocationListener = new LocationListener() {
         @Override
         public void onLocationChanged(Location location) {
-
+            if (location != null) {
+                double latitude = location.getLatitude();
+                double longitude = location.getLongitude();
+                Log.d(TAG, "onLocationChanged: 经纬度:" + latitude + "--" + longitude);
+            }
         }
 
         @Override
         public void onStatusChanged(String provider, int status, Bundle extras) {
-
+            Log.d(TAG, "onStatusChanged: " + provider + "  " + status);
         }
 
         @Override
         public void onProviderEnabled(String provider) {
-
+            Log.d(TAG, "onProviderEnabled: " + provider);
         }
 
         @Override
         public void onProviderDisabled(String provider) {
-
+            Log.d(TAG, "onProviderDisabled: " + provider);
         }
     };
 }
