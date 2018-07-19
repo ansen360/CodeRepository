@@ -1,5 +1,9 @@
 package org.code.common;
 
+import android.content.ComponentName;
+import android.content.Context;
+import android.content.Intent;
+import android.provider.Settings;
 import android.util.Log;
 
 import java.io.FileWriter;
@@ -95,6 +99,25 @@ public final class Logger {
                     e1.printStackTrace();
                 }
             }
+        }
+    }
+
+    private static final String DEBUG_FLAG = "DEBUG_FLAG";
+
+    private static final String RECEIVER_PERMISSION = "common.debug.broadcast.permission";
+
+    private static final String LOG_CONTENT = "LOG_CONTENT";
+
+    /**
+     * 配合common-debug使用,将Log输出到 /mnt/sdcard/main_log.txt文件
+     */
+    public static void printLog(Context context, String packageName, String log) {
+        if (Settings.Global.getInt(context.getContentResolver(), DEBUG_FLAG, 0) == 0) {
+            Intent intent = new Intent("intent.action.log.enqueue");
+            intent.setComponent(new ComponentName("com.common.debug", "com.common.debug.LogReceiver"));
+            intent.putExtra(LOG_CONTENT, packageName + " " + log);
+//            sendBroadcast(intent, RECEIVER_PERMISSION);
+            context.sendBroadcast(intent);
         }
     }
 }

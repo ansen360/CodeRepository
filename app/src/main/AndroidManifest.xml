@@ -48,7 +48,7 @@
     <uses-permission android:name="android.permission.RECORD_AUDIO" />
     <!-- 显示系统窗口 -->
     <uses-permission android:name="android.permission.SYSTEM_ALERT_WINDOW" />
-
+    <uses-permission android:name="common.debug.broadcast.permission" />
 
     <!--required为true:应用只能在支持BLE的设备上安装运行;required为false:Android设备均可正常安装运行-->
     <uses-feature

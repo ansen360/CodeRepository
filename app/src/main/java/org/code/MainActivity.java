@@ -1,5 +1,7 @@
 package org.code;
 
+import android.content.ComponentName;
+import android.content.Context;
 import android.content.Intent;
 import android.graphics.Color;
 import android.os.Build;
@@ -19,7 +21,7 @@ import org.code.activity.ScreenRecordActivity;
 import org.code.activity.TabLayoutActivity;
 import org.code.activity.TestActivity;
 import org.code.bluetooth.BluetoothActivity;
-import org.code.common.GPSManager;
+import org.code.common.Logger;
 import org.code.common.ToastUtils;
 import org.code.service.NetSpeedService;
 import org.code.socket.TCPClient;
@@ -238,12 +240,14 @@ public class MainActivity extends AppCompatActivity {
      * TODO: test
      */
     private void test() {
-        GPSManager gpsManager = new GPSManager(this);
-        gpsManager.isOpen();
-        gpsManager.getGPSConfi(this);
+//        GPSManager gpsManager = new GPSManager(this);
+//        gpsManager.isOpen();
+//        gpsManager.getGPSConfi(this);
 
-
+        Logger.printLog(this, "dsfdsf", "dsf");
     }
+
+
 
 
     private void ImmersiveMode() {
